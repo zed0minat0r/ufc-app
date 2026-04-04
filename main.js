@@ -468,11 +468,13 @@ function getInitials(fighter) {
 }
 
 function getFighterImage(fighter, size) {
-  // size: 'lg' (80px), 'md' (48px), 'sm' (32px)
+  // size: 'lg', 'md', 'sm'
   const initials = getInitials(fighter);
-  const src = fighter.image || (PH_CDN + initials);
-  const fallback = `https://via.placeholder.com/120x120/1a1a2e/ffffff?text=${initials}`;
-  return `<img class="fighter-photo fighter-photo--${size}" src="${src}" alt="${fighter.name}" loading="lazy" onerror="this.onerror=null;this.src='${fallback}'">`;
+  const src = fighter.image || '';
+  // Inline SVG fallback — no external requests
+  const svgFallback = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' rx='8' fill='%231a1a2e'/%3E%3Ctext x='60' y='75' font-size='36' font-weight='900' text-anchor='middle' fill='%23d62828' font-family='Arial'%3E${encodeURIComponent(initials)}%3C/text%3E%3C/svg%3E`;
+  if (!src) return `<img class="fighter-photo fighter-photo--${size}" src="${svgFallback}" alt="${fighter.name}">`;
+  return `<img class="fighter-photo fighter-photo--${size}" src="${src}" alt="${fighter.name}" loading="lazy" onerror="this.onerror=null;this.src='${svgFallback}'">`;
 }
 
 // ─── RENDER HELPERS ─────────────────────────────────────────────────────────
@@ -780,11 +782,13 @@ function runSimulator() {
   const loser = winner === f1 ? f2 : f1;
   const winnerProb = winner === f1 ? pred.f1WinProb : pred.f2WinProb;
 
-  // Pick most likely method
+  // Pick most likely method — deterministic round based on finish rate
+  const koRound = winner.stats.koPct >= 60 ? 1 : winner.stats.koPct >= 40 ? 2 : 3;
+  const subRound = winner.stats.subAvg >= 1.5 ? 1 : winner.stats.subAvg >= 0.8 ? 2 : 3;
   const methods = [
-    { name: 'KO/TKO', pct: pred.koPct, round: Math.floor(Math.random() * 3) + 1 },
-    { name: 'Submission', pct: pred.subPct, round: Math.floor(Math.random() * 3) + 1 },
-    { name: 'Decision', pct: pred.decPct, round: 5 }
+    { name: 'KO/TKO', pct: pred.koPct, round: koRound },
+    { name: 'Submission', pct: pred.subPct, round: subRound },
+    { name: 'Decision', pct: pred.decPct, round: 3 }
   ].sort((a, b) => b.pct - a.pct);
   const method = methods[0];
   const methodStr = method.name === 'Decision'

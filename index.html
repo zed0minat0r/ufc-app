@@ -18,7 +18,7 @@
 <header>
   <div class="header-inner">
     <a class="logo" href="#" data-goto-tab="events">
-      <div class="logo-icon">U</div>
+      <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="6,1 14,1 19,6 19,14 14,19 6,19 1,14 1,6" stroke="white" stroke-width="1.5" fill="none"/><text x="10" y="14" font-size="8" font-weight="900" text-anchor="middle" fill="white" font-family="Arial">IQ</text></svg></div>
       <div class="logo-text">Fight<span>IQ</span></div>
     </a>
     <nav id="main-nav">
@@ -39,16 +39,18 @@
   <div id="hero-banner" class="hero-banner"></div>
 
   <!-- Tabs -->
-  <div class="tabs" role="tablist" aria-label="FightIQ sections">
-    <button class="tab-btn active" data-tab="events" role="tab" aria-selected="true" aria-controls="panel-events">Events</button>
-    <button class="tab-btn" data-tab="predictions" role="tab" aria-selected="false" aria-controls="panel-predictions">Predictions</button>
-    <button class="tab-btn" data-tab="simulator" role="tab" aria-selected="false" aria-controls="panel-simulator">Simulator</button>
-    <button class="tab-btn" data-tab="betting" role="tab" aria-selected="false" aria-controls="panel-betting">Betting</button>
-    <button class="tab-btn" data-tab="fighters" role="tab" aria-selected="false" aria-controls="panel-fighters">Fighters</button>
+  <div class="tabs-wrap">
+    <div class="tabs" role="tablist" aria-label="FightIQ sections">
+      <button class="tab-btn active" id="tab-events" data-tab="events" role="tab" aria-selected="true" aria-controls="panel-events">Events</button>
+      <button class="tab-btn" id="tab-predictions" data-tab="predictions" role="tab" aria-selected="false" aria-controls="panel-predictions">Predictions</button>
+      <button class="tab-btn" id="tab-simulator" data-tab="simulator" role="tab" aria-selected="false" aria-controls="panel-simulator">Simulator</button>
+      <button class="tab-btn" id="tab-betting" data-tab="betting" role="tab" aria-selected="false" aria-controls="panel-betting">Betting</button>
+      <button class="tab-btn" id="tab-fighters" data-tab="fighters" role="tab" aria-selected="false" aria-controls="panel-fighters">Fighters</button>
+    </div>
   </div>
 
   <!-- ── EVENTS ── -->
-  <div id="panel-events" class="tab-panel active">
+  <div id="panel-events" class="tab-panel active" role="tabpanel" aria-labelledby="tab-events">
     <div class="section-header">
       <h2>Upcoming Events</h2>
       <span class="section-badge">SCHEDULED</span>
@@ -62,7 +64,7 @@
   </div>
 
   <!-- ── PREDICTIONS ── -->
-  <div id="panel-predictions" class="tab-panel">
+  <div id="panel-predictions" class="tab-panel" role="tabpanel" aria-labelledby="tab-predictions">
     <div class="section-header">
       <h2>AI Fight Predictions</h2>
       <span class="section-badge gold">ML MODEL</span>
@@ -76,7 +78,7 @@
   </div>
 
   <!-- ── SIMULATOR ── -->
-  <div id="panel-simulator" class="tab-panel">
+  <div id="panel-simulator" class="tab-panel" role="tabpanel" aria-labelledby="tab-simulator">
     <div class="section-header">
       <h2>Fight Simulator</h2>
       <span class="section-badge">INTERACTIVE</span>
@@ -105,7 +107,7 @@
   </div>
 
   <!-- ── BETTING ── -->
-  <div id="panel-betting" class="tab-panel">
+  <div id="panel-betting" class="tab-panel" role="tabpanel" aria-labelledby="tab-betting">
     <div class="section-header">
       <h2>Betting Predictor</h2>
       <span class="section-badge gold">MODEL ODDS</span>
@@ -122,7 +124,7 @@
   </div>
 
   <!-- ── FIGHTERS ── -->
-  <div id="panel-fighters" class="tab-panel">
+  <div id="panel-fighters" class="tab-panel" role="tabpanel" aria-labelledby="tab-fighters">
     <div class="section-header">
       <h2>Fighter Database</h2>
       <span class="section-badge">STATS</span>
