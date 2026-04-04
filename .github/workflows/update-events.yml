@@ -15,15 +15,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Fetch & patch UFC events
-        run: python3 fetch-events.py --patch
+      - name: Fetch & verify UFC events (report only)
+        run: python3 fetch-events.py
 
-      - name: Commit if changed
-        run: |
-          git config user.name "FightIQ Bot"
-          git config user.email "fightiq@users.noreply.github.com"
-          git diff --quiet && echo "No changes" || (
-            git add main.js &&
-            git commit -m "chore: auto-update UFC events [$(date -u '+%Y-%m-%d %H:%M UTC')]" &&
-            git push
-          )
+      - name: No auto-commit (verification only)
+        run: echo "Event verification complete. Manual update required to patch main.js."

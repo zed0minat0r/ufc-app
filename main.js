@@ -112,18 +112,31 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "evt1",
-    name: "UFC Fight Night",
+    id: "ufc-fn-apr4",
+    name: "UFC Fight Night: Moicano vs. Duncan",
     type: "fight-night",
     date: "April 4, 2026",
-    location: "Meta APEX",
+    location: "Meta APEX, Las Vegas, NV",
     fights: [
-      { f1: "lando-vannata",      f2: "darrius-flowers",  tier: "main",   weight: "Lightweight" },
-      { f1: "melissa-gatto",      f2: "dione-barbosa",    tier: "co-main", weight: "Women's Strawweight" },
-      { f1: "tresean-gore",       f2: "azamat-bekoev",    tier: "prelim", weight: "Middleweight" },
-      { f1: "hailey-cowan",       f2: "alice-pereira",    tier: "prelim", weight: "Women's Flyweight" },
-      { f1: "kai-kamaka-iii",     f2: "dakota-hope",      tier: "prelim", weight: "Featherweight" },
-      { f1: "alessandro-costa",   f2: "stewart-nicoll",   tier: "prelim", weight: "Bantamweight" }
+      { f1: "renato-moicano",     f2: "chris-duncan",           tier: "main",    weight: "Lightweight" },
+      { f1: "virna-jandiroba",    f2: "tabatha-ricci",          tier: "co-main", weight: "Women's Strawweight" },
+      { f1: "brendson-ribeiro",   f2: "abdul-rakhman-yakhyaev", tier: "main-card", weight: "Light Heavyweight" },
+      { f1: "ethyn-ewing",        f2: "rafael-estevam",         tier: "main-card", weight: "Bantamweight" },
+      { f1: "lando-vannata",      f2: "darrius-flowers",        tier: "prelim",  weight: "Lightweight" },
+      { f1: "kai-kamaka-iii",     f2: "dakota-hope",            tier: "prelim",  weight: "Featherweight" },
+      { f1: "melissa-gatto",      f2: "dione-barbosa",          tier: "prelim",  weight: "Women's Strawweight" },
+      { f1: "tresean-gore",       f2: "azamat-bekoev",          tier: "prelim",  weight: "Middleweight" }
+    ]
+  },
+  {
+    id: "ufc-327",
+    name: "UFC 327: Prochazka vs. Ulberg",
+    type: "ppv",
+    date: "April 11, 2026",
+    location: "Kaseya Center, Miami, FL",
+    fights: [
+      { f1: "jiri-prochazka",   f2: "carlos-ulberg",   tier: "main",    weight: "Light Heavyweight" },
+      { f1: "joshua-van",       f2: "tatsuro-taira",   tier: "co-main", weight: "Flyweight" }
     ]
   }
 ];
