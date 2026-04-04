@@ -934,29 +934,6 @@ function runSimulator() {
         </div>
       </div>
       <div class="sim-narrative">${generateFightNarrative(f1, f2, pred)}</div>
-      <div class="sim-breakdown">
-        <div class="sim-breakdown-title">Statistical Breakdown</div>
-        <div class="sim-bar-row">
-          <div class="sim-bar-label">Striking Edge</div>
-          <div class="sim-bar-track"><div class="sim-bar-fill" style="width:${Math.min(100, winner.stats.slpm / 8 * 100)}%"></div></div>
-          <div class="sim-bar-val">${winner.stats.slpm}/min</div>
-        </div>
-        <div class="sim-bar-row">
-          <div class="sim-bar-label">Takedown Avg</div>
-          <div class="sim-bar-track"><div class="sim-bar-fill" style="width:${Math.min(100, winner.stats.tdAvg / 5 * 100)}%"></div></div>
-          <div class="sim-bar-val">${winner.stats.tdAvg}/15</div>
-        </div>
-        <div class="sim-bar-row">
-          <div class="sim-bar-label">Str. Accuracy</div>
-          <div class="sim-bar-track"><div class="sim-bar-fill" style="width:${winner.stats.strAcc}%"></div></div>
-          <div class="sim-bar-val">${winner.stats.strAcc}%</div>
-        </div>
-        <div class="sim-bar-row">
-          <div class="sim-bar-label">Finish Rate</div>
-          <div class="sim-bar-track"><div class="sim-bar-fill" style="width:${winner.stats.koPct + winner.stats.subPct}%"></div></div>
-          <div class="sim-bar-val">${winner.stats.koPct + winner.stats.subPct}%</div>
-        </div>
-      </div>
     </div>
   `;
 
@@ -1340,6 +1317,21 @@ function initFighterModal() {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeFighterModal();
+  });
+
+  modal.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || modal.hasAttribute('hidden')) return;
+    const focusable = Array.from(modal.querySelectorAll('button, [tabindex="0"]')).filter(el => !el.disabled);
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 
   document.getElementById('modal-sim-btn').addEventListener('click', () => {

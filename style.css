@@ -1247,56 +1247,6 @@ main {
   white-space: nowrap;
 }
 
-.sim-breakdown {
-  padding: 0 18px 16px;
-}
-
-.sim-breakdown-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--grey);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.sim-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.sim-bar-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--grey-light);
-  width: 90px;
-  flex-shrink: 0;
-}
-
-.sim-bar-track {
-  flex: 1;
-  height: 6px;
-  background: var(--border);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.sim-bar-fill {
-  height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, var(--red), var(--gold));
-}
-
-.sim-bar-val {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--white);
-  width: 34px;
-  text-align: right;
-  flex-shrink: 0;
-}
 
 /* Confidence-keyed bet card borders */
 .bet-card.conf-strong {
@@ -2257,18 +2207,18 @@ nav a:focus-visible {
 
 .fighter-modal-close {
   position: absolute;
-  top: 12px;
-  right: 14px;
+  top: 8px;
+  right: 10px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
   cursor: pointer;
   z-index: 10;
