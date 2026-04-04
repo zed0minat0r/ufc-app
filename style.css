@@ -1511,39 +1511,42 @@ nav a:focus-visible {
 /* ─── FIGHTER PHOTOS ─────────────────────────────────────────────────────── */
 
 .fighter-photo {
-  border-radius: 50%;
+  border-radius: 8px;
   object-fit: cover;
+  object-position: top center;
   border: 2px solid var(--border);
   display: block;
   flex-shrink: 0;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  background: var(--card-bg);
 }
 
-/* Large: fighter cards (80px) */
+/* Large: fighter cards (120px) */
 .fighter-photo--lg {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 140px;
 }
 
-/* Medium: prediction panels, sim winner (48px) */
+/* Medium: prediction panels, sim winner (80px) */
 .fighter-photo--md {
-  width: 48px;
-  height: 48px;
+  width: 80px;
+  height: 96px;
   margin: 0 auto 6px;
 }
 
-/* Small: event fight rows (32px) */
+/* Small: event fight rows (56px) */
 .fighter-photo--sm {
-  width: 32px;
-  height: 32px;
+  width: 56px;
+  height: 68px;
   flex-shrink: 0;
+  border-radius: 6px;
 }
 
 /* Hover glow on fighter cards */
 .fighter-card:hover .fighter-photo {
   border-color: var(--red-bright);
-  box-shadow: 0 0 14px rgba(214,40,40,0.55);
-  transform: scale(1.06);
+  box-shadow: 0 0 18px rgba(214,40,40,0.6);
+  transform: scale(1.04);
 }
 
 /* Prediction panel — center avatar, let text follow */
@@ -1555,9 +1558,9 @@ nav a:focus-visible {
 
 /* Fighter avatar container: switch from gradient circle to photo-ready */
 .fighter-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 120px;
+  height: 140px;
+  border-radius: 8px;
   background: transparent;
   display: block;
   padding: 0;
