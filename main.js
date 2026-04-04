@@ -19,7 +19,7 @@ const FIGHTERS = {
   },
   "tom-aspinall": {
     id: "tom-aspinall", name: "Tom Aspinall", nickname: "The Future",
-    record: "15-3-0", weight: "Heavyweight", rank: "Interim Champ",
+    record: "15-3-0", weight: "Heavyweight", rank: "Champion",
     initials: "TA", image: './fighters/tom-aspinall.png',
     stats: { slpm: 5.8, strAcc: 60, tdAvg: 2.1, subAvg: 1.2, koPct: 47, subPct: 27, decPct: 26 },
     style: "Grappling/MMA", reach: 78, stance: "Orthodox"
@@ -166,14 +166,14 @@ const EXTRA_FIGHTERS = {
   },
   "virna-jandiroba": {
     id: "virna-jandiroba", name: "Virna Jandiroba", nickname: "Carcará",
-    record: "20-3-0", weight: "Strawweight", rank: "#3",
+    record: "20-3-0", weight: "Women's Strawweight", rank: "#3",
     initials: "VJ", image: './fighters/virna-jandiroba.png',
     stats: { slpm: 3.8, strAcc: 49, tdAvg: 1.2, subAvg: 2.1, koPct: 15, subPct: 55, decPct: 30 },
     style: "BJJ/Grappling", reach: 65, stance: "Orthodox"
   },
   "tabatha-ricci": {
     id: "tabatha-ricci", name: "Tabatha Ricci", nickname: "",
-    record: "11-2-0", weight: "Strawweight", rank: "#7",
+    record: "11-2-0", weight: "Women's Strawweight", rank: "#7",
     initials: "TR", image: './fighters/tabatha-ricci.png',
     stats: { slpm: 4.2, strAcc: 47, tdAvg: 1.8, subAvg: 0.9, koPct: 18, subPct: 36, decPct: 46 },
     style: "Kickboxing/BJJ", reach: 66, stance: "Orthodox"
@@ -320,14 +320,14 @@ const EXTRA_FIGHTERS = {
   },
   "melissa-gatto": {
     id: "melissa-gatto", name: "Melissa Gatto", nickname: "",
-    record: "14-3-2", weight: "Strawweight", rank: "Unranked",
+    record: "14-3-2", weight: "Women's Strawweight", rank: "Unranked",
     initials: "MG", image: './fighters/melissa-gatto.png',
     stats: { slpm: 3.9, strAcc: 46, tdAvg: 1.1, subAvg: 1.4, koPct: 21, subPct: 43, decPct: 36 },
     style: "BJJ/MMA", reach: 64, stance: "Orthodox"
   },
   "dione-barbosa": {
     id: "dione-barbosa", name: "Dione Barbosa", nickname: "",
-    record: "12-5-0", weight: "Strawweight", rank: "Unranked",
+    record: "12-5-0", weight: "Women's Strawweight", rank: "Unranked",
     initials: "DB", image: './fighters/dione-barbosa.png',
     stats: { slpm: 4.1, strAcc: 47, tdAvg: 1.3, subAvg: 0.9, koPct: 25, subPct: 33, decPct: 42 },
     style: "Striking/BJJ", reach: 65, stance: "Orthodox"
@@ -748,6 +748,7 @@ function renderPredictions() {
           </div>
           <div class="win-prob-bar-wrap" style="margin-top:8px">
             <div class="win-prob-bar-fill f1" data-width="${pred.f1WinProb}" style="width:0%"></div>
+            <div class="win-prob-bar-fill f2" data-width="${pred.f2WinProb}" style="width:0%"></div>
           </div>
         </div>
         <div class="method-grid">
