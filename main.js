@@ -137,11 +137,7 @@ const UPCOMING_EVENTS = [
     fights: [
       { f1: "jiri-prochazka",     f2: "carlos-ulberg",       tier: "main",      weight: "Light Heavyweight" },
       { f1: "joshua-van",         f2: "tatsuro-taira",       tier: "co-main",   weight: "Flyweight" },
-      { f1: "khamzat-chimaev",    f2: "dricus-du-plessis",   tier: "main-card", weight: "Middleweight", title: true },
-      { f1: "belal-muhammad",     f2: "leon-edwards",        tier: "main-card", weight: "Welterweight", title: true },
-      { f1: "israel-adesanya",    f2: "sean-strickland",     tier: "main-card", weight: "Middleweight" },
-      { f1: "paulo-costa",        f2: "azamat-murzakanov",   tier: "prelim",    weight: "Middleweight" },
-      { f1: "curtis-blaydes",     f2: "alexander-volkov",    tier: "prelim",    weight: "Heavyweight" }
+
     ]
   }
 ];
@@ -1360,6 +1356,8 @@ function initFighterModal() {
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   initTabs();
