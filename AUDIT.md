@@ -5,11 +5,20 @@
 
 ---
 
-## Overall Score: 6.1 / 10
+## Score History
 
-Scoring anchor: 5.0 = average/basic web app, 6.0 = generic template, 7.0 = genuinely better than most (high bar), 8.0 = user would choose over competitors.
+| Date | Score | Key Change |
+|---|---|---|
+| 2026-04-03 (v1) | 6.1 | Initial audit. f1/f2 key mismatch broke predictions/betting for all fights. Single event, missing tiers and weight classes. |
+| 2026-04-03 (v2) | 6.7 | All 3 critical bugs fixed: key mismatch resolved, tiers set, weight classes populated. Second event (UFC 327 PPV) added. Predictions and Betting tabs now fully functional. |
 
-FightIQ sits just above a generic template. It has a coherent dark theme, 5 working tabs, and a functional prediction engine. But from a real user's perspective, the core promise — "AI-powered UFC predictions" — is undermined by static hardcoded data, no live results, a single stale event, and a prediction model that is simply arithmetic on hardcoded stats. A UFC fan would use it once, recognize it has no real data, and leave.
+---
+
+## Overall Score: 6.7 / 10
+
+Scoring anchor: 5.0 = average/basic, 6.0 = generic template, 7.0 = genuinely better than most (HIGH bar), 8.0 = user would choose over competitors.
+
+This is a meaningful jump from 6.1. The three blocking bugs are fixed. Predictions and Betting tabs now render real fight cards with actual fighter data for both UFC Fight Night (Apr 4) and UFC 327 (Apr 11). The hero banner correctly identifies the main event (Moicano vs. Duncan). The app now does what it claims. However, it still sits below 7.0 because the core experience issues remain: stats are hardcoded and stale, the prediction model is simple arithmetic with a probability cap that compresses all fights to 25–75%, betting "odds" are derived circularly from the model itself (not real bookmaker lines), and the Fighters tab covers only 15 high-profile names with no search. A real UFC fan exploring the app will quickly notice it has no live data and cannot keep up with weekly cards.
 
 ---
 
@@ -17,78 +26,66 @@ FightIQ sits just above a generic template. It has a coherent dark theme, 5 work
 
 | Category | Score | Notes |
 |---|---|---|
-| Visual Design | 6.5 | Clean dark theme, gold accents, Inter font. Consistent system. Cards feel generic though — no real visual identity beyond the color palette. |
-| Mobile UX (375px) | 6.0 | Tabs scroll horizontally (correct), grids collapse to 1-col (correct). Hero banner looks OK. Fight rows on small screens hide weight class which is acceptable. Simulator dropdowns stack properly at 480px. BUT: tab buttons at 13–14px with 10–14px padding are tight targets on 375px. Hamburger nav works. No major breakages. |
-| Features | 5.5 | 5 tabs (Events, Predictions, Simulator, Betting, Fighters). Simulator is interactive. Betting tab shows model edge vs book. These are good ideas. But predictions only work for the ~30 fighters in the hardcoded list — the Events tab shows 6 fights by name strings (e.g., "Kai Kamaka III") that don't exist in the FIGHTERS object, so predictions and betting tabs render empty for those fights. |
-| Data Quality | 4.5 | Single event hardcoded: UFC Fight Night April 4, 2026 with 6 prelim-only fights, no main event tier set, no weight classes set. The fight objects use `fighter1`/`fighter2` keys in UPCOMING_EVENTS but the rendering code looks for `fight.f1`/`fight.f2` — so `getFighterOrPlaceholder` falls back to generic placeholder stats for all 6 fights. Fights display placeholder data throughout. Hero banner shows a prelim fight (Kamaka vs Hope) as "Next Main Event." Records for several fighters appear stale or incorrect (Conor McGregor as Welterweight "22-6-0", Ilia Topuria listed as Lightweight Champion with old record). No fight card structure (no main event, no co-main). No last-updated timestamp. |
-| Performance | 7.0 | Pure HTML/CSS/JS, no build step, no frameworks, no external API calls at runtime. Loads fast. Animations are CSS-based. Google Fonts is the only network dependency. No lazy loading needed at this scale. |
-| Accessibility | 5.0 | No `aria-label` on tabs (they are `<button>` elements which is correct, but no roles for tab panels). Hamburger has `aria-label="Menu"` (good). Color contrast: gold (#c9a84c) on dark (#181818) may fail WCAG AA at small sizes. Grey (#888) text on dark fails contrast. No `alt` on SVG favicon. No skip-to-content link. No focus-visible styles visible in CSS for most interactive elements. |
-| Overall App Feel | 6.0 | Feels like a polished starter template with broken data. The visual layer is competent but the actual functionality is hollow — a real user clicking through sees generic placeholder percentages, empty prediction cards, and a hero banner that misidentifies the main event. The "LIVE DATA" badge on Events is misleading since data is hardcoded. |
+| Visual Design | 6.5 | Dark theme is cohesive, Inter font, red/gold palette — looks intentional. Cards feel polished. Still generic MMA dark UI — no distinctive identity that separates it from dozens of similar template builds. No fighter photos for most fighters (via.placeholder.com fallbacks are ugly grey squares). |
+| Mobile UX (375px) | 6.2 | Tabs scroll horizontally correctly. Hero banner scales well. Fight rows are readable. Prediction grid collapses to single column. Simulator dropdowns stack at 480px. Tab buttons at 14px/12px padding are adequate. Main gap: `.predictions-grid` with `minmax(320px,1fr)` forces horizontal scroll on 375px — cards are slightly wider than viewport with 16px side padding, creating a ~16px horizontal overflow. Fight-name text in fight rows truncates poorly on very narrow screens. |
+| Features | 6.5 | 5 tabs, all functional. Events shows 2 events with proper tier badges. Predictions renders all fights from both cards with confidence %, method breakdown, and AI pick. Simulator lets you pick any 2 of 40+ fighters. Betting tab shows model edge vs implied odds. Fighter filters by weight class work. Solid feature set for a static app — but nothing that distinguishes it: no notifications, no head-to-head stat comparison, no historical accuracy tracking. |
+| Data Quality | 5.5 | Big improvement: all fight data is accurate for both events (correct fighters, tiers, weight classes). Fighter stats are plausible. But: records for some fighters are stale (Ilia Topuria listed at 17-0, he has fought since; Conor McGregor listed as active Welterweight — he is retired/inactive). "SCHEDULED" badge on Events is honest, but there is still no last-updated timestamp so users can't know how stale the data is. Betting "book odds" are derived from the model (bookF1Prob = modelProb * 0.9 + 0.05) — this is a circular approximation, not real odds, and the disclaimer ("estimated book odds") is buried in 12px grey text. UFC 327 only has 2 fights listed — likely incomplete card. |
+| Performance | 7.5 | Pure HTML/CSS/JS, no framework, no runtime API calls. Instant load. CSS transitions are smooth. Google Fonts is the only external request. `loading="lazy"` on images is correct. Fast on any device. |
+| Accessibility | 5.0 | Tab panels still lack `role="tabpanel"` and `aria-labelledby`. Gold (#c9a84c) on dark (#0a0a0a) fails WCAG AA at body text sizes (contrast ratio ~4.1:1, need 4.5). Grey (#888) on dark fails at small sizes. No focus-visible ring visible in CSS for most interactive elements (only `.sim-select:focus` has a border). No skip-to-content link. Simulator same-fighter error is now inline (good) rather than alert() — actually this was already inline in this version. Fighter filter buttons have no aria-pressed state. |
+| Overall App Feel | 6.5 | It feels like a real app now — you can navigate to Predictions, see fights with win probabilities, click over to Betting and see odds-style formatting. The hero banner pulls up the right main event. The simulator is fun to use. The experience cap is: all probabilities cluster between 45–65% (the 25–75% model cap means even a huge skill gap shows as 65/35 at most), making every fight feel coin-flip. Real UFC fans know Makhachev should be 80%+ against most opponents. This undermines trust in the AI framing. |
 
 ---
 
-## Critical Bugs Found
+## Bugs Fixed Since Last Audit (Good Work)
 
-### Bug 1: fighter1/fighter2 vs f1/f2 key mismatch
-**File:** main.js, UPCOMING_EVENTS array (line ~120) vs renderEvents/renderPredictions/renderBetting
-- UPCOMING_EVENTS stores fights with keys `fighter1` and `fighter2`
-- All render functions access `fight.f1` and `fight.f2`
-- Result: `getFighterOrPlaceholder` is always called with `undefined`, generating placeholder stats for every fight row
-- Predictions tab renders 0 prediction cards (requires both fighters to be in ALL_FIGHTERS via exact key lookup)
-- Betting tab similarly renders 0 cards
-- Hero banner renders correct event metadata but wrong fighter data
-
-### Bug 2: No main event tier assigned
-- All 6 fights in the event have no `tier` field
-- Fight badges all show "PRELIM" by default
-- Hero banner labels a prelim undercard fight as "Next Main Event"
-
-### Bug 3: Fight weight class missing
-- All fight objects lack a `weight` field
-- Fight rows show blank weight class column
-- Prediction cards show blank weight class
+- **f1/f2 key mismatch RESOLVED** — UPCOMING_EVENTS now uses `f1`/`f2` keys throughout. Predictions and Betting tabs render correctly.
+- **Fight tiers populated** — All fights have proper `tier` values (main, co-main, main-card, prelim). Hero banner correctly shows main event.
+- **Weight classes populated** — All fights have `weight` field. Fight rows display correct weight class abbreviations.
+- **Second event added** — UFC 327 (April 11, Miami) with Prochazka vs. Ulberg as main event and Flyweight co-main.
+- **"LIVE DATA" badge removed** — Events section badge now reads "SCHEDULED" — honest framing.
+- **Simulator error is inline** — No alert() usage found; error renders in the DOM.
 
 ---
 
-## Top 3 Priorities
+## Remaining Issues
 
-### Priority 1: Fix the f1/f2 key mismatch (data integrity)
-The entire app's core functionality — predictions, betting analysis — is broken because fight data uses `fighter1`/`fighter2` but the render code expects `f1`/`f2`. Fix the UPCOMING_EVENTS data to use `f1`/`f2` keys, AND populate those with valid fighter IDs from the FIGHTERS/EXTRA_FIGHTERS objects. This single fix would make predictions and betting tabs actually render content.
+### Priority 1: Prediction probability floor is too conservative (25–75% cap)
+`f1WinProb = Math.max(0.25, Math.min(0.75, f1WinProb))` — this means the largest possible edge shown is 75/25. For Topuria vs. a late-notice replacement, or Makhachev in a pure striker matchup, a real model would show 70–80%+ confidence. The hard floor makes every prediction look uncertain and undermines the "AI" framing. Consider widening to 20–80% or 15–85%, or showing a confidence tier (High/Medium/Low) that communicates certainty without fake precision.
 
-### Priority 2: Add fight card structure (tiers + weight classes)
-Every fight needs `tier` ("main", "co-main", "prelim") and `weight` ("Lightweight", "Welterweight", etc.) populated. Without this, the event card looks like an undifferentiated list of names with no context. The main event should be the first fight with `tier: "main"` so the hero banner shows the right matchup.
+### Priority 2: Betting odds are circular and misleading
+`bookF1Prob = modelProb * 0.9 + 0.05` — the "book odds" are just the model's own output, compressed. This means the model can never find an edge beyond the compression math. Real edge detection requires actual bookmaker lines. Either fetch real odds (DraftKings API, The Odds API) or be explicit: rename to "Model-Implied Odds" and drop the "vs book" framing. Currently a user might bet based on a phantom edge.
 
-### Priority 3: Replace "LIVE DATA" badge with honest framing
-The section badge says "LIVE DATA" but data is hardcoded static JavaScript. Either replace with "SCHEDULED" or "UPCOMING" badge, or implement actual data fetching. A UFC fan who sees "LIVE DATA" and then finds stale/wrong information will immediately distrust the entire app. Honest framing ("Model predictions based on historical stats") builds more credibility than false claims.
+### Priority 3: Horizontal overflow on predictions grid at mobile widths
+`.predictions-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) }` with 16px body padding creates overflow at 375px viewport width (375 - 32px padding = 343px available, below 320px minimum). Change `minmax(320px,1fr)` to `minmax(280px,1fr)` or add a `@media (max-width: 440px) { grid-template-columns: 1fr }` override.
 
 ---
 
 ## Additional Issues (Lower Priority)
 
-- **Conor McGregor listed as Welterweight "Unranked"** — outdated, he is retired/inactive as of 2026
-- **Ilia Topuria listed as Lightweight Champion** — he won the Featherweight belt, moved to Lightweight later; record may be stale
-- **No search or filter on Fighters tab** — 15+ cards with no way to filter by weight class
-- **Simulator uses `alert()`** for same-fighter validation — should be inline UI error
-- **Prediction probability is capped at 25–75%** — makes every fight look close regardless of actual skill gap; a 25% floor is unrealistic
-- **"LIVE DATA" badge pulses via CSS animation** — draws attention to a misleading label
-- **No empty state messaging** — when predictions/betting render 0 cards (due to the key bug), user sees a blank panel with no explanation
-- **Betting tab "book odds" are derived from the model itself** (bookF1Prob is model prob * 0.9 + 0.05) — not real odds; this is circular and should be disclosed
-- **No favicon for actual browsers** — SVG data URI favicon is functional but minimal
-- **`fight.f2` key used in renderEvents but `fighter2` stored in data** — fight-weight column also blank because `fight.weight` undefined
+- **Fighter data completeness** — Fighters tab only shows 15 fighters from the `FIGHTERS` object (not `EXTRA_FIGHTERS`). The 30+ fighters in `EXTRA_FIGHTERS` who appear on the actual fight cards aren't visible in the database tab — a user wants to look up Moicano or Jiri Prochazka and can't find them.
+- **UFC 327 fight card is incomplete** — Only 2 fights listed (main and co-main). A real PPV card has 12+ fights. At minimum, populate 4–5 more fights.
+- **No search on Fighters tab** — With 40+ fighters available, filter buttons only cover weight classes. A name search field would be a significant UX improvement.
+- **Conor McGregor listed as active Welterweight** — He has been inactive/retired since 2021 injury. His presence without an "inactive" flag misleads users.
+- **Ilia Topuria record 17-0 is stale** — Check current record.
+- **No last-updated timestamp anywhere** — Users can't tell if the data is from last week or 6 months ago.
+- **Fighter photos** — Most fighters use via.placeholder.com grey squares. Even initials-on-colored-background would look better. ESPN CDN links (used for some fighters) may break without proper referrer.
+- **Simulator method round is random** — `Math.floor(Math.random() * 3) + 1` for round number means running the same simulation twice gives different results. A deterministic output would be more credible for an "AI model."
+- **`aria-controls` on tab buttons points to panel IDs** — panels lack matching `role="tabpanel"` attributes and `id` attributes are present but panels don't have `aria-labelledby`. Screen reader navigation is incomplete.
 
 ---
 
 ## What's Working Well
 
-- Dark theme is cohesive and readable
-- Mobile breakpoints are thoughtfully implemented
-- Tabs + hamburger nav work correctly
-- CSS animations add life without being distracting
-- Fighter stat cards in the Fighters tab look genuinely good
-- Simulator UI layout is clean and functional in isolation
-- Betting edge concept (model vs implied) is the right idea
-- Disclaimer and "for entertainment only" framing is appropriate
+- All 5 tabs fully functional with real data
+- Hero banner shows correct main event with animated probability bar
+- Fight tier badges (MAIN / CO-MN / CARD / PRELIM) display correctly
+- Dark theme is polished and readable
+- Fighter filter by weight class works correctly
+- Simulator is enjoyable to use — good output layout
+- Two events on the card with correct metadata
+- No browser console errors expected from the core render path
+- Performance is excellent — no bloat
 
 ---
 
-*Audit complete. Score: 6.1/10.*
+*Audit complete. Score: 6.7/10. Solid fixes since last round — the app is functional. The path to 7.0+ requires widening the probability range, fixing the circular betting odds framing, and surfacing EXTRA_FIGHTERS in the Fighters tab.*
