@@ -824,9 +824,27 @@ function runSimulator() {
   const f2 = ALL_FIGHTERS[f2id];
   const pred = predictFight(f1, f2);
 
+  // Add ±4% variance so same matchup can return slightly different results each run
+  const noise = (Math.random() * 8) - 4; // -4 to +4
+  const noisedF1 = Math.round(Math.max(5, Math.min(95, pred.f1WinProb + noise)));
+  const noisedF2 = 100 - noisedF1;
+  pred.f1WinProb = noisedF1;
+  pred.f2WinProb = noisedF2;
+
   const winner = pred.f1WinProb >= pred.f2WinProb ? f1 : f2;
   const loser = winner === f1 ? f2 : f1;
   const winnerProb = winner === f1 ? pred.f1WinProb : pred.f2WinProb;
+
+  // Detect if this is a title / 5-round fight by checking if these fighters appear as main event
+  const isTitleFight = UPCOMING_EVENTS.some(ev =>
+    ev.fights.some(fight =>
+      fight.tier === 'main' &&
+      ((fight.f1 === f1id && fight.f2 === f2id) || (fight.f1 === f2id && fight.f2 === f1id))
+    )
+  );
+  const decisionRound = isTitleFight
+    ? (Math.random() < 0.5 ? 4 : 5)  // title fights can end in round 4 or 5
+    : 3;
 
   // Pick most likely method — deterministic round based on finish rate
   const koRound = winner.stats.koPct >= 60 ? 1 : winner.stats.koPct >= 40 ? 2 : 3;
@@ -834,7 +852,7 @@ function runSimulator() {
   const methods = [
     { name: 'KO/TKO', pct: pred.koPct, round: koRound },
     { name: 'Submission', pct: pred.subPct, round: subRound },
-    { name: 'Decision', pct: pred.decPct, round: 3 }
+    { name: 'Decision', pct: pred.decPct, round: decisionRound }
   ].sort((a, b) => b.pct - a.pct);
   const method = methods[0];
   const methodStr = method.name === 'Decision'
@@ -1144,7 +1162,8 @@ function renderHero() {
         <span>${pred.f2WinProb}% ${f2.name.split(' ').pop()}</span>
       </div>
       <div class="hero-prob-bar">
-        <div class="hero-prob-fill" data-width="${pred.f1WinProb}" style="width:0%"></div>
+        <div class="hero-prob-fill hero-prob-fill--f1" data-width="${pred.f1WinProb}" style="width:0%"></div>
+        <div class="hero-prob-fill hero-prob-fill--f2" data-width="${pred.f2WinProb}" style="width:0%"></div>
       </div>
       <div class="hero-ai-label">FightIQ AI Prediction</div>
     </div>
