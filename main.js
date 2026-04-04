@@ -12,7 +12,7 @@ const FIGHTERS = {
   },
   "stipe-miocic": {
     id: "stipe-miocic", name: "Stipe Miocic", nickname: "Stone Cold",
-    record: "22-4-0", weight: "Heavyweight", rank: "#1",
+    record: "22-4-0", weight: "Heavyweight", rank: "Retired",
     initials: "SM", image: './fighters/stipe-miocic.png',
     stats: { slpm: 4.5, strAcc: 52, tdAvg: 1.8, subAvg: 0.2, koPct: 59, subPct: 5, decPct: 36 },
     style: "Boxing/Wrestling", reach: 80, stance: "Orthodox"
@@ -75,7 +75,7 @@ const FIGHTERS = {
   },
   "max-holloway": {
     id: "max-holloway", name: "Max Holloway", nickname: "Blessed",
-    record: "26-7-0", weight: "Featherweight", rank: "Champion",
+    record: "26-7-0", weight: "Featherweight", rank: "#1",
     initials: "MH", image: './fighters/max-holloway.png',
     stats: { slpm: 7.9, strAcc: 46, tdAvg: 0.6, subAvg: 0.3, koPct: 46, subPct: 12, decPct: 42 },
     style: "Boxing/Volume", reach: 69, stance: "Orthodox"
@@ -135,8 +135,13 @@ const UPCOMING_EVENTS = [
     date: "April 11, 2026",
     location: "Kaseya Center, Miami, FL",
     fights: [
-      { f1: "jiri-prochazka",   f2: "carlos-ulberg",   tier: "main",    weight: "Light Heavyweight" },
-      { f1: "joshua-van",       f2: "tatsuro-taira",   tier: "co-main", weight: "Flyweight" }
+      { f1: "jiri-prochazka",     f2: "carlos-ulberg",       tier: "main",      weight: "Light Heavyweight" },
+      { f1: "joshua-van",         f2: "tatsuro-taira",       tier: "co-main",   weight: "Flyweight" },
+      { f1: "khamzat-chimaev",    f2: "dricus-du-plessis",   tier: "main-card", weight: "Middleweight" },
+      { f1: "belal-muhammad",     f2: "leon-edwards",        tier: "main-card", weight: "Welterweight" },
+      { f1: "israel-adesanya",    f2: "sean-strickland",     tier: "main-card", weight: "Middleweight" },
+      { f1: "paulo-costa",        f2: "azamat-murzakanov",   tier: "prelim",    weight: "Middleweight" },
+      { f1: "curtis-blaydes",     f2: "alexander-volkov",    tier: "prelim",    weight: "Heavyweight" }
     ]
   }
 ];
@@ -892,6 +897,28 @@ function runSimulator() {
           <div class="sim-stat-label">Decision</div>
         </div>
       </div>
+      <div class="sim-fighter-compare">
+        <div class="sim-compare-header">
+          <span class="sim-compare-name">${f1.name.split(' ').pop()}</span>
+          <span class="sim-compare-label">Fighter Stats</span>
+          <span class="sim-compare-name">${f2.name.split(' ').pop()}</span>
+        </div>
+        <div class="sim-compare-row">
+          <span class="sim-compare-val ${f1.stats.slpm >= f2.stats.slpm ? 'sim-compare-winner' : ''}">${f1.stats.slpm}</span>
+          <span class="sim-compare-stat">SLpM</span>
+          <span class="sim-compare-val ${f2.stats.slpm > f1.stats.slpm ? 'sim-compare-winner' : ''}">${f2.stats.slpm}</span>
+        </div>
+        <div class="sim-compare-row">
+          <span class="sim-compare-val ${f1.stats.strAcc >= f2.stats.strAcc ? 'sim-compare-winner' : ''}">${f1.stats.strAcc}%</span>
+          <span class="sim-compare-stat">Str Acc</span>
+          <span class="sim-compare-val ${f2.stats.strAcc > f1.stats.strAcc ? 'sim-compare-winner' : ''}">${f2.stats.strAcc}%</span>
+        </div>
+        <div class="sim-compare-row">
+          <span class="sim-compare-val ${(f1.stats.koPct + f1.stats.subPct) >= (f2.stats.koPct + f2.stats.subPct) ? 'sim-compare-winner' : ''}">${f1.stats.koPct + f1.stats.subPct}%</span>
+          <span class="sim-compare-stat">Finish %</span>
+          <span class="sim-compare-val ${(f2.stats.koPct + f2.stats.subPct) > (f1.stats.koPct + f1.stats.subPct) ? 'sim-compare-winner' : ''}">${f2.stats.koPct + f2.stats.subPct}%</span>
+        </div>
+      </div>
       <div class="sim-narrative">${generateFightNarrative(f1, f2, pred)}</div>
       <div class="sim-breakdown">
         <div class="sim-breakdown-title">Statistical Breakdown</div>
@@ -1127,11 +1154,16 @@ function renderHero() {
   const hasF1Img = f1.image && f1.image.startsWith('./fighters/');
   const hasF2Img = f2.image && f2.image.startsWith('./fighters/');
 
+  const heroSvgFallback = (fighter) => {
+    const initials = getInitials(fighter);
+    return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' rx='8' fill='%231a1a2e'/%3E%3Ctext x='60' y='75' font-size='36' font-weight='900' text-anchor='middle' fill='%23d62828' font-family='Arial'%3E${encodeURIComponent(initials)}%3C/text%3E%3C/svg%3E`;
+  };
+
   const f1Photo = hasF1Img
-    ? `<img class="hero-fighter-photo" src="${f1.image}" alt="${f1.name}" loading="eager" onerror="this.style.display='none'">`
+    ? `<img class="hero-fighter-photo" src="${f1.image}" alt="${f1.name}" loading="eager" onerror="this.onerror=null;this.src='${heroSvgFallback(f1)}';">`
     : `<div class="hero-fighter-photo hero-fighter-initials">${f1.initials}</div>`;
   const f2Photo = hasF2Img
-    ? `<img class="hero-fighter-photo" src="${f2.image}" alt="${f2.name}" loading="eager" onerror="this.style.display='none'">`
+    ? `<img class="hero-fighter-photo" src="${f2.image}" alt="${f2.name}" loading="eager" onerror="this.onerror=null;this.src='${heroSvgFallback(f2)}';">`
     : `<div class="hero-fighter-photo hero-fighter-initials">${f2.initials}</div>`;
 
   banner.innerHTML = `

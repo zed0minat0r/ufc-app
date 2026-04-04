@@ -1161,6 +1161,78 @@ main {
   letter-spacing: 0.5px;
 }
 
+/* ─── SIMULATOR FIGHTER COMPARE ─── */
+.sim-fighter-compare {
+  margin: 0 18px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sim-compare-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background: var(--card2);
+  padding: 8px 12px;
+  gap: 8px;
+}
+
+.sim-compare-header .sim-compare-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.5px;
+}
+
+.sim-compare-header .sim-compare-name:last-child {
+  text-align: right;
+}
+
+.sim-compare-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--grey);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.sim-compare-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 7px 12px;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.sim-compare-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--grey-light);
+  text-align: center;
+}
+
+.sim-compare-val.sim-compare-winner {
+  color: var(--red-bright);
+}
+
+.sim-compare-val:last-child {
+  text-align: center;
+}
+
+.sim-compare-stat {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--grey);
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .sim-breakdown {
   padding: 0 18px 16px;
 }
