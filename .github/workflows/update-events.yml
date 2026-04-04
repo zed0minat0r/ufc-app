@@ -1,0 +1,29 @@
+name: Update UFC Events
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # Every 6 hours
+  workflow_dispatch:          # Manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch & patch UFC events
+        run: python3 fetch-events.py --patch
+
+      - name: Commit if changed
+        run: |
+          git config user.name "FightIQ Bot"
+          git config user.email "fightiq@users.noreply.github.com"
+          git diff --quiet && echo "No changes" || (
+            git add main.js &&
+            git commit -m "chore: auto-update UFC events [$(date -u '+%Y-%m-%d %H:%M UTC')]" &&
+            git push
+          )
