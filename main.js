@@ -261,6 +261,90 @@ const EXTRA_FIGHTERS = {
     initials: "IA",
     stats: { slpm: 4.4, strAcc: 50, tdAvg: 0.4, subAvg: 0.1, koPct: 46, subPct: 8, decPct: 46 },
     style: "Kickboxing/Movement", reach: 80, stance: "Orthodox"
+  },
+  "brendson-ribeiro": {
+    id: "brendson-ribeiro", name: "Brendson Ribeiro", nickname: "",
+    record: "16-3-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "BR",
+    stats: { slpm: 3.5, strAcc: 47, tdAvg: 1.2, subAvg: 1.8, koPct: 25, subPct: 50, decPct: 25 },
+    style: "BJJ/Grappling", reach: 76, stance: "Orthodox"
+  },
+  "abdul-rakhman-yakhyaev": {
+    id: "abdul-rakhman-yakhyaev", name: "Abdul-Rakhman Yakhyaev", nickname: "",
+    record: "10-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "AY",
+    stats: { slpm: 4.1, strAcc: 50, tdAvg: 2.3, subAvg: 0.6, koPct: 40, subPct: 20, decPct: 40 },
+    style: "Wrestling/Striking", reach: 77, stance: "Orthodox"
+  },
+  "ethyn-ewing": {
+    id: "ethyn-ewing", name: "Ethyn Ewing", nickname: "",
+    record: "8-1-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "EE",
+    stats: { slpm: 4.8, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 38, subPct: 25, decPct: 37 },
+    style: "Striking/MMA", reach: 68, stance: "Orthodox"
+  },
+  "rafael-estevam": {
+    id: "rafael-estevam", name: "Rafael Estevam", nickname: "",
+    record: "10-1-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "RE",
+    stats: { slpm: 4.3, strAcc: 46, tdAvg: 2.0, subAvg: 1.2, koPct: 30, subPct: 40, decPct: 30 },
+    style: "BJJ/MMA", reach: 67, stance: "Orthodox"
+  },
+  "lando-vannata": {
+    id: "lando-vannata", name: "Lando Vannata", nickname: "Groovy",
+    record: "13-7-2", weight: "Lightweight", rank: "Unranked",
+    initials: "LV",
+    stats: { slpm: 5.9, strAcc: 47, tdAvg: 0.9, subAvg: 0.8, koPct: 46, subPct: 31, decPct: 23 },
+    style: "Striking/Submission", reach: 70, stance: "Orthodox"
+  },
+  "darrius-flowers": {
+    id: "darrius-flowers", name: "Darrius Flowers", nickname: "",
+    record: "9-2-0", weight: "Lightweight", rank: "Unranked",
+    initials: "DF",
+    stats: { slpm: 4.2, strAcc: 45, tdAvg: 1.4, subAvg: 0.4, koPct: 33, subPct: 22, decPct: 45 },
+    style: "Striking/MMA", reach: 72, stance: "Orthodox"
+  },
+  "kai-kamaka-iii": {
+    id: "kai-kamaka-iii", name: "Kai Kamaka III", nickname: "",
+    record: "12-6-0", weight: "Featherweight", rank: "Unranked",
+    initials: "KK",
+    stats: { slpm: 4.6, strAcc: 46, tdAvg: 0.8, subAvg: 0.5, koPct: 42, subPct: 17, decPct: 41 },
+    style: "Boxing/MMA", reach: 69, stance: "Orthodox"
+  },
+  "dakota-hope": {
+    id: "dakota-hope", name: "Dakota Hope", nickname: "",
+    record: "7-3-0", weight: "Featherweight", rank: "Unranked",
+    initials: "DH",
+    stats: { slpm: 3.8, strAcc: 44, tdAvg: 1.6, subAvg: 0.3, koPct: 29, subPct: 14, decPct: 57 },
+    style: "Wrestling/MMA", reach: 70, stance: "Orthodox"
+  },
+  "melissa-gatto": {
+    id: "melissa-gatto", name: "Melissa Gatto", nickname: "",
+    record: "14-3-2", weight: "Strawweight", rank: "Unranked",
+    initials: "MG",
+    stats: { slpm: 3.9, strAcc: 46, tdAvg: 1.1, subAvg: 1.4, koPct: 21, subPct: 43, decPct: 36 },
+    style: "BJJ/MMA", reach: 64, stance: "Orthodox"
+  },
+  "dione-barbosa": {
+    id: "dione-barbosa", name: "Dione Barbosa", nickname: "",
+    record: "12-5-0", weight: "Strawweight", rank: "Unranked",
+    initials: "DB",
+    stats: { slpm: 4.1, strAcc: 47, tdAvg: 1.3, subAvg: 0.9, koPct: 25, subPct: 33, decPct: 42 },
+    style: "Striking/BJJ", reach: 65, stance: "Orthodox"
+  },
+  "tresean-gore": {
+    id: "tresean-gore", name: "Tresean Gore", nickname: "The Lebanese Demon",
+    record: "7-3-0", weight: "Middleweight", rank: "Unranked",
+    initials: "TG",
+    stats: { slpm: 4.5, strAcc: 49, tdAvg: 1.8, subAvg: 0.6, koPct: 43, subPct: 29, decPct: 28 },
+    style: "Kickboxing/MMA", reach: 75, stance: "Orthodox"
+  },
+  "azamat-bekoev": {
+    id: "azamat-bekoev", name: "Azamat Bekoev", nickname: "",
+    record: "14-3-0", weight: "Middleweight", rank: "Unranked",
+    initials: "AB",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 2.5, subAvg: 0.8, koPct: 36, subPct: 28, decPct: 36 },
+    style: "Wrestling/Striking", reach: 74, stance: "Orthodox"
   }
 };
 
@@ -421,8 +505,8 @@ function renderEvents() {
     event.fights.forEach(fight => {
       const f1 = getFighterOrPlaceholder(fight.f1);
       const f2 = getFighterOrPlaceholder(fight.f2);
-      const badgeClass = fight.tier === 'main' ? 'main' : fight.tier === 'co-main' ? 'co-main' : 'prelim';
-      const badgeText = fight.tier === 'main' ? 'MAIN' : fight.tier === 'co-main' ? 'CO-MN' : 'PRELIM';
+      const badgeClass = fight.tier === 'main' ? 'main' : fight.tier === 'co-main' ? 'co-main' : fight.tier === 'main-card' ? 'co-main' : 'prelim';
+      const badgeText = fight.tier === 'main' ? 'MAIN' : fight.tier === 'co-main' ? 'CO-MN' : fight.tier === 'main-card' ? 'CARD' : 'PRELIM';
       const rowClass = fight.tier === 'main' ? 'main-event' : '';
 
       html += `
@@ -552,7 +636,9 @@ function runSimulator() {
   const f2id = document.getElementById('sim-f2').value;
 
   if (f1id === f2id) {
-    alert('Please select two different fighters!');
+    const result = document.getElementById('sim-result');
+    result.innerHTML = '<div class="sim-error">Please select two different fighters to run a simulation.</div>';
+    result.classList.add('visible');
     return;
   }
 

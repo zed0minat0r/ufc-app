@@ -455,7 +455,7 @@ main {
 }
 
 .fight-fighter-name.right {
-  text-align: left;
+  text-align: right;
 }
 
 .fight-vs {
@@ -573,12 +573,10 @@ main {
 
 .win-prob-bar-fill.f1 {
   background: linear-gradient(90deg, var(--red), #ff6b6b);
-  float: left;
 }
 
 .win-prob-bar-fill.f2 {
   background: linear-gradient(90deg, var(--blue), #74b9ff);
-  float: right;
 }
 
 .win-prob-pct {
@@ -759,6 +757,17 @@ main {
 
 .sim-result.visible {
   display: block;
+}
+
+.sim-error {
+  background: rgba(214,40,40,0.1);
+  border: 1px solid rgba(214,40,40,0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--red-bright);
+  text-align: center;
 }
 
 .sim-result-card {
@@ -1290,6 +1299,16 @@ main {
   }
 }
 
+/* ─── FOCUS VISIBLE (accessibility) ─── */
+.tab-btn:focus-visible,
+.sim-run-btn:focus-visible,
+.sim-select:focus-visible,
+.hamburger:focus-visible,
+nav a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
 /* ─── ANIMATIONS ─── */
 @keyframes fadeInUp {
   from {
@@ -1313,13 +1332,13 @@ main {
 
 /* ─── SPARK POLISH ─── */
 
-/* Pulsing live badge */
+/* Pulsing live badge — only for ML MODEL badge */
 @keyframes livePulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(214,40,40,0.5); }
-  50% { opacity: 0.85; box-shadow: 0 0 0 5px rgba(214,40,40,0); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
+  50% { opacity: 0.85; box-shadow: 0 0 0 5px rgba(201,168,76,0); }
 }
 
-.section-badge:not(.gold) {
+.section-badge.gold {
   animation: livePulse 2.4s ease infinite;
 }
 
