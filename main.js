@@ -9,35 +9,35 @@ const FIGHTERS = {
   "jon-jones": {
     id: "jon-jones", name: "Jon Jones", nickname: "Bones",
     record: "27-1-0", weight: "Heavyweight", rank: "Champion",
-    initials: "JJ", image: ESPN_CDN + '2335682.png',
+    initials: "JJ", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-10/JONES_JON.png',
     stats: { slpm: 4.3, strAcc: 57, tdAvg: 1.9, subAvg: 0.4, koPct: 42, subPct: 22, decPct: 36 },
     style: "Wrestling/Striking", reach: 84.5, stance: "Orthodox"
   },
   "stipe-miocic": {
     id: "stipe-miocic", name: "Stipe Miocic", nickname: "Stone Cold",
     record: "22-4-0", weight: "Heavyweight", rank: "#1",
-    initials: "SM", image: PH_CDN + 'SM',
+    initials: "SM", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2024-11/MIOCIC_STIPE_11-16.png',
     stats: { slpm: 4.5, strAcc: 52, tdAvg: 1.8, subAvg: 0.2, koPct: 59, subPct: 5, decPct: 36 },
     style: "Boxing/Wrestling", reach: 80, stance: "Orthodox"
   },
   "tom-aspinall": {
     id: "tom-aspinall", name: "Tom Aspinall", nickname: "The Future",
     record: "15-3-0", weight: "Heavyweight", rank: "Interim Champ",
-    initials: "TA", image: ESPN_CDN + '4347563.png',
+    initials: "TA", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-10/ASPINALL_TOM_BELT_10-25.png',
     stats: { slpm: 5.8, strAcc: 60, tdAvg: 2.1, subAvg: 1.2, koPct: 47, subPct: 27, decPct: 26 },
     style: "Grappling/MMA", reach: 78, stance: "Orthodox"
   },
   "islam-makhachev": {
     id: "islam-makhachev", name: "Islam Makhachev", nickname: "",
     record: "26-1-0", weight: "Lightweight", rank: "Champion",
-    initials: "IM", image: ESPN_CDN + '3954319.png',
+    initials: "IM", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-01/7/MAKHACHEV_ISLAM_BELT_01-18.png',
     stats: { slpm: 3.6, strAcc: 53, tdAvg: 4.4, subAvg: 1.5, koPct: 12, subPct: 42, decPct: 46 },
     style: "Sambo/Grappling", reach: 70.5, stance: "Orthodox"
   },
   "dustin-poirier": {
     id: "dustin-poirier", name: "Dustin Poirier", nickname: "The Diamond",
     record: "30-9-0", weight: "Lightweight", rank: "#2",
-    initials: "DP", image: ESPN_CDN + '2509763.png',
+    initials: "DP", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-07/POIRIER_DUSTIN_07-19.png',
     stats: { slpm: 5.9, strAcc: 49, tdAvg: 1.9, subAvg: 1.1, koPct: 53, subPct: 20, decPct: 27 },
     style: "Boxing/BJJ", reach: 72, stance: "Southpaw"
   },
@@ -51,7 +51,7 @@ const FIGHTERS = {
   "alex-pereira": {
     id: "alex-pereira", name: "Alex Pereira", nickname: "Poatan",
     record: "11-2-0", weight: "Light Heavyweight", rank: "Champion",
-    initials: "AP", image: ESPN_CDN + '4897741.png',
+    initials: "AP", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-03/PEREIRA_ALEX_BELT_03-08.png',
     stats: { slpm: 5.2, strAcc: 54, tdAvg: 0.3, subAvg: 0.0, koPct: 73, subPct: 0, decPct: 27 },
     style: "Kickboxing", reach: 79, stance: "Orthodox"
   },
@@ -65,7 +65,7 @@ const FIGHTERS = {
   "dricus-du-plessis": {
     id: "dricus-du-plessis", name: "Dricus Du Plessis", nickname: "Stillknocks",
     record: "22-3-0", weight: "Middleweight", rank: "#1",
-    initials: "DD", image: PH_CDN + 'DD',
+    initials: "DD", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2024-01/DU_PLESSIS_DRICUS_01-20.png',
     stats: { slpm: 4.8, strAcc: 47, tdAvg: 1.4, subAvg: 0.8, koPct: 50, subPct: 23, decPct: 27 },
     style: "Brawler/MMA", reach: 76, stance: "Orthodox"
   },
@@ -79,14 +79,14 @@ const FIGHTERS = {
   "max-holloway": {
     id: "max-holloway", name: "Max Holloway", nickname: "Blessed",
     record: "26-7-0", weight: "Featherweight", rank: "Champion",
-    initials: "MH", image: ESPN_CDN + '3032773.png',
+    initials: "MH", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2024-04/HOLLOWAY_MAX_04-13.png',
     stats: { slpm: 7.9, strAcc: 46, tdAvg: 0.6, subAvg: 0.3, koPct: 46, subPct: 12, decPct: 42 },
     style: "Boxing/Volume", reach: 69, stance: "Orthodox"
   },
   "ilia-topuria": {
     id: "ilia-topuria", name: "Ilia Topuria", nickname: "El Matador",
     record: "17-0-0", weight: "Lightweight", rank: "Champion",
-    initials: "IT", image: ESPN_CDN + '4872940.png',
+    initials: "IT", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-06/TOPURIA_ILIA_BELT_10-26.png',
     stats: { slpm: 4.9, strAcc: 55, tdAvg: 2.3, subAvg: 1.1, koPct: 69, subPct: 25, decPct: 6 },
     style: "Grappling/Power", reach: 71, stance: "Orthodox"
   },
@@ -107,7 +107,7 @@ const FIGHTERS = {
   "leon-edwards": {
     id: "leon-edwards", name: "Leon Edwards", nickname: "Rocky",
     record: "22-4-0", weight: "Welterweight", rank: "#1",
-    initials: "LE", image: ESPN_CDN + '3155728.png',
+    initials: "LE", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-11/EDWARDS_LEON_11-15.png',
     stats: { slpm: 4.3, strAcc: 51, tdAvg: 1.5, subAvg: 0.2, koPct: 36, subPct: 18, decPct: 46 },
     style: "Kickboxing/Wrestling", reach: 74, stance: "Southpaw"
   }
@@ -156,7 +156,7 @@ const EXTRA_FIGHTERS = {
   "renato-moicano": {
     id: "renato-moicano", name: "Renato Moicano", nickname: "Money",
     record: "20-7-1", weight: "Lightweight", rank: "#10",
-    initials: "RM", image: ESPN_CDN + '3153984.png',
+    initials: "RM", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/MOICANO_RENATO_04-04.png',
     stats: { slpm: 4.7, strAcc: 51, tdAvg: 1.6, subAvg: 1.3, koPct: 28, subPct: 44, decPct: 28 },
     style: "BJJ/MMA", reach: 72, stance: "Orthodox"
   },
@@ -184,14 +184,14 @@ const EXTRA_FIGHTERS = {
   "jiri-prochazka": {
     id: "jiri-prochazka", name: "Jiri Prochazka", nickname: "Denisa",
     record: "30-4-1", weight: "Light Heavyweight", rank: "#1",
-    initials: "JP", image: ESPN_CDN + '4243669.png',
+    initials: "JP", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-10/PROCHAZKA_JIRI_10-04.png',
     stats: { slpm: 6.2, strAcc: 49, tdAvg: 0.4, subAvg: 0.7, koPct: 74, subPct: 10, decPct: 16 },
     style: "Martial Arts/Striking", reach: 80, stance: "Orthodox"
   },
   "carlos-ulberg": {
     id: "carlos-ulberg", name: "Carlos Ulberg", nickname: "Black Jag",
     record: "12-1-0", weight: "Light Heavyweight", rank: "#3",
-    initials: "CU", image: PH_CDN + 'CU',
+    initials: "CU", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-09/ULBERG_CARLOS_09-27.png',
     stats: { slpm: 5.1, strAcc: 55, tdAvg: 0.5, subAvg: 0.3, koPct: 75, subPct: 8, decPct: 17 },
     style: "Kickboxing/Muay Thai", reach: 76, stance: "Orthodox"
   },
@@ -247,21 +247,21 @@ const EXTRA_FIGHTERS = {
   "khamzat-chimaev": {
     id: "khamzat-chimaev", name: "Khamzat Chimaev", nickname: "Borz",
     record: "15-0-0", weight: "Middleweight", rank: "Champion",
-    initials: "KC", image: ESPN_CDN + '4379620.png',
+    initials: "KC", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-08/CHIMAEV_KHAMZAT_BELTMOCK.png',
     stats: { slpm: 5.2, strAcc: 57, tdAvg: 5.6, subAvg: 1.4, koPct: 47, subPct: 27, decPct: 26 },
     style: "Wrestling/Striking", reach: 74, stance: "Orthodox"
   },
   "alexander-volkov": {
     id: "alexander-volkov", name: "Alexander Volkov", nickname: "Drago",
     record: "38-10-0", weight: "Heavyweight", rank: "#6",
-    initials: "AV", image: PH_CDN + 'AV',
+    initials: "AV", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-01/VOLKANOVSKI_ALEXANDER_BELT_01-31.png',
     stats: { slpm: 4.6, strAcc: 50, tdAvg: 0.7, subAvg: 0.3, koPct: 47, subPct: 13, decPct: 40 },
     style: "Kickboxing/Striking", reach: 80, stance: "Orthodox"
   },
   "israel-adesanya": {
     id: "israel-adesanya", name: "Israel Adesanya", nickname: "The Last Stylebender",
     record: "24-4-0", weight: "Middleweight", rank: "#2",
-    initials: "IA", image: ESPN_CDN + '4066925.png',
+    initials: "IA", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-03/ADESANYA_ISRAEL_03-28.png',
     stats: { slpm: 4.4, strAcc: 50, tdAvg: 0.4, subAvg: 0.1, koPct: 46, subPct: 8, decPct: 46 },
     style: "Kickboxing/Movement", reach: 80, stance: "Orthodox"
   },
