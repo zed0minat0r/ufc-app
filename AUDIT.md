@@ -1,4 +1,4 @@
-# FightIQ — Nigel Audit v4
+# FightIQ — Nigel Audit v5
 **Date:** 2026-04-04
 **Auditor:** Nigel (Strict Auditor)
 **Live Site:** https://zed0minat0r.github.io/ufc-app/
@@ -14,96 +14,93 @@
 
 ---
 
-## What Changed Since v3 (7.2)
+## What Changed Since v4 (7.3)
 
-Six changes landed since v3:
+Two changes landed since v4:
 
-1. **Predictions tab grouped by event** — A gold-accent section header (with event name, date, location, and PPV/Fight Night badge) now separates UFC Fight Night from UFC 327 fights. Clean and functional.
+1. **Dead code removed** — `ESPN_CDN` constant was defined at the top of `main.js` but never referenced anywhere in the codebase. It has been removed. Clean.
 
-2. **Fighter search added to Fighters tab** — Text input filters cards in real time using `data-name` attributes. Works correctly. Good quality-of-life addition.
+2. **sim-result-winner CSS rules merged** — Previously two split CSS rules covered `.sim-result-winner`. They have been collapsed into a single unified block at line 1038. A separate `.sim-result-winner .fighter-photo--md` rule at line 1844 remains correctly separated (it targets a child element, not the winner container itself). The merge did not break rendering.
 
-3. **Betting tab now grouped by event** — Mirrors the Predictions tab structure. Event headers appear above each `betting-grid`. Consistent with the Predictions experience.
+**What did NOT change:** All four v4 Priority items remain unaddressed. The VALUE badge layout is still broken, the Bantamweight filter is still missing, Yakhyaev's `via.placeholder.com` is still the external dependency, and Topuria's weight class is still listed as Lightweight.
 
-4. **Fighter photos added to betting card headers** — Each bet-card now shows both fighter portraits side-by-side in the header. More visual than the old text-only header.
+---
 
-5. **Design consistency fixes** — `--card-bg` was undefined (now `#181818`); f2 win-probability bar was blue (now gold). Both were real bugs. Fixed correctly.
+## v5 Checklist
 
-6. **Mobile polish** — Filter buttons center on 375px. Prediction event headers center on mobile. `pred-event-header` has gold left-border accent.
+| Check | Status |
+|-------|--------|
+| VALUE badge layout fixed (column flex → row) | NOT FIXED — `flex-direction: column` still at style.css:1153 |
+| Bantamweight filter button present | NOT FIXED — no BW button in index.html |
+| Yakhyaev via.placeholder.com removed | NOT FIXED — `PH_CDN + 'AY'` still at main.js:277 |
+| Topuria weight class corrected | NOT FIXED — `weight: "Lightweight"` still at main.js:87 |
+| ESPN_CDN dead code removed | FIXED — constant removed from main.js |
+| sim-result-winner CSS merge working | FIXED — unified block renders correctly |
 
 ---
 
 ## Category Scores
 
-### 1. Visual Design — 7.4/10
+### 1. Visual Design — 7.3/10
 
-The gold left-border on `pred-event-header` is the strongest visual addition this round — it differentiates event groups cleanly without being heavy. The overall red/gold/dark design language is now internally consistent: no rogue blue values left in the active UI path.
+No change. The split CSS merge was a code hygiene fix that has no visible effect. The gold-accent event group headers, red/gold/dark design language, and hero banner remain the strongest visual elements.
 
-**Issues:**
-- **Betting card VALUE badge is layout-broken.** The `.bet-card-header` was changed to `flex-direction: column`, which means the VALUE/FAIR/FADE badge stacks as a full-width element below the fighter matchup row, left-aligned. The badge now looks like an orphaned label underneath the fighters rather than a prominent call-to-action. The original side-by-side layout (fight name left, badge right) was better. This is a regression introduced in this round.
+**Active issues (unchanged from v4):**
+- **Betting card VALUE badge is still layout-broken.** `.bet-card-header` has `flex-direction: column` (style.css line 1153). The VALUE/FAIR/FADE badge stacks full-width below the fighter matchup strip instead of sitting right-aligned in the same row. The badge now reads like a caption under a photo rather than an action indicator. This was Priority 1 in v4 and was not touched.
 
-- **SVG fallback is square, photo containers are rectangular.** `getFighterImage()` returns an SVG with `width='120' height='120'`, but the CSS containers are 120×140px (--lg), 80×96px (--md), and 56×68px (--sm). For fighters with missing photos the fallback renders a square clipped into a rectangle — initials appear off-center and the background square creates visible dead space. Yakhyaev (the only fighter on the April 4 card without a local photo) exposes this on every tab.
+- **SVG fallback vs. rectangular photo container mismatch** — Fallback SVG is `120×120px`; CSS containers are `120×140px`, `80×96px`, `56×68px`. Yakhyaev (the only fighter without a local PNG) exposes this on every tab where his card appears.
 
-- **Logo remains a red square.** The SVG octagon + "IQ" text is a step up from the plain "U" in v1, but the red square background makes it look like a rounded rectangle app icon rather than a sports brand mark. An actual octagon polygon SVG shape as the background would take 10 minutes and make a clear difference.
+- **Logo background is a rounded rectangle**, not an octagon. The SVG inside it has an octagon outline but the red background container is `border-radius: 6px`. A real octagon `clip-path` would take 5 minutes.
 
 ### 2. Mobile UX (375px) — 7.1/10
 
-Real improvements this round: filter buttons now center instead of left-aligning, event headers center in Predictions and Betting. These were visible rough edges in v3.
+No change. The VALUE badge stacking is even worse at 375px — full-width orphaned below the tiny photo strip. The filter buttons centering fix from v3 remains in place. No regressions.
 
-**Issues:**
-- **Betting card fighter photos at 44×54px are barely visible.** At the 480px breakpoint the photos scale down to 44×54px — functional but so small they add clutter without adding recognition. At that size initials-only fallback would be cleaner. Consider hiding the header photos at ≤480px and relying on the fighter name in the odds rows instead.
-
-- **VALUE badge column stacking is worse on mobile.** The regression from the column `flex-direction` is amplified at 375px: the badge goes full-width below the matchup, which on a narrow screen looks like a floating label under a photo strip. The old layout had the badge right-aligned in the same row — that was more scannable.
-
-- **Bantamweight filter is still missing.** Ethyn Ewing and Rafael Estevam fight on the April 4 card but there is no Bantamweight filter button in `index.html`. Those are card fighters — users browsing by weight class can't find them under any filter except "All."
+**Active issues (unchanged from v4):**
+- VALUE badge column stacking amplifies the regression on narrow screens.
+- Bantamweight filter still missing — Ewing and Estevam cannot be found by weight class.
+- Betting card fighter photos at ≤480px (44×54px) add clutter without recognition value.
 
 ### 3. Features — 7.3/10
 
-Fighter search and betting event grouping are solid additions. The app now has five fully functional, differentiated tabs. Simulator is deterministic.
+No change. Five functional tabs, fighter search, event grouping in Predictions and Betting. The simulator is deterministic but functional.
 
-**Issues:**
-- **No Bantamweight filter** despite BW being the third fight on the April 4 card. This is the same oversight the Women's Flyweight/Strawweight filters were in v3. Easy fix: one `<button>` in index.html.
-
-- **Events tab fight rows are not interactive.** Clicking a fight row in the Events tab does nothing. Even a simple scroll to the matching Predictions card (or a tab switch to Predictions) would make the Events tab a navigation entry point rather than a dead display.
-
-- **Betting event grouping introduces a visual regression** (the VALUE badge layout) that undermines an otherwise good feature addition.
+**Active issues (unchanged from v4):**
+- **No Bantamweight filter.** Ethyn Ewing and Rafael Estevam have `weight: "Bantamweight"` in the database. They appear under "All" but no weight class filter surfaces them. This has been flagged in two consecutive audits.
+- Events tab fight rows remain non-interactive (cursor: pointer in CSS, no click handler in JS).
+- Simulator is deterministic — same two fighters always produce the same result. No randomness or variance in outcome.
 
 ### 4. Data Quality — 6.8/10
 
-**Active bug:** `./fighters/yakhyaev.png` does not exist — the code falls back to `PH_CDN + 'AY'` which is `https://via.placeholder.com/...`. This makes a live external HTTP request for the UFC Fight Night co-main card fighter. It is the last external dependency, and the UFC card fighter's spot is the worst place to have it visible.
+No change.
 
-**Data accuracy issues:**
-- Ilia Topuria is listed as `weight: "Lightweight", rank: "Champion"`. Topuria won the Featherweight title and announced a move to Lightweight but has not yet fought there. His weight class should be "Featherweight" in the database.
+**Active bugs:**
+- **Yakhyaev's image is `PH_CDN + 'AY'`** (main.js line 277). `PH_CDN = 'https://via.placeholder.com/120x120/1a1a2e/ffffff?text='`. This is a live external HTTP request to `https://via.placeholder.com/120x120/1a1a2e/ffffff?text=AY` every time the page loads and the Fighters tab or Predictions tab renders Yakhyaev. It is the sole remaining external dependency. He is on the co-main card of UFC Fight Night on April 4 — this is a prominent position.
 
-- Virna Jandiroba and Tabatha Ricci are listed as `weight: "Strawweight"` in the fighter database but their scheduled bout is `"Women's Strawweight"` in the event data. Filtering by "STR" does find them because the filter matches `card.dataset.weight === "Strawweight"`, so this is a silent data inconsistency rather than a broken feature — but it means the STR filter label is misleading (it catches Women's Strawweight, not labeled as such).
+- **Topuria's weight class is `"Lightweight", rank: "Champion"`** (main.js line 87-88). Ilia Topuria is the Featherweight champion. He has publicly announced intent to move to Lightweight but has not fought there. A UFC fan looking for the Featherweight champion under the FW filter will not find him. A UFC fan filtering by LW will find him listed as champion which is factually incorrect. Change to `weight: "Featherweight"`.
 
-- Joshua Van is listed as Flyweight "Champion" (record 11-0-0). The UFC 327 fight vs. Taira appears to be a Flyweight title fight. This seems plausible but warrants verification.
+- **Women's Strawweight fighters listed as `"Strawweight"`** — Jandiroba and Ricci appear under the STR filter but are technically Women's Strawweight. The filter works (silent mismatch) but the label misleads.
 
-**Accepted:** Stats are manually curated. Abdul-Rakhman Yakhyaev has no headshot available from UFC.
+### 5. Performance — 8.5/10
 
-### 5. Performance — 8.4/10
+Up 0.1 from v4. `ESPN_CDN` dead code removed. The only remaining external dependency is the `via.placeholder.com` call for Yakhyaev. Everything else is local: three static files plus 43 fighter PNGs served from GitHub Pages. Essentially instant load.
 
-Essentially instant. Three static files (~3,097 lines total), zero external API calls on load (one via.placeholder.com request for Yakhyaev's absent photo is the only remaining external dependency). GitHub Pages serves everything locally including 43 fighter PNGs.
-
-Minor: The `PH_CDN` constant and `ESPN_CDN` constant are both defined at the top of `main.js` but `ESPN_CDN` is never used anywhere in the codebase. Dead code.
+`PH_CDN` is still defined and used (line 5 and line 277). `getFighterOrPlaceholder()` also uses it as a fallback for unknown fighter IDs (line 489). Removing the Yakhyaev placeholder would eliminate the live HTTP request entirely; `PH_CDN` could then be deleted too since no fighter in `FIGHTERS` would reference it.
 
 ### 6. Accessibility — 6.8/10
 
-ARIA roles correctly implemented on tab system (`role="tablist"`, `role="tab"`, `aria-selected`, `aria-controls`, `aria-labelledby` on panels). Focus visible styles use gold outline. Fighter photo `alt` attributes are correctly set.
+No change. The CSS merge and dead code removal have no accessibility impact.
 
-**Remaining gaps:**
-- Filter buttons use abbreviated labels (`HW`, `LHW`, `MW`, etc.) with no `aria-label` — a screen reader announces "HW" with no further context. `aria-label="Heavyweight"` on each button would fix this.
-- The simulator run button contains a Unicode ▶ character (`&#9654;`) with no `aria-label`. Screen readers may announce "right-pointing triangle" or skip it entirely. Add `aria-label="Run fight simulation"`.
-- Fighter initials fallback divs (`.fight-faceoff-initials`, `.hero-fighter-initials`) have no `aria-hidden` or accessible label — a screen reader will encounter empty divs with no content.
+**Remaining gaps (unchanged):**
+- Filter buttons (`HW`, `LHW`, `MW`, etc.) have no `aria-label`. Screen readers announce abbreviations only.
+- Simulator run button has `&#9654;` (right-pointing triangle) with no `aria-label`. Screen reader behavior is implementation-dependent — may announce "right-pointing triangle" or skip it.
+- Fighter initials fallback divs have no `aria-hidden` — empty divs exposed to assistive technology.
 
 ### 7. Overall App Feel — 7.3/10
 
-The app now has clear, consistent structure across Predictions and Betting tabs — event grouping with gold headers, AI narratives, fighter portraits. This is the level where a UFC fan who finds the site stays past the first 30 seconds. The hero banner with face-off photos and probability bar is still the best single element.
+No change. The app looks and feels the same to a real user in v5 as it did in v4. The two fixes this round are invisible to users: one removes an unused JavaScript constant, the other cleans up a CSS comment structure. No user-visible improvement was shipped.
 
-**What prevents 7.5+:**
-- The VALUE badge regression in the Betting tab is the sharpest rough edge. It was a better layout before.
-- Yakhyaev's via.placeholder.com request is the last external dependency, and he's on the main card — it's visible on load.
-- Missing Bantamweight filter for two card fighters.
-- The app still lacks any way to click into a fight for deeper analysis — every interaction is read-only browsing, not exploration.
+The app remains at a level where a UFC fan who finds it stays past 30 seconds — the hero banner, event grouping, and AI narratives are genuinely above average. But it has stalled. Two consecutive audits have logged the same four issues without resolution.
 
 ---
 
@@ -115,34 +112,38 @@ The app now has clear, consistent structure across Predictions and Betting tabs 
 | v2    | 2026-04-03 | 6.7   | Fighter photos (CDN), prob range widened, 40+ fighters in DB |
 | v3    | 2026-04-04 | 7.2   | Hero banner with fighter photos, face-off layout, local images, AI narratives |
 | v4    | 2026-04-04 | 7.3   | Predictions/Betting event grouping, fighter search, design consistency |
+| v5    | 2026-04-04 | 7.3   | ESPN_CDN dead code removed, sim-result CSS merged (no user-visible change) |
 
 ---
 
 ## Overall Score: 7.3 / 10
 
-Up from 7.2. The improvements this round are incremental polish — event grouping in Betting, fighter search, design consistency fixes. These are correct changes but none are dramatic. The VALUE badge layout regression in the Betting tab partially offsets the gains. The path to 7.5 runs through fixing that badge, closing the Bantamweight filter gap, and removing the last external dependency.
+Unchanged from v4. The two changes in v5 are invisible to users. No v4 priorities were addressed. The app is stalled at 7.3 — the same four issues that prevented 7.5 in v4 still prevent it now.
+
+The path to 7.5 is the same as it was in v4: fix the VALUE badge layout, add the Bantamweight filter, remove the Yakhyaev external dependency, and correct Topuria's weight class. All four are small changes. Three of them are single-line edits.
 
 ---
 
-## Top 3 Priorities for v5
+## Top 3 Priorities for v6
 
-### Priority 1: Fix Betting Card VALUE Badge Layout
-The `.bet-card-header` change to `flex-direction: column` pushes the VALUE/FAIR/FADE badge below the matchup row as a full-width left-aligned element. This is a regression. Restore the horizontal layout: use `flex-direction: row`, with the matchup on the left taking available space (`flex: 1`) and the badge right-aligned (`align-self: flex-start`). The fighter photos and names should sit in a flex column on the left; the badge floats right.
+### Priority 1: Fix Betting Card VALUE Badge Layout (CARRY-OVER — v4 P1)
+`.bet-card-header` at style.css line 1148 has `flex-direction: column`. This pushes the VALUE/FAIR/FADE badge full-width below the fighter matchup strip. Restore horizontal layout: change `flex-direction` to `row`, give `.bet-card-names` `flex: 1` to absorb remaining space, and let the badge float right with `align-self: flex-start`. The fighter photos + names live in a flex column on the left; the badge is a fixed-width pill on the right. This is a regression from v3 that has now survived two audits.
 
-### Priority 2: Add Bantamweight Filter Button + Fix Yakhyaev Photo
-Two issues, similar effort:
-- Add `<button class="filter-btn" data-filter="Bantamweight">BW</button>` to the filter row in `index.html`. Ewing and Estevam are on the card and completely unfiltered.
-- Replace `image: PH_CDN + 'AY'` for Yakhyaev with the inline SVG fallback used by all other fighters without local photos: `image: ''` (empty string triggers the SVG fallback in `getFighterImage()`). Eliminates the last external dependency.
+### Priority 2: Add BW Filter + Fix Yakhyaev Image (CARRY-OVER — v4 P2)
+Two single-line fixes:
+- `index.html`: Add `<button class="filter-btn" data-filter="Bantamweight">BW</button>` to the `#fighter-filters` row. Ewing and Estevam are on the April 4 card and are unfindable by weight class filter.
+- `main.js` line 277: Change `image: PH_CDN + 'AY'` to `image: ''`. Empty string triggers the inline SVG fallback in `getFighterImage()`. This eliminates the last external HTTP dependency. Once no fighter uses `PH_CDN`, the constant can be deleted (along with its use in `getFighterOrPlaceholder()` which can also switch to `''`).
 
-### Priority 3: Correct Topuria's Weight Class
-`ilia-topuria` has `weight: "Lightweight"` — he's the former Featherweight champion making his first move to Lightweight. The database should reflect his actual UFC classification. Change to `weight: "Featherweight"` (where he holds the title) or `weight: "Lightweight"` only after his first LW fight. Current state creates confusion in the Fighters tab filter (he won't appear under FW where fans look for him).
+### Priority 3: Correct Topuria's Weight Class (CARRY-OVER — v4 P3)
+`main.js` line 87: Change `weight: "Lightweight"` to `weight: "Featherweight"`. Topuria is the Featherweight champion. He appears under the LW filter as "Champion" (wrong) and does not appear under the FW filter (wrong). A UFC fan looking for the current Featherweight champion cannot find him. One word change.
 
 ---
 
 ## Bonus Notes (Lower Priority)
 
-- **Dead code:** `ESPN_CDN` constant defined at line 5 of `main.js`, never referenced anywhere. Remove it.
-- **Inconsistent indentation in `renderPredictions()`:** The inner `forEach` callback at line 684 has 4-space indent then inner variables jump to 4-space (`const pred = predictFight...` is indented to 4 while the outer block is at 4). Minor, doesn't affect function but signals hasty merge.
-- **Filter button aria-labels:** All filter buttons (`HW`, `LHW`, etc.) need `aria-label` with full weight class name for screen reader usability.
-- **Simulator run button:** Add `aria-label="Run fight simulation"` to the `#sim-run-btn`.
-- **Events tab fight rows:** Add click handler to navigate to corresponding Predictions card or switch tab to Predictions for the fight. Currently rows are marked `cursor: pointer` in CSS but do nothing on click.
+- **`PH_CDN` constant** — Still defined at line 5. Once Yakhyaev's image and `getFighterOrPlaceholder()` are updated, this constant can be fully removed.
+- **`getFighterOrPlaceholder()` fallback** — Line 489 still uses `PH_CDN + initials` for unknown fighter IDs. Changing to `''` makes the fallback use the SVG initials path instead of a network request.
+- **Filter button aria-labels** — All abbreviated buttons need `aria-label` with full weight class name.
+- **Simulator run button** — Add `aria-label="Run fight simulation"` to `#sim-run-btn`.
+- **Events tab fight rows** — `cursor: pointer` in CSS but no click handler. Either remove the pointer cursor or add a handler that scrolls to the Predictions tab entry.
+- **`section-badge.gold` duplicate rule** — Defined at style.css line 161 (background/color) and again at line 1695 (animation). Both apply correctly via cascade — not a bug, but the comment at line 1689 says "Pulsing live badge — only for ML MODEL badge" which implies this was intended as a separate feature addition. Consider consolidating into one rule for clarity.
