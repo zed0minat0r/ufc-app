@@ -392,6 +392,55 @@ function predictFight(f1, f2) {
   };
 }
 
+function generateFightNarrative(f1, f2, pred) {
+  const s1 = f1.stats, s2 = f2.stats;
+  const winner = pred.pick;
+  const loser = winner === f1 ? f2 : f1;
+  const ws = winner === f1 ? s1 : s2;
+  const ls = winner === f1 ? s2 : s1;
+
+  const strikeEdge = (s1.slpm * s1.strAcc / 100) - (s2.slpm * s2.strAcc / 100);
+  const grapplingEdge = (s1.tdAvg + s1.subAvg * 2) - (s2.tdAvg + s2.subAvg * 2);
+  const dominantFactor = Math.abs(strikeEdge) > Math.abs(grapplingEdge) ? 'striking' : 'grappling';
+  const isClose = pred.confidence < 15;
+
+  const winnerFirst = winner.name.split(' ').slice(-1)[0];
+  const loserFirst = loser.name.split(' ').slice(-1)[0];
+  const isKoFight = pred.koPct > pred.subPct && pred.koPct > pred.decPct;
+  const isSubFight = pred.subPct > pred.koPct && pred.subPct > pred.decPct;
+  const isDecFight = pred.decPct >= pred.koPct && pred.decPct >= pred.subPct;
+
+  let sentence1 = '';
+  let sentence2 = '';
+  let sentence3 = '';
+
+  if (isClose) {
+    sentence1 = `A closely contested fight where the model gives ${winner.name} a narrow ${pred.confidence < 10 ? 'razor-thin' : 'slight'} edge.`;
+  } else if (dominantFactor === 'striking') {
+    sentence1 = `${winner.name} holds a clear striking advantage — landing ${ws.slpm} significant strikes per minute at ${ws.strAcc}% accuracy versus ${loserFirst}'s ${ls.slpm} SLpM.`;
+  } else {
+    sentence1 = `${winner.name}'s grappling is the deciding factor here — averaging ${ws.tdAvg} takedowns and ${ws.subAvg} submission attempts per 15 minutes compared to ${loserFirst}'s ${ls.tdAvg} and ${ls.subAvg}.`;
+  }
+
+  if (isKoFight) {
+    sentence2 = `With both fighters combining for a ${pred.koPct}% KO/TKO rate historically, the model expects this to end early. ${winnerFirst}'s ${ws.koPct}% KO rate is the bigger threat.`;
+  } else if (isSubFight) {
+    sentence2 = `Submission is the most likely path to victory at ${pred.subPct}% — ${winnerFirst} submits ${ws.subPct}% of their fights and holds the clear ground game edge.`;
+  } else {
+    sentence2 = `Both fighters are durable and this is likely to go to the judges (${pred.decPct}% decision probability). ${winnerFirst} wins on volume and activity over 15 or 25 minutes.`;
+  }
+
+  if (pred.confidence >= 25) {
+    sentence3 = `Model confidence: ${Math.round(pred.confidence)}% — this is one of the card's clearest picks.`;
+  } else if (pred.confidence >= 12) {
+    sentence3 = `Model confidence: ${Math.round(pred.confidence)}% — a moderate lean, live dog possible.`;
+  } else {
+    sentence3 = `Model confidence: ${Math.round(pred.confidence)}% — essentially a coin flip, bet accordingly.`;
+  }
+
+  return `${sentence1} ${sentence2} ${sentence3}`;
+}
+
 function calcRecordEdge(rec1, rec2) {
   const parse = r => {
     const parts = r.split('-').map(Number);
@@ -680,6 +729,7 @@ function renderPredictions() {
           AI Pick: <span>${pred.pick.name}</span>
           <span style="font-size:11px;color:var(--grey)">${Math.round(pred.confidence)}% conf.</span>
         </div>
+        <div class="pred-narrative">${generateFightNarrative(f1, f2, pred)}</div>
       </div>
     </div>
     `;
@@ -774,8 +824,9 @@ function runSimulator() {
           <div class="sim-stat-label">Decision</div>
         </div>
       </div>
+      <div class="sim-narrative">${generateFightNarrative(f1, f2, pred)}</div>
       <div class="sim-breakdown">
-        <div class="sim-breakdown-title">Fight Analysis</div>
+        <div class="sim-breakdown-title">Statistical Breakdown</div>
         <div class="sim-bar-row">
           <div class="sim-bar-label">Striking Edge</div>
           <div class="sim-bar-track"><div class="sim-bar-fill" style="width:${Math.min(100, winner.stats.slpm / 8 * 100)}%"></div></div>
@@ -869,9 +920,10 @@ function renderBetting() {
           <span class="edge-label">Model Edge: </span>
           ${edgePct > 0 ? '+' : ''}${edgePct.toFixed(1)}% — ${edgePct > 0 ? `Value on ${recFighter.name.split(' ').pop()}` : `Book favors ${recFighter.name.split(' ').pop()} too heavily`}
         </div>` : `
-        <div class="bet-edge negative">
+        <div class="bet-edge neutral">
           <span class="edge-label">Edge: </span>Fair line — no strong value identified
         </div>`}
+        <div class="bet-narrative">${generateFightNarrative(f1, f2, pred)}</div>
       </div>
     </div>
     `;
