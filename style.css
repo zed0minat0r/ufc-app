@@ -2451,3 +2451,105 @@ nav a:focus-visible {
     font-size: 16px;
   }
 }
+
+/* ─── PREDICTION FILTERS ──────────────────────────────────────────────────── */
+
+.pred-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+/* ─── BETTING: CONFIDENCE-KEYED PICK ROW ─────────────────────────────────── */
+
+.odds-row.bet-row--pick {
+  border-radius: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  position: relative;
+}
+
+.odds-row.bet-row--pick::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 3px 0 0 3px;
+}
+
+.odds-row.bet-row--pick.conf-strong {
+  background: rgba(46, 204, 113, 0.07);
+}
+.odds-row.bet-row--pick.conf-strong::before {
+  background: #2ecc71;
+}
+
+.odds-row.bet-row--pick.conf-moderate {
+  background: rgba(201, 168, 76, 0.07);
+}
+.odds-row.bet-row--pick.conf-moderate::before {
+  background: var(--gold);
+}
+
+.odds-row.bet-row--pick.conf-lean {
+  background: rgba(255, 255, 255, 0.04);
+}
+.odds-row.bet-row--pick.conf-lean::before {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ─── MOBILE CENTER-ALIGNMENT (375px) ────────────────────────────────────── */
+
+@media (max-width: 390px) {
+  /* Predictions tab: center card content */
+  .pred-card-title {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .pred-matchup {
+    justify-content: center;
+  }
+
+  .pred-filters {
+    justify-content: center;
+  }
+
+  /* Betting tab: center header content */
+  .bet-card-header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .bet-card-matchup {
+    justify-content: center;
+  }
+
+  /* Prediction pick row: center-align on small screens */
+  .pred-pick {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Method grid labels center */
+  .method-label {
+    text-align: center;
+  }
+
+  /* Pred event header: center */
+  .pred-event-header {
+    text-align: center;
+    align-items: center;
+  }
+
+  .pred-event-header .event-tag {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

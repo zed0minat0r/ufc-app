@@ -717,12 +717,12 @@ function renderPredictions() {
     const tagCls = event.type === 'ppv' ? 'ppv' : 'fight-night';
     const tagTxt = event.type === 'ppv' ? 'PPV' : 'Fight Night';
     html += `
-    <div class="pred-event-header">
+    <div class="pred-event-header" data-event-type="${event.type}">
       <div class="pred-event-name">${event.name}</div>
       <div class="pred-event-meta">${event.date} · ${event.location}</div>
       <div class="event-tag ${tagCls}" style="margin-top:6px">${tagTxt}</div>
     </div>
-    <div class="predictions-grid">`;
+    <div class="predictions-grid" data-event-type="${event.type}">`;
 
     eventFights.forEach((fight) => {
       const i = cardIndex++;
@@ -732,7 +732,7 @@ function renderPredictions() {
     const higherSub = pred.subPct > pred.koPct && pred.subPct >= pred.decPct;
 
     html += `
-    <div class="pred-card fade-in-up" style="animation-delay:${i * 0.07}s">
+    <div class="pred-card fade-in-up" data-tier="${fight.tier}" style="animation-delay:${i * 0.07}s">
       <div class="pred-card-header">
         <div class="pred-card-title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span>${fight.weight} ${(fight.tier === 'main' || fight.title) ? '· Title Fight' : ''}</span>
@@ -1026,12 +1026,12 @@ function renderBetting() {
           <div class="bet-value-badge ${valueCls}">${valueLabel}</div>
         </div>
         <div class="bet-body">
-          <div class="odds-row">
+          <div class="odds-row ${pred.pick === f1 ? 'bet-row--pick ' + confCls : ''}">
             <div class="odds-fighter">${f1.name}</div>
             <div class="odds-implied">${bookF1Implied}%</div>
             <div class="odds-american ${bookF1Prob >= 0.5 ? 'fav' : 'dog'}">${bookF1American}</div>
           </div>
-          <div class="odds-row">
+          <div class="odds-row ${pred.pick === f2 ? 'bet-row--pick ' + confCls : ''}">
             <div class="odds-fighter">${f2.name}</div>
             <div class="odds-implied">${bookF2Implied}%</div>
             <div class="odds-american ${(1 - bookF1Prob) >= 0.5 ? 'fav' : 'dog'}">${bookF2American}</div>
@@ -1354,6 +1354,53 @@ function initFighterModal() {
   });
 }
 
+// ─── PREDICTION FILTERS ───────────────────────────────────────────────────────
+
+function initPredictionFilters() {
+  const bar = document.getElementById('pred-filters');
+  if (!bar) return;
+
+  bar.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+
+    bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.predFilter;
+    const container = document.getElementById('predictions-container');
+
+    // Show/hide event headers + grids
+    container.querySelectorAll('.pred-event-header').forEach(header => {
+      const type = header.dataset.eventType;
+      const grid = header.nextElementSibling; // .predictions-grid
+      let show = true;
+
+      if (filter === 'ppv') show = (type === 'ppv');
+      else if (filter === 'fight-night') show = (type === 'fight-night');
+
+      header.style.display = show ? '' : 'none';
+      if (grid) grid.style.display = show ? '' : 'none';
+    });
+
+    // For "main" filter: show all headers/grids but hide non-main cards
+    if (filter === 'main') {
+      container.querySelectorAll('.pred-event-header, .predictions-grid').forEach(el => {
+        el.style.display = '';
+      });
+      container.querySelectorAll('.pred-card').forEach(card => {
+        const tier = card.dataset.tier;
+        card.style.display = (tier === 'main' || tier === 'co-main') ? '' : 'none';
+      });
+    } else {
+      // Reset card visibility when not on "main"
+      container.querySelectorAll('.pred-card').forEach(card => {
+        card.style.display = '';
+      });
+    }
+  });
+}
+
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 
 
@@ -1369,6 +1416,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFighters();
   initFighterFilters();
   initFighterModal();
+  initPredictionFilters();
 
   // Fighter card click -> open profile modal
   document.getElementById('fighters-container').addEventListener('click', (e) => {
