@@ -61,14 +61,14 @@ const FIGHTERS = {
   },
   "dricus-du-plessis": {
     id: "dricus-du-plessis", name: "Dricus Du Plessis", nickname: "Stillknocks",
-    record: "22-2-0", weight: "Middleweight", rank: "Champion",
+    record: "22-3-0", weight: "Middleweight", rank: "#1",
     initials: "DD",
     stats: { slpm: 4.8, strAcc: 47, tdAvg: 1.4, subAvg: 0.8, koPct: 50, subPct: 23, decPct: 27 },
     style: "Brawler/MMA", reach: 76, stance: "Orthodox"
   },
   "sean-strickland": {
     id: "sean-strickland", name: "Sean Strickland", nickname: "Tarzan",
-    record: "28-6-0", weight: "Middleweight", rank: "#1",
+    record: "28-7-0", weight: "Middleweight", rank: "#3",
     initials: "SS",
     stats: { slpm: 6.2, strAcc: 46, tdAvg: 0.9, subAvg: 0.4, koPct: 21, subPct: 14, decPct: 65 },
     style: "Boxing/Volume", reach: 76, stance: "Orthodox"
@@ -82,7 +82,7 @@ const FIGHTERS = {
   },
   "ilia-topuria": {
     id: "ilia-topuria", name: "Ilia Topuria", nickname: "El Matador",
-    record: "16-0-0", weight: "Featherweight", rank: "#1 LW",
+    record: "17-0-0", weight: "Lightweight", rank: "Champion",
     initials: "IT",
     stats: { slpm: 4.9, strAcc: 55, tdAvg: 2.3, subAvg: 1.1, koPct: 69, subPct: 25, decPct: 6 },
     style: "Grappling/Power", reach: 71, stance: "Orthodox"
@@ -112,29 +112,43 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc312",
-    name: "UFC 315",
-    type: "ppv",
-    date: "May 10, 2025",
-    location: "Bell Centre, Montreal, QC",
+    id: "ufc-fn-apr4",
+    name: "UFC Fight Night",
+    type: "fight-night",
+    date: "April 4, 2026",
+    location: "Meta APEX, Las Vegas, NV",
     fights: [
-      { f1: "belal-muhammad", f2: "jack-della-maddalena", weight: "Welterweight", tier: "main", title: true },
-      { f1: "alex-pereira", f2: "magomed-ankalaev", weight: "Light Heavyweight", tier: "main", title: true },
-      { f1: "max-holloway", f2: "arman-tsarukyan", weight: "Lightweight", tier: "co-main" },
-      { f1: "dricus-du-plessis", f2: "sean-strickland", weight: "Middleweight", tier: "prelim" },
-      { f1: "dustin-poirier", f2: "islam-makhachev", weight: "Lightweight", tier: "prelim" }
+      { f1: "renato-moicano", f2: "chris-duncan", weight: "Lightweight", tier: "main" },
+      { f1: "virna-jandiroba", f2: "tabatha-ricci", weight: "Strawweight", tier: "co-main" },
+      { f1: "leon-edwards", f2: "belal-muhammad", weight: "Welterweight", tier: "prelim" },
+      { f1: "dustin-poirier", f2: "arman-tsarukyan", weight: "Lightweight", tier: "prelim" }
     ]
   },
   {
-    id: "ufc-fn-apr",
-    name: "UFC Fight Night",
-    type: "fight-night",
-    date: "April 19, 2025",
-    location: "Apex, Las Vegas, NV",
+    id: "ufc327",
+    name: "UFC 327",
+    type: "ppv",
+    date: "April 11, 2026",
+    location: "Kaseya Center, Miami, FL",
     fights: [
-      { f1: "tom-aspinall", f2: "stipe-miocic", weight: "Heavyweight", tier: "main" },
-      { f1: "leon-edwards", f2: "conor-mcgregor", weight: "Welterweight", tier: "co-main" },
-      { f1: "jon-jones", f2: "stipe-miocic", weight: "Heavyweight", tier: "prelim" }
+      { f1: "jiri-prochazka", f2: "carlos-ulberg", weight: "Light Heavyweight", tier: "main", title: true },
+      { f1: "joshua-van", f2: "tatsuro-taira", weight: "Flyweight", tier: "main", title: true },
+      { f1: "kevin-holland", f2: "randy-brown", weight: "Welterweight", tier: "co-main" },
+      { f1: "paulo-costa", f2: "azamat-murzakanov", weight: "Light Heavyweight", tier: "prelim" },
+      { f1: "curtis-blaydes", f2: "jon-jones", weight: "Heavyweight", tier: "prelim" }
+    ]
+  },
+  {
+    id: "ufc328",
+    name: "UFC 328",
+    type: "ppv",
+    date: "May 9, 2026",
+    location: "Prudential Center, Newark, NJ",
+    fights: [
+      { f1: "khamzat-chimaev", f2: "sean-strickland", weight: "Middleweight", tier: "main", title: true },
+      { f1: "alexander-volkov", f2: "tom-aspinall", weight: "Heavyweight", tier: "co-main" },
+      { f1: "dricus-du-plessis", f2: "israel-adesanya", weight: "Middleweight", tier: "prelim" },
+      { f1: "max-holloway", f2: "ilia-topuria", weight: "Lightweight", tier: "prelim" }
     ]
   }
 ];
@@ -147,6 +161,118 @@ const EXTRA_FIGHTERS = {
     initials: "JD",
     stats: { slpm: 6.1, strAcc: 52, tdAvg: 0.8, subAvg: 0.3, koPct: 64, subPct: 18, decPct: 18 },
     style: "Boxing/Power", reach: 74, stance: "Orthodox"
+  },
+  "renato-moicano": {
+    id: "renato-moicano", name: "Renato Moicano", nickname: "Money",
+    record: "20-7-1", weight: "Lightweight", rank: "#10",
+    initials: "RM",
+    stats: { slpm: 4.7, strAcc: 51, tdAvg: 1.6, subAvg: 1.3, koPct: 28, subPct: 44, decPct: 28 },
+    style: "BJJ/MMA", reach: 72, stance: "Orthodox"
+  },
+  "chris-duncan": {
+    id: "chris-duncan", name: "Chris Duncan", nickname: "The Highlander",
+    record: "10-3-0", weight: "Lightweight", rank: "Unranked",
+    initials: "CD",
+    stats: { slpm: 3.9, strAcc: 46, tdAvg: 2.1, subAvg: 0.7, koPct: 30, subPct: 30, decPct: 40 },
+    style: "Wrestling/MMA", reach: 74, stance: "Orthodox"
+  },
+  "virna-jandiroba": {
+    id: "virna-jandiroba", name: "Virna Jandiroba", nickname: "Carcará",
+    record: "20-3-0", weight: "Strawweight", rank: "#3",
+    initials: "VJ",
+    stats: { slpm: 3.8, strAcc: 49, tdAvg: 1.2, subAvg: 2.1, koPct: 15, subPct: 55, decPct: 30 },
+    style: "BJJ/Grappling", reach: 65, stance: "Orthodox"
+  },
+  "tabatha-ricci": {
+    id: "tabatha-ricci", name: "Tabatha Ricci", nickname: "",
+    record: "11-2-0", weight: "Strawweight", rank: "#7",
+    initials: "TR",
+    stats: { slpm: 4.2, strAcc: 47, tdAvg: 1.8, subAvg: 0.9, koPct: 18, subPct: 36, decPct: 46 },
+    style: "Kickboxing/BJJ", reach: 66, stance: "Orthodox"
+  },
+  "jiri-prochazka": {
+    id: "jiri-prochazka", name: "Jiri Prochazka", nickname: "Denisa",
+    record: "30-4-1", weight: "Light Heavyweight", rank: "#1",
+    initials: "JP",
+    stats: { slpm: 6.2, strAcc: 49, tdAvg: 0.4, subAvg: 0.7, koPct: 74, subPct: 10, decPct: 16 },
+    style: "Martial Arts/Striking", reach: 80, stance: "Orthodox"
+  },
+  "carlos-ulberg": {
+    id: "carlos-ulberg", name: "Carlos Ulberg", nickname: "Black Jag",
+    record: "12-1-0", weight: "Light Heavyweight", rank: "#3",
+    initials: "CU",
+    stats: { slpm: 5.1, strAcc: 55, tdAvg: 0.5, subAvg: 0.3, koPct: 75, subPct: 8, decPct: 17 },
+    style: "Kickboxing/Muay Thai", reach: 76, stance: "Orthodox"
+  },
+  "joshua-van": {
+    id: "joshua-van", name: "Joshua Van", nickname: "",
+    record: "11-0-0", weight: "Flyweight", rank: "Champion",
+    initials: "JV",
+    stats: { slpm: 4.5, strAcc: 52, tdAvg: 3.1, subAvg: 1.0, koPct: 27, subPct: 27, decPct: 46 },
+    style: "Wrestling/MMA", reach: 68, stance: "Orthodox"
+  },
+  "tatsuro-taira": {
+    id: "tatsuro-taira", name: "Tatsuro Taira", nickname: "",
+    record: "16-0-0", weight: "Flyweight", rank: "#1",
+    initials: "TT",
+    stats: { slpm: 3.9, strAcc: 50, tdAvg: 4.2, subAvg: 2.3, koPct: 13, subPct: 56, decPct: 31 },
+    style: "Judo/Grappling", reach: 67, stance: "Orthodox"
+  },
+  "kevin-holland": {
+    id: "kevin-holland", name: "Kevin Holland", nickname: "Trailblazer",
+    record: "26-10-0", weight: "Welterweight", rank: "#8",
+    initials: "KH",
+    stats: { slpm: 5.8, strAcc: 44, tdAvg: 1.0, subAvg: 0.9, koPct: 42, subPct: 27, decPct: 31 },
+    style: "Striking/Grappling", reach: 79, stance: "Orthodox"
+  },
+  "randy-brown": {
+    id: "randy-brown", name: "Randy Brown", nickname: "Rude Boy",
+    record: "17-6-0", weight: "Welterweight", rank: "#11",
+    initials: "RB",
+    stats: { slpm: 5.3, strAcc: 45, tdAvg: 1.4, subAvg: 0.5, koPct: 47, subPct: 18, decPct: 35 },
+    style: "Kickboxing/MMA", reach: 76, stance: "Southpaw"
+  },
+  "paulo-costa": {
+    id: "paulo-costa", name: "Paulo Costa", nickname: "Borrachinha",
+    record: "14-3-0", weight: "Middleweight", rank: "#5",
+    initials: "PC",
+    stats: { slpm: 6.5, strAcc: 56, tdAvg: 1.1, subAvg: 0.3, koPct: 57, subPct: 14, decPct: 29 },
+    style: "Boxing/Aggression", reach: 72, stance: "Orthodox"
+  },
+  "azamat-murzakanov": {
+    id: "azamat-murzakanov", name: "Azamat Murzakanov", nickname: "Zam Zam",
+    record: "13-1-0", weight: "Light Heavyweight", rank: "#8",
+    initials: "AM",
+    stats: { slpm: 4.8, strAcc: 50, tdAvg: 0.6, subAvg: 0.3, koPct: 62, subPct: 15, decPct: 23 },
+    style: "Kickboxing/Power", reach: 77, stance: "Orthodox"
+  },
+  "curtis-blaydes": {
+    id: "curtis-blaydes", name: "Curtis Blaydes", nickname: "Razor",
+    record: "18-5-0", weight: "Heavyweight", rank: "#4",
+    initials: "CB",
+    stats: { slpm: 4.4, strAcc: 51, tdAvg: 4.6, subAvg: 0.7, koPct: 39, subPct: 17, decPct: 44 },
+    style: "Wrestling/Grappling", reach: 80, stance: "Orthodox"
+  },
+  "khamzat-chimaev": {
+    id: "khamzat-chimaev", name: "Khamzat Chimaev", nickname: "Borz",
+    record: "15-0-0", weight: "Middleweight", rank: "Champion",
+    initials: "KC",
+    stats: { slpm: 5.2, strAcc: 57, tdAvg: 5.6, subAvg: 1.4, koPct: 47, subPct: 27, decPct: 26 },
+    style: "Wrestling/Striking", reach: 74, stance: "Orthodox"
+  },
+  "alexander-volkov": {
+    id: "alexander-volkov", name: "Alexander Volkov", nickname: "Drago",
+    record: "38-10-0", weight: "Heavyweight", rank: "#6",
+    initials: "AV",
+    stats: { slpm: 4.6, strAcc: 50, tdAvg: 0.7, subAvg: 0.3, koPct: 47, subPct: 13, decPct: 40 },
+    style: "Kickboxing/Striking", reach: 80, stance: "Orthodox"
+  },
+  "israel-adesanya": {
+    id: "israel-adesanya", name: "Israel Adesanya", nickname: "The Last Stylebender",
+    record: "24-4-0", weight: "Middleweight", rank: "#2",
+    initials: "IA",
+    stats: { slpm: 4.4, strAcc: 50, tdAvg: 0.4, subAvg: 0.1, koPct: 46, subPct: 8, decPct: 46 },
+    style: "Kickboxing/Movement", reach: 80, stance: "Orthodox"
   }
 };
 
