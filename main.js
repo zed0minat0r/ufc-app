@@ -643,6 +643,14 @@ function renderEvents() {
   });
 
   container.innerHTML = html;
+
+  // Fight rows navigate to Predictions tab on click
+  container.querySelectorAll('.fight-row').forEach(row => {
+    row.addEventListener('click', () => {
+      document.querySelector('.tab-btn[data-tab="predictions"]').click();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
 }
 
 // ─── PREDICTIONS TAB ────────────────────────────────────────────────────────

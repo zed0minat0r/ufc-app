@@ -158,9 +158,15 @@ main {
   text-transform: uppercase;
 }
 
+@keyframes livePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
+  50% { opacity: 0.85; box-shadow: 0 0 0 5px rgba(201,168,76,0); }
+}
+
 .section-badge.gold {
   background: var(--gold);
   color: #000;
+  animation: livePulse 2.4s ease infinite;
 }
 
 /* ─── TABS ─── */
@@ -1650,15 +1656,15 @@ main {
     justify-content: center;
   }
 
-  /* Center pred event headers on small screens */
-  .pred-event-header {
-    text-align: center;
-  }
-
   /* Stack bet-card matchup photos smaller on mobile */
   .bet-card-fighter-photo .fighter-photo--sm {
     width: 44px;
     height: 54px;
+  }
+
+  /* Bet card header: allow badge to wrap below on very narrow */
+  .bet-card-header {
+    flex-wrap: wrap;
   }
 }
 
@@ -1690,16 +1696,6 @@ nav a:focus-visible {
 }
 
 /* ─── SPARK POLISH ─── */
-
-/* Pulsing live badge — only for ML MODEL badge */
-@keyframes livePulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
-  50% { opacity: 0.85; box-shadow: 0 0 0 5px rgba(201,168,76,0); }
-}
-
-.section-badge.gold {
-  animation: livePulse 2.4s ease infinite;
-}
 
 /* Fighter avatar glow on hover */
 .fighter-card:hover .fighter-avatar {
