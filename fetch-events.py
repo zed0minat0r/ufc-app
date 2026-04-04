@@ -9,11 +9,16 @@ Usage:
 """
 
 import json
+import os
 import sys
 import re
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone
+
+# Work relative to this script's directory (works both locally and in GitHub Actions)
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+MAIN_JS = os.path.join(SCRIPT_DIR, "main.js")
 
 ESPN_SCOREBOARD = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard"
 ESPN_SCHEDULE   = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/schedule"
@@ -139,7 +144,7 @@ def main():
 
 def show_current_events():
     try:
-        with open("/tmp/ufc-app/main.js") as f:
+        with open(MAIN_JS) as f:
             content = f.read()
         # Find event names and dates
         names = re.findall(r'name:\s*"([^"]+UFC[^"]*)"', content)
@@ -156,10 +161,10 @@ def patch_main_js(events):
     Backs up the original first.
     """
     try:
-        with open("/tmp/ufc-app/main.js") as f:
+        with open(MAIN_JS) as f:
             content = f.read()
     except FileNotFoundError:
-        print("⚠️  main.js not found at /tmp/ufc-app/main.js")
+        print("⚠️  main.js not found at MAIN_JS")
         return
 
     # Build JS array
@@ -188,10 +193,10 @@ def patch_main_js(events):
         return
 
     # Write backup
-    with open("/tmp/ufc-app/main.js.bak", "w") as f:
+    with open(MAIN_JS + ".bak", "w") as f:
         f.write(content)
 
-    with open("/tmp/ufc-app/main.js", "w") as f:
+    with open(MAIN_JS, "w") as f:
         f.write(new_content)
 
     print(f"✅ main.js patched with {len(events)} event(s).")
