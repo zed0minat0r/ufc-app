@@ -112,44 +112,12 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-fn-apr4",
+    id: "evt1",
     name: "UFC Fight Night",
     type: "fight-night",
     date: "April 4, 2026",
-    location: "Meta APEX, Las Vegas, NV",
-    fights: [
-      { f1: "renato-moicano", f2: "chris-duncan", weight: "Lightweight", tier: "main" },
-      { f1: "virna-jandiroba", f2: "tabatha-ricci", weight: "Strawweight", tier: "co-main" },
-      { f1: "leon-edwards", f2: "belal-muhammad", weight: "Welterweight", tier: "prelim" },
-      { f1: "dustin-poirier", f2: "arman-tsarukyan", weight: "Lightweight", tier: "prelim" }
-    ]
-  },
-  {
-    id: "ufc327",
-    name: "UFC 327",
-    type: "ppv",
-    date: "April 11, 2026",
-    location: "Kaseya Center, Miami, FL",
-    fights: [
-      { f1: "jiri-prochazka", f2: "carlos-ulberg", weight: "Light Heavyweight", tier: "main", title: true },
-      { f1: "joshua-van", f2: "tatsuro-taira", weight: "Flyweight", tier: "main", title: true },
-      { f1: "kevin-holland", f2: "randy-brown", weight: "Welterweight", tier: "co-main" },
-      { f1: "paulo-costa", f2: "azamat-murzakanov", weight: "Light Heavyweight", tier: "prelim" },
-      { f1: "curtis-blaydes", f2: "jon-jones", weight: "Heavyweight", tier: "prelim" }
-    ]
-  },
-  {
-    id: "ufc328",
-    name: "UFC 328",
-    type: "ppv",
-    date: "May 9, 2026",
-    location: "Prudential Center, Newark, NJ",
-    fights: [
-      { f1: "khamzat-chimaev", f2: "sean-strickland", weight: "Middleweight", tier: "main", title: true },
-      { f1: "alexander-volkov", f2: "tom-aspinall", weight: "Heavyweight", tier: "co-main" },
-      { f1: "dricus-du-plessis", f2: "israel-adesanya", weight: "Middleweight", tier: "prelim" },
-      { f1: "max-holloway", f2: "ilia-topuria", weight: "Lightweight", tier: "prelim" }
-    ]
+    location: "Meta APEX",
+    fights: [{"fighter1": "Kai Kamaka III", "fighter2": "Dakota Hope"}, {"fighter1": "Melissa Gatto", "fighter2": "Dione Barbosa"}, {"fighter1": "Tresean Gore", "fighter2": "Azamat Bekoev"}, {"fighter1": "Hailey Cowan", "fighter2": "Alice Pereira"}, {"fighter1": "Lando Vannata", "fighter2": "Darrius Flowers"}, {"fighter1": "Alessandro Costa", "fighter2": "Stewart Nicoll"}]
   }
 ];
 
