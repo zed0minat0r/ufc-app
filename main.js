@@ -247,6 +247,7 @@ function animateBars() {
 // ─── TAB SYSTEM ─────────────────────────────────────────────────────────────
 
 function initTabs() {
+  const nav = document.getElementById('main-nav');
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.tab;
@@ -254,6 +255,14 @@ function initTabs() {
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('panel-' + target).classList.add('active');
+
+      // Sync nav link active state
+      document.querySelectorAll('#main-nav a').forEach(a => {
+        a.classList.toggle('active', a.dataset.gotoTab === target);
+      });
+
+      // Close hamburger menu if open
+      if (nav) nav.classList.remove('open');
     });
   });
 }

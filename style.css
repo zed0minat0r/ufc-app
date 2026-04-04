@@ -1186,10 +1186,23 @@ main {
 
   .hero-event-name {
     font-size: 22px;
+    text-align: center;
+  }
+
+  .hero-event-label {
+    text-align: center;
+  }
+
+  .hero-event-meta {
+    text-align: center;
   }
 
   .hero-fighter-name {
     font-size: 18px;
+  }
+
+  .hero-matchup {
+    justify-content: center;
   }
 
   .predictions-grid {
@@ -1238,7 +1251,7 @@ main {
   }
 
   .sim-vs-label {
-    text-align: left;
+    text-align: center;
     padding-bottom: 0;
     padding-top: 4px;
   }
@@ -1249,6 +1262,31 @@ main {
 
   .method-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Fight rows on small screens */
+  .fight-weight {
+    display: none;
+  }
+
+  .fight-fighter-name {
+    font-size: 12px;
+  }
+
+  .fight-row {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .fight-badge {
+    width: 44px;
+    font-size: 8px;
+  }
+
+  /* Section header on small screens */
+  .section-header {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 }
 
@@ -1272,3 +1310,107 @@ main {
 .fade-in-up:nth-child(3) { animation-delay: 0.1s; }
 .fade-in-up:nth-child(4) { animation-delay: 0.15s; }
 .fade-in-up:nth-child(5) { animation-delay: 0.2s; }
+
+/* ─── SPARK POLISH ─── */
+
+/* Pulsing live badge */
+@keyframes livePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(214,40,40,0.5); }
+  50% { opacity: 0.85; box-shadow: 0 0 0 5px rgba(214,40,40,0); }
+}
+
+.section-badge:not(.gold) {
+  animation: livePulse 2.4s ease infinite;
+}
+
+/* Fighter avatar glow on hover */
+.fighter-card:hover .fighter-avatar {
+  box-shadow: 0 0 18px rgba(214,40,40,0.45);
+  transform: scale(1.05);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.fighter-avatar {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* Event card accent line on hover */
+.event-card {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.event-card:hover {
+  border-color: rgba(214,40,40,0.4);
+  box-shadow: 0 4px 24px rgba(214,40,40,0.08);
+}
+
+/* Prediction card lift on hover */
+.pred-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.pred-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.4);
+  border-color: rgba(214,40,40,0.3);
+}
+
+/* Bet card lift on hover */
+.bet-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bet-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+}
+
+/* Tab button smooth scale */
+.tab-btn {
+  transition: color 0.2s, border-bottom-color 0.2s, transform 0.15s;
+}
+
+.tab-btn:active {
+  transform: scale(0.96);
+}
+
+/* Hero banner glow accent */
+.hero-banner {
+  box-shadow: inset 4px 0 0 var(--red), 0 4px 32px rgba(214,40,40,0.06);
+}
+
+/* Sim run button pulse on idle */
+@keyframes btnGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(214,40,40,0.0); }
+  50% { box-shadow: 0 0 16px 2px rgba(214,40,40,0.25); }
+}
+
+.sim-run-btn {
+  animation: btnGlow 3s ease infinite;
+}
+
+.sim-run-btn:hover {
+  animation: none;
+  background: linear-gradient(135deg, #e83030 0%, #c42222 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(214,40,40,0.3);
+}
+
+/* Method item hover highlight */
+.method-item {
+  transition: background 0.2s, transform 0.2s;
+}
+
+.method-item:hover {
+  background: rgba(255,255,255,0.05);
+  transform: scale(1.04);
+}
+
+/* Odds row hover */
+.odds-row {
+  transition: background 0.15s;
+}
+
+.odds-row:hover {
+  background: rgba(255,255,255,0.04);
+}
