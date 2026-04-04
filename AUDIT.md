@@ -11,10 +11,11 @@
 |---|---|---|
 | 2026-04-03 (v1) | 6.1 | Initial audit. f1/f2 key mismatch broke predictions/betting for all fights. Single event, missing tiers and weight classes. |
 | 2026-04-03 (v2) | 6.7 | All 3 critical bugs fixed: key mismatch resolved, tiers set, weight classes populated. Second event (UFC 327 PPV) added. Predictions and Betting tabs now fully functional. |
+| 2026-04-03 (v3) | 7.1 | Probability range widened to 15–85% (was 25–75%). Betting tab reframed as model-implied only — circular odds framing fixed. Duplicate image key bug fixed in EXTRA_FIGHTERS. Fighters tab now shows all 40+ fighters (was only 15). Fight name truncation fixed at 375px. McGregor flagged as Inactive. |
 
 ---
 
-## Overall Score: 6.7 / 10
+## Overall Score: 7.1 / 10
 
 Scoring anchor: 5.0 = average/basic, 6.0 = generic template, 7.0 = genuinely better than most (HIGH bar), 8.0 = user would choose over competitors.
 

@@ -459,6 +459,7 @@ main {
 
 .fight-fighters {
   flex: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -469,7 +470,11 @@ main {
   font-weight: 700;
   color: var(--white);
   flex: 1;
+  min-width: 0;
   text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .fight-fighter-name.right {
