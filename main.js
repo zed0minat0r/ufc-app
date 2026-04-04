@@ -708,19 +708,21 @@ function renderPredictions() {
         </div>
       </div>
       <div class="pred-body">
-        <div class="win-prob-row">
-          <div class="win-prob-name">${f1.name.split(' ').pop()}</div>
-          <div class="win-prob-bar-wrap">
+        <div class="win-prob-hero">
+          <div class="win-prob-hero-split">
+            <div class="win-prob-hero-fighter f1-side">
+              <div class="win-prob-hero-pct f1-pct">${pred.f1WinProb}%</div>
+              <div class="win-prob-hero-name">${f1.name.split(' ').pop()}</div>
+            </div>
+            <div class="win-prob-hero-vs">VS</div>
+            <div class="win-prob-hero-fighter f2-side">
+              <div class="win-prob-hero-pct f2-pct">${pred.f2WinProb}%</div>
+              <div class="win-prob-hero-name">${f2.name.split(' ').pop()}</div>
+            </div>
+          </div>
+          <div class="win-prob-bar-wrap" style="margin-top:8px">
             <div class="win-prob-bar-fill f1" data-width="${pred.f1WinProb}" style="width:0%"></div>
           </div>
-          <div class="win-prob-pct">${pred.f1WinProb}%</div>
-        </div>
-        <div class="win-prob-row">
-          <div class="win-prob-name">${f2.name.split(' ').pop()}</div>
-          <div class="win-prob-bar-wrap">
-            <div class="win-prob-bar-fill f2" data-width="${pred.f2WinProb}" style="width:0%"></div>
-          </div>
-          <div class="win-prob-pct">${pred.f2WinProb}%</div>
         </div>
         <div class="method-grid">
           <div class="method-item ${higherKo ? 'highlight' : ''}">
@@ -921,9 +923,10 @@ function renderBetting() {
       const valueLabel = !hasValue ? 'FAIR' : edgePct > 0 ? 'VALUE' : 'FADE';
       const valueCls = !hasValue ? 'fair' : edgePct > 0 ? 'value' : 'fade';
       const recFighter = edgePct > 0 ? f1 : f2;
+      const confCls = pred.confidence >= 25 ? 'conf-strong' : pred.confidence >= 12 ? 'conf-moderate' : 'conf-lean';
 
       html += `
-      <div class="bet-card fade-in-up" style="animation-delay:${i * 0.07}s">
+      <div class="bet-card fade-in-up ${confCls}" style="animation-delay:${i * 0.07}s">
         <div class="bet-card-header">
           <div class="bet-card-matchup">
             <div class="bet-card-fighter-photo">${getFighterImage(f1, 'sm')}</div>

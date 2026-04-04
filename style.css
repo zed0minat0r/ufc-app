@@ -777,22 +777,6 @@ main {
   padding: 14px 16px;
 }
 
-.win-prob-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.win-prob-name {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--grey-light);
-  width: 80px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 .win-prob-bar-wrap {
   flex: 1;
@@ -816,12 +800,49 @@ main {
   background: linear-gradient(90deg, var(--gold), var(--gold-light));
 }
 
-.win-prob-pct {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--white);
-  width: 36px;
-  text-align: right;
+/* Hero probability display */
+.win-prob-hero {
+  margin-bottom: 12px;
+}
+
+.win-prob-hero-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.win-prob-hero-fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.win-prob-hero-pct {
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.win-prob-hero-pct.f1-pct { color: var(--red); }
+.win-prob-hero-pct.f2-pct { color: var(--gold); }
+
+.win-prob-hero-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--grey-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.win-prob-hero-vs {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--grey);
+  letter-spacing: 2px;
   flex-shrink: 0;
 }
 
@@ -1019,11 +1040,22 @@ main {
   text-align: center;
 }
 
+@keyframes winnerReveal {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes winnerPulse {
+  0%, 100% { text-shadow: none; }
+  50%       { text-shadow: 0 0 18px rgba(201,168,76,0.7); }
+}
+
 .sim-result-card {
   background: var(--card2);
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
+  animation: winnerReveal 0.4s ease forwards;
 }
 
 .sim-result-header {
@@ -1048,6 +1080,7 @@ main {
   font-size: 24px;
   font-weight: 900;
   color: var(--white);
+  animation: winnerPulse 1.8s ease 0.4s 3;
 }
 
 .sim-result-winner span {
@@ -1134,6 +1167,16 @@ main {
   width: 34px;
   text-align: right;
   flex-shrink: 0;
+}
+
+/* Confidence-keyed bet card borders */
+.bet-card.conf-strong {
+  border-left: 3px solid #2ecc71;
+  background: linear-gradient(to right, rgba(46,204,113,0.06) 0%, var(--card) 40%);
+}
+
+.bet-card.conf-moderate {
+  border-left: 3px solid var(--gold);
 }
 
 /* ─── BETTING ─── */
