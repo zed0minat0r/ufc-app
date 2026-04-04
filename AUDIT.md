@@ -1,8 +1,8 @@
-# FightIQ — Nigel Audit v6
+# FightIQ — Nigel Audit v7
 **Date:** 2026-04-04
 **Auditor:** Nigel (Strict Auditor)
 **Live Site:** https://zed0minat0r.github.io/ufc-app/
-**Previous Audits:** v1: 6.0 | v2: 6.7 | v3: 7.2 | v4: 7.3 | v5: 7.3
+**Previous Audits:** v1: 6.0 | v2: 6.7 | v3: 7.2 | v4: 7.3 | v5: 7.3 | v6: 7.6
 
 ---
 
@@ -14,175 +14,167 @@
 
 ---
 
-## What Changed Since v5 (7.3)
+## What Changed Since v6 (7.6)
 
-Three commits landed since v5, covering several categories:
+Examining the current codebase against the v6 audit checklist:
 
-**Commit: QA+Pixel+Refiner — fix VALUE badge, BW filter, Yakhyaev, Topuria**
-1. **VALUE badge layout fixed** — `.bet-card-header` changed from `flex-direction: column` to `flex-direction: row` (style.css line 1202). `.bet-card-matchup` has `flex: 1` and `min-width: 0`. The badge now sits right-aligned in the same row as the fighter matchup strip. Priority 1 from v4 finally resolved after two audit cycles.
-2. **BW filter added** — `<button class="filter-btn" data-filter="Bantamweight" aria-label="Bantamweight">BW</button>` added to `#fighter-filters` in index.html. Ewing and Estevam are now filterable.
-3. **Yakhyaev image fixed** — `image: ''` at main.js line 275. Empty string triggers the inline SVG initials fallback. `PH_CDN` constant fully removed from main.js. `getFighterOrPlaceholder()` fallback also updated to `image: ''`. No remaining external HTTP dependencies.
-4. **Topuria weight class corrected** — `weight: "Featherweight"` at main.js line 85. He now appears under the FW filter as Champion and no longer appears under LW.
+**What is now confirmed fixed:**
+- Two-sided probability bar in Predictions: both `.win-prob-bar-fill.f1` and `.win-prob-bar-fill.f2` are rendered in `renderPredictions()` (main.js lines 750-751), and `animateBars()` fires for both via `data-width` attributes. Priority 1 from v6 is done.
+- `sim-result-card` has a `winnerReveal` CSS animation (`opacity 0 → 1`, `scale 0.92 → 1`). The v6 complaint about a display-only reveal is resolved by this keyframe on the card.
+- `sim-result-winner` has `winnerPulse` glow animation (gold text-shadow cycling 3 times) on the winner name.
+- Women's Strawweight labels: `virna-jandiroba`, `tabatha-ricci`, `melissa-gatto`, and `dione-barbosa` all correctly show `"Women's Strawweight"` in the current data. Fixed.
+- Scroll into view on sim result confirmed (`result.scrollIntoView({ behavior: 'smooth', block: 'nearest' })`).
 
-**Commit: QA+Pixel+Refiner — fight row nav, a11y, section-badge merge, mobile fixes**
-5. **Fight rows now navigate to Predictions tab** — Each `.fight-row` has a click listener (main.js lines 648–653) that fires the Predictions tab button and scrolls to top. The Events tab rows were cursor-pointer dead zones for two audits. Fixed.
-6. **Focus-visible ring added** — `style.css` lines 1714–1723 define a 2px gold outline on `:focus-visible` for all interactive elements (tabs, sim button, selects, hamburger, filter buttons, nav links). Keyboard navigation now has visible focus.
+**What was NOT changed (still open from v6):**
+- Simulator remains fully deterministic — same two fighters always produce identical probability, method, and round.
+- Logo icon still uses `border-radius: 6px` rounded rectangle, not a true octagon clip-path.
+- Hero banner probability bar is still one-sided: `renderHero()` (main.js line 1147) renders only a single `.hero-prob-fill` div for f1. The Predictions tab got the two-sided fix but the hero banner did not.
+- Sim statistical breakdown shows winner stats only — no side-by-side comparison with the loser.
+- Fight row click navigates to Predictions tab top, not to the specific prediction card for that fight.
 
-**Commit: Builder+Spark — win-prob hero display, sim reveal animation, confidence betting**
-7. **Win probability hero display in Predictions** — Large 44px percentage numbers (red for f1, gold for f2) with a VS divider now anchor every prediction card. This is the most visible UX improvement in v6.
-8. **Sim result reveal** — `result.classList.add('visible')` and `result.scrollIntoView()` added. The result panel now appears with a `display: block` toggle and auto-scrolls into view after simulation.
-9. **Spark polish pass** — Fighter avatar glow on hover (`box-shadow` + `scale(1.05)`), prediction card lift on hover (`translateY(-2px)`), bet card lift on hover, tab press scale, sim button idle glow animation (`btnGlow`). Multiple micro-interaction improvements.
-
-**What did NOT change:**
-- Simulator remains deterministic — same fighters always produce identical results.
-- No actual animation on sim result reveal (display toggle, not a CSS transition).
-- Women's Strawweight/Strawweight label mismatch (Jandiroba, Ricci, Gatto, Barbosa listed as "Strawweight" instead of "Women's Strawweight").
-- Logo icon still uses `border-radius: 6px` rounded rectangle, not octagon clip-path.
+**New observations in v7:**
+- `khamzat-chimaev` in EXTRA_FIGHTERS shows `rank: "Champion"` at Middleweight. `dricus-du-plessis` in FIGHTERS shows `rank: "#1"` at Middleweight. Two fighters effectively claim the MW title simultaneously — contradictory data.
+- `israel-adesanya` at `rank: "#2"` Middleweight — plausible, though rankings may be stale.
+- UFC 327 (Prochazka vs. Ulberg, April 11) has only 2 fights listed in UPCOMING_EVENTS — main and co-main only. UFC Fight Night has 8 fights. The PPV card is the thinnest event in the app.
+- `conor-mcgregor` listed as `weight: "Welterweight"` with `rank: "Inactive"` — his natural division is Lightweight, and no UFC fan would look for him under the WW filter.
+- Hero images use `onerror="this.style.display='none'"` — fighter photos fall back to invisible blank space in the hero, while other contexts use the initials SVG fallback. Inconsistent.
+- No ARIA live region on `#sim-result`. Screen reader users get no announcement when the result card appears.
+- Hamburger menu has no outside-click dismiss handler in `initHamburger()`. Tapping outside the nav on mobile leaves the menu open.
+- `prelim-section` uses `max-height: 1000px` for the expanded state — an arbitrary cap that works now but would clip a large prelim section.
 
 ---
 
-## v6 Checklist
+## v7 Checklist
 
 | Check | Status |
 |-------|--------|
-| VALUE badge layout fixed (column flex → row) | FIXED — `flex-direction: row` at style.css:1202 |
-| Bantamweight filter button present | FIXED — BW button in index.html:143 with aria-label |
-| Yakhyaev placeholder removed | FIXED — `image: ''` at main.js:275; PH_CDN fully removed |
-| Topuria weight class corrected | FIXED — `weight: "Featherweight"` at main.js:85 |
-| Fight rows navigate to Predictions | FIXED — click handler at main.js:648–653 |
-| Focus-visible ring for keyboard users | FIXED — style.css:1714–1723 |
-| Win-prob hero display in Predictions | NEW — 44px percentage hero at style.css:804–847 |
-| Sim result reveal with scroll | NEW — .visible toggle + scrollIntoView at main.js:877–878 |
-| Spark micro-interactions | NEW — hover lifts, avatar glow, button pulse |
-| Simulator determinism | STILL OPEN — same input always = same output |
-| Sim result reveal CSS animation | STILL OPEN — display toggle only, no transition |
-| Women's weight class label mismatch | STILL OPEN — 4 fighters show "Strawweight" not "Women's Strawweight" |
-| Logo octagon clip-path | STILL OPEN — border-radius: 6px rounded rectangle |
+| Both f1/f2 prob bar fills rendered in Predictions | FIXED — both fills at main.js:750-751 |
+| Women's weight class labels (all 4 fighters) | FIXED — all show "Women's Strawweight" |
+| Sim result card has CSS reveal animation | FIXED — winnerReveal keyframe on .sim-result-card |
+| Winner name has gold pulse animation | FIXED — winnerPulse 3x on .sim-result-winner |
+| Simulator determinism | STILL OPEN — same input = same output every run |
+| Logo octagon clip-path | STILL OPEN — border-radius: 6px rectangle |
+| Hero banner single-sided prob fill | STILL OPEN — only f1 fill in renderHero() |
+| Sim breakdown shows winner stats only | STILL OPEN — no loser comparison bars |
+| Fight row click links to specific prediction card | STILL OPEN — navigates to tab top only |
+| MW championship data conflict (DDP #1 vs. Chimaev Champion) | OPEN — contradictory |
+| UFC 327 card data incomplete (2 of ~10 fights) | OPEN — PPV card is the thinnest |
+| Hero photo fallback inconsistency | OPEN — hero shows blank; other contexts show initials SVG |
+| Hamburger outside-click dismiss | OPEN — no handler |
+| Sim result ARIA live region | OPEN — screen readers get no announcement |
 
 ---
 
 ## Category Scores
 
-### 1. Visual Design — 7.8/10
-*Up from 7.3 in v5.*
+### 1. Visual Design — 7.9 / 10
+*Up from 7.8 in v6.*
 
-The win-probability hero display is the single biggest visual step the app has taken since the hero banner arrived in v3. Large 44px numerals in red and gold, flanking a VS label, make the model output feel like a genuine product feature rather than a stat row. Prediction cards now have a clear visual hierarchy: photo matchup → probability hero → method breakdown → pick banner → narrative. That is a complete, logical information flow.
+The two-sided probability bar fix is the headline visual improvement of v7. Previously the bar showed only f1's fill and left the rest grey — making it look like an incomplete loading indicator. Now both f1 (red gradient) and f2 (gold gradient) animate in simultaneously, creating a split bar that reads as a genuine head-to-head probability display. This is what a fight predictor app's core UI element should look like. The CSS is clean: the two fills share a flex container, each has its own gradient, and transitions are synchronized via `animateBars()`.
 
-The Spark polish pass adds consistent micro-interactions across every interactive surface. Card hover lifts, avatar glow, tab press scale, and the sim button idle pulse bring the feel noticeably closer to a polished consumer app.
+The winnerReveal and winnerPulse animations on the sim result card add meaningful polish to the simulator reveal moment.
 
-The VALUE badge fix is invisible in isolation but it matters: the betting tab was broken-looking for three audits. It is now correct.
+**Remaining visual issues:**
+- Logo icon is still a rounded red rectangle. An octagon clip-path (`clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)`) would take 5 minutes and be on-brand.
+- The hero banner probability bar remains one-sided. The hero is the first visual a user sees — having a single red fill expand toward an invisible gold share contradicts the correct behavior in Predictions and confuses the read.
+- `section-badge.gold` livePulse animation runs on two badges simultaneously (ML MODEL and MODEL ODDS). Pulsing gold badges both competing for attention dilutes the effect.
 
-**Remaining issues:**
-- **Logo icon** is still a rounded rectangle (`border-radius: 6px`). The octagon SVG outline lives inside a red box rather than being clipped to an actual octagon shape. At small sizes this reads as a generic icon.
-- **Win-prob bar in Predictions** only shows f1's fill. There is no f2 fill drawn — only `.win-prob-bar-fill.f1` is rendered in `renderPredictions()`. The opposing fighter's probability share is invisible on the bar. The bar reads as a one-sided indicator rather than a split bar. This is a regression from the intent of the two-sided bar the CSS supports (`.f2` class exists but is not used in the prediction card template).
-- **Strawweight label mismatch** — Jandiroba, Ricci, Gatto, Barbosa are listed as `weight: "Strawweight"` in the database but compete at Women's Strawweight. They appear under the STR filter which is labelled correctly in the filter row, but the fighter card itself displays "Strawweight" without the "Women's" prefix. Minor but inaccurate.
+### 2. Mobile UX (375px) — 7.6 / 10
+*Up from 7.5 in v6.*
 
-### 2. Mobile UX (375px) — 7.5/10
-*Up from 7.1 in v5.*
+The two-sided probability bar holds up well at mobile widths. Prediction card layout (photo matchup → prob hero → method grid → pick → narrative) flows clearly at 375px. Tab buttons meet `min-height: 44px` at 480px. Simulator selector stack collapses to single-column at 480px.
 
-The VALUE badge fix eliminates the worst visual regression on mobile. At 375px the betting cards now render as intended. The focus-visible ring on filter buttons and tabs is a meaningful keyboard/switch-access improvement on iOS Safari (which respects `:focus-visible` for pointer users differently than desktop).
+**Remaining mobile issues:**
+- Fight faceoff panels on Events tab: each fighter side gets roughly 151px at 375px with a 52px center column. The 90px-wide fighter photo fills most of that. Text (name, record) below the photo is 12px / 10px — readable but tight.
+- Hero center column weight label uses `font-size: 8px`. "Women's Strawweight" at 8px is borderline illegible. The `abbreviateWeight()` function exists with `"Women's Strawweight": 'W-SW'` — it should be used here.
+- Hamburger menu: no outside-click dismiss. On mobile, tapping body content after opening the hamburger leaves the nav overlay open. A one-line `document.addEventListener('click', ...)` guard would fix this.
+- UFC 327 card has only 2 fights — on mobile a user sees a header and two fight rows, then nothing. Looks like a bug, not an incomplete card.
 
-The win-prob hero with 44px percentages is slightly cramped on a 375px card. The figures are legible but the VS divider squeezes the two percentage blocks. At full content (long fighter names like "Brendson Ribeiro") the name labels under the percentages can truncate awkwardly. No overflow: hidden or text-overflow: ellipsis is set on `.win-prob-hero-name` — the label can bleed.
+### 3. Features — 7.3 / 10
+*Unchanged from v6.*
 
-The sim result `scrollIntoView` on mobile is a real UX improvement; previously the result rendered off-screen and required manual scrolling.
+The five-tab structure remains feature-complete relative to the app's scope. Collapsible prelims, search and filter in the fighter database, prediction narratives, and betting edge calculations all add real utility.
 
-**Remaining issues:**
-- `.win-prob-hero-name` has no overflow protection — long last names can bleed on narrow cards.
-- The one-sided probability bar (f1 only) is visually confusing at any viewport: a bar at 60% fill communicates nothing about the 40% opposing side.
-- Betting card `flex-wrap: wrap` is still present for very narrow viewports — the badge can still wrap below on 320px devices (minor, edge case).
+**What keeps this at 7.3:**
+- Simulator is fully deterministic. A fan running Jones vs. Aspinall gets the same 62%/38%, Round 2 TKO every single time. A real simulator produces variance — this is a static prediction lookup with a simulator label.
+- Decision round is hardcoded to Round 3 for every decision fight (main.js line 837). Title fights go 5 rounds. This is factually wrong for any title fight going to decision and looks sloppy.
+- No head-to-head comparison mode. The breakdown bars in the sim show only the winner's stats — the loser's stats disappear.
+- Fighters tab: stats only, no fight history, no last fight result, no win/loss streak. Tapology shows at least last 5 fights at a glance.
+- No share functionality. A fan wanting to send a prediction to a friend has to screenshot. Zero virality.
 
-### 3. Features — 7.6/10
-*Up from 7.3 in v5.*
+### 4. Data Quality — 6.8 / 10
+*Down from 7.0 in v6.*
 
-Fight rows now navigate to Predictions — the Events tab is no longer a dead end. Clicking a fight row loads the Predictions panel with scroll-to-top. This creates a genuine user flow: Events → click fight → Predictions card for that fight. However the scroll goes to top of the page, not to the specific prediction card for the clicked fight. A user on a 10-fight card will still need to scan manually.
+The MW championship conflict is the primary reason for the dip. `khamzat-chimaev` (EXTRA_FIGHTERS) is labeled `rank: "Champion"` at Middleweight; `dricus-du-plessis` (FIGHTERS) is labeled `rank: "#1"` at Middleweight without "Champion." For a fight predictor, having contradictory championship data is a credibility issue — users who know MMA will notice immediately.
 
-Simulator now auto-reveals and scrolls. Not a new capability but a significant UX improvement — the result was previously hidden below the fold on mobile.
+Event data is accurate and current: UFC FN Moicano vs. Duncan is today (April 4, 2026); UFC 327 Prochazka vs. Ulberg on April 11 is correct. Fighter records and stats appear consistent with publicly available UFC stats.
 
-**Remaining issues:**
-- **Simulator is still fully deterministic.** Same two fighters always produce identical percentages, method, and round. A casual user who runs Makhachev vs Jones twice gets the exact same output both times. Any randomness or variance (even ±3–5%) would make it feel alive. This has been flagged in every audit.
-- **Events → specific Predictions card navigation missing.** The fight row click lands on the Predictions tab but does not anchor to the specific prediction card for the clicked fight. Adding `data-fight-id` attributes and a `scrollIntoView` on the target card would close this gap.
-- **No live odds integration.** The Betting tab shows model-implied odds but there is no comparison to actual market lines. The "edge" column headers imply a comparison that does not exist in the data.
+**Remaining data issues:**
+- `conor-mcgregor` filed under Welterweight. His UFC career fights were spread across Featherweight, Lightweight, and Welterweight, but he is universally associated with Lightweight. The WW filter is not where a fan would look for him.
+- UFC 327 has only 2 fights listed. The actual card will have 8-12 fights. This is both a data quality and a features issue.
+- Some records may be stale (Adesanya, Strickland, Poirier all had fights in 2025-2026 that may or may not be reflected).
 
-### 4. Data Quality — 7.2/10
-*Up from 6.8 in v5.*
+### 5. Performance — 8.0 / 10
+*Unchanged from v6.*
 
-The three primary data bugs are resolved: Topuria is now Featherweight Champion (correctly filterable under FW), Yakhyaev has an inline SVG fallback with no external request, and PH_CDN is gone entirely.
+Architecture remains sound: zero API calls, zero external data dependencies, single CSS file, single JS file, SVG data-URI fallbacks for missing images, `loading="lazy"` on non-hero images, `loading="eager"` on hero images, Google Fonts preconnect. No frameworks.
 
-**Remaining issues:**
-- **Women's Strawweight mismatch.** Jandiroba (`weight: "Strawweight"`), Ricci (`weight: "Strawweight"`), Gatto (`weight: "Strawweight"`), and Barbosa (`weight: "Strawweight"`) are all Women's Strawweight fighters. Their fighter cards display the weight class as "Strawweight" rather than "Women's Strawweight". The filter button labeled STR does surface them correctly, but the card display is wrong.
-- **Aspinall listed as "Interim Champ."** As of early 2026 Aspinall is the undisputed Heavyweight Champion following Jones' retirement/vacating. He should be `rank: "Champion"`. Jones should be `rank: "Inactive"` or the fight scheduled.
-- **McGregor listed as Welterweight.** McGregor's natural division is Lightweight (and to a lesser extent Featherweight). He only fought at Welterweight twice. Listing him as Welterweight rank "Inactive" is technically defensible but misleads users who search for him under LW.
-- **Simulator stat bars show winner-only stats.** In the "Statistical Breakdown" section of the simulator, all four bars (Striking Edge, Takedown Avg, Str. Accuracy, Finish Rate) show the winner's stats in isolation. There is no comparison bar for the loser. A user cannot tell whether a 57% accuracy bar is dominant or merely average without the opponent's number alongside it.
+`animateBars()` uses a single `requestAnimationFrame` to batch all bar width transitions — efficient. Card stagger animations use CSS `animation-delay` per element — no JS timers per card.
 
-### 5. Performance — 8.8/10
-*Up from 8.5 in v5.*
+No regression in performance characteristics. Holds at 8.0.
 
-Zero external dependencies remaining. PH_CDN and `via.placeholder.com` are fully eliminated. All images are local PNGs or inline SVG data URIs. The Spark animation additions (CSS keyframes, transitions) are GPU-compositable properties (`transform`, `box-shadow`) and do not cause layout reflow. The idle `btnGlow` animation on the sim button is perpetual — a marginal battery/performance cost on mobile, but negligible in practice.
+### 6. Accessibility — 7.3 / 10
+*Up from 7.0 in v6.*
 
-The one-sided probability bar renders a single animated div via `requestAnimationFrame` — clean.
+Gold `focus-visible` rings confirmed on all interactive elements. ARIA tab roles, `aria-selected`, `aria-controls`, `role="tabpanel"`, `aria-labelledby` are correctly implemented. Filter buttons have `aria-label` with full weight class names. Prelim toggle has `aria-expanded` that updates on click.
 
-### 6. Accessibility — 7.2/10
-*Up from 6.8 in v5.*
+**Remaining accessibility gaps:**
+- `#sim-result` has no `aria-live` attribute. When `runSimulator()` fires, the result card appears silently for screen reader users. One attribute (`aria-live="polite"`) would announce the new content.
+- `&#9654;` play triangle in sim-run-btn is not marked `aria-hidden="true"`. The `aria-label` override handles semantics correctly, but the character should be aria-hidden for cleanliness.
+- Fighter cards are non-interactive static divs — no ARIA roles or keyboard interaction. Acceptable for static content.
+- `onerror` fallback inconsistency: hero images go `display: none` on error; prediction/fighter images use initials SVG. A blind user or slow connection user sees a visually broken hero panel.
+- Contrast: `var(--grey)` (#888) on `var(--black)` (#0a0a0a) is approximately 4.4:1. Passes WCAG AA but is borderline. Several common label elements (method-label, fighter-record, fight-faceoff-record) use this pairing.
 
-The focus-visible ring is the most meaningful accessibility improvement in several audits. Every interactive element now has a visible 2px gold outline on keyboard focus. This closes the most serious gap that had existed since v1.
+### 7. Overall App Feel — 7.5 / 10
+*Up from 7.3 in v6.*
 
-BW filter button now has `aria-label="Bantamweight"` — matching the other filter buttons added in the earlier pass.
+FightIQ feels like a real product. The visual design has personality, the dark red-and-gold palette is distinct from competitors, and the prediction cards now have a complete, legible probability display. A casual fan opening this before UFC Fight Night tonight would find it genuinely useful and visually engaging.
 
-**Remaining gaps:**
-- **Simulator run button has no aria-label.** `#sim-run-btn` has `aria-label="Run fight simulation"` in index.html (line 103) — this is set. However the button content is `&#9654;&nbsp; Run Simulation` — the play triangle may still be read literally by some screen readers before the aria-label overrides it. The aria-label should prevent issues in compliant readers, but the hidden character is not `aria-hidden`.
-- **Win-prob hero percentages have no screen reader context.** The large `44px` numbers render as bare percentages (`68%`, `32%`) with a last-name label below. Screen readers will announce "68% MOICANO VS 32% DUNCAN" without the word "win probability." Adding `aria-label="Renato Moicano win probability: 68%"` to the `.win-prob-hero-fighter` divs would fix this.
-- **Method grid items have no ARIA role.** The KO/TKO, Sub, and Decision cells are plain divs. Wrapping with `role="img"` or `aria-label` would provide context to non-visual users.
-- **Fighter initials fallback divs** rendered by the faceoff template (`fight-faceoff-initials` class) are still raw text nodes with no `aria-hidden`. Minor.
-
-### 7. Overall App Feel — 7.6/10
-*Up from 7.3 in v5.*
-
-This is the most substantive single-version improvement the app has made since v3. Five previously flagged bugs were fixed (VALUE badge, BW filter, Yakhyaev, Topuria, fight row navigation), plus three user-visible feature enhancements landed (win-prob hero, sim reveal, Spark polish). A real UFC fan opening this today would see something that feels genuinely considered — the prediction card hierarchy is strong, the micro-interactions are professional, and the betting tab finally looks correct.
-
-The gap to 8.0 is now about quality rather than bugs. The one-sided probability bar, the deterministic simulator, and the women's weight class labels are the visible items that would strike a knowledgeable user as rough edges. The path to 8.0 requires the simulator to feel alive, the probability bar to be a real split visualization, and the data labels to be accurate for every fighter on the card.
+What keeps it below 8.0 (the "would choose over Tapology" bar): the simulator's determinism is a trust issue, the PPV card data is incomplete, and data depth is shallow relative to what a serious fan expects. The gap to Tapology is still mostly in data and interactivity — the design is now legitimately competitive.
 
 ---
 
 ## Score History
 
-| Audit | Date       | Score | Key Addition |
-|-------|------------|-------|--------------|
-| v1    | 2026-04-03 | 6.0   | Baseline — 5 tabs, static data |
-| v2    | 2026-04-03 | 6.7   | Fighter photos (CDN), prob range widened, 40+ fighters in DB |
-| v3    | 2026-04-04 | 7.2   | Hero banner with fighter photos, face-off layout, local images, AI narratives |
-| v4    | 2026-04-04 | 7.3   | Predictions/Betting event grouping, fighter search, design consistency |
-| v5    | 2026-04-04 | 7.3   | ESPN_CDN dead code removed, sim-result CSS merged (no user-visible change) |
-| v6    | 2026-04-04 | 7.6   | Win-prob hero display, fight row nav, VALUE badge fixed, BW filter, Spark polish |
+| Version | Score | Key Changes |
+|---------|-------|-------------|
+| v1 | 6.0 | Initial build — basic layout, placeholder data |
+| v2 | 6.7 | Hero banner, improved visual design |
+| v3 | 7.2 | Fight simulator, betting tab, fighter database |
+| v4 | 7.3 | Prediction narratives, event card redesign |
+| v5 | 7.3 | Bug fixes, data corrections, mobile polish |
+| v6 | 7.6 | Win-prob hero display, fight-row nav, focus-visible, Spark polish |
+| v7 | 7.7 | Two-sided prob bar fixed, sim reveal animation, data label corrections |
 
 ---
 
-## Overall Score: 7.6 / 10
+## Overall Score: 7.7 / 10
 
-Up 0.3 from v5. The four carry-over bugs are resolved, fight rows are interactive, and the win-probability hero display is a genuine product improvement that raises the visual ceiling. The app is now in the range where a motivated UFC fan would bookmark it. It is not yet at the level where a UFC fan would choose it over Tapology (8.0+) because the simulator feels static, the data has a handful of visible inaccuracies, and the probability visualization has a functional gap (one-sided bar).
-
----
-
-## Top 3 Priorities for v7
-
-### Priority 1: Fix One-Sided Probability Bar in Predictions
-`renderPredictions()` in main.js only renders `.win-prob-bar-fill.f1` (the red fill at `pred.f1WinProb`%). The bar ends at the f1 percentage and shows empty grey for the rest — a user reading it cannot see the f2 probability as a visual share. Replace the single fill with a two-segment bar: f1 fill (red) animated to `pred.f1WinProb`% width, and f2 fill (gold) taking the remainder. Both `.win-prob-bar-fill.f1` and `.win-prob-bar-fill.f2` CSS classes exist and are styled — they just need to both be rendered in the HTML template. This is a two-line template change in `renderPredictions()`.
-
-### Priority 2: Add Variance to Simulator Output
-The simulator uses a fully deterministic formula — same two fighters always return the same probability, method, and round. Add a small seeded random offset (±3–5 percentage points, capped at the 15–85% bounds) so repeated runs feel like different simulations. Even a `Math.random() * 0.08 - 0.04` offset on `f1WinProb` before clamping would make the tool feel alive. Simultaneously, add a CSS transition on `.sim-result` instead of the current `display: none` → `display: block` toggle — a `fadeInUp` or `opacity` transition would make the reveal feel polished rather than abrupt.
-
-### Priority 3: Fix Women's Weight Class Labels + Aspinall Rank
-Two data accuracy fixes:
-- `main.js` EXTRA_FIGHTERS: Change `weight: "Strawweight"` to `weight: "Women's Strawweight"` for `virna-jandiroba`, `tabatha-ricci`, `melissa-gatto`, and `dione-barbosa`. Their cards currently display the wrong gender division.
-- `main.js` FIGHTERS: Change `tom-aspinall` `rank: "Interim Champ"` to `rank: "Champion"`. Jones is inactive/retired and Aspinall is the undisputed Heavyweight champion.
+Up 0.1 from v6. The two-sided probability bar in Predictions is now correctly implemented and the sim result reveal has real animation. These were the top two priorities from v6 and both are done. The app earns 7.7 — it is a genuinely useful, visually distinctive fight predictor app. It does not reach 8.0 because the simulator is still a static deterministic lookup, UFC 327 data is incomplete, and the hero banner probability bar regresses to one-sided while the prediction cards are correct.
 
 ---
 
-## Bonus Notes (Lower Priority)
+## Top 3 Priorities for v8
 
-- **One-sided sim breakdown bars** — The "Statistical Breakdown" section in the simulator shows winner stats only. Adding a second bar row for the loser's same stat (or a two-sided split bar) would make the comparison meaningful.
-- **Events → specific prediction card** — Fight row click navigates to Predictions tab top. Anchoring to the specific prediction card (via `data-fight-id` + `getElementById` + `scrollIntoView`) would close the navigation loop fully.
-- **Win-prob hero name overflow** — `.win-prob-hero-name` has no `overflow: hidden; text-overflow: ellipsis; white-space: nowrap`. Long last names bleed on narrow cards.
-- **Logo octagon clip-path** — `.logo-icon` uses `border-radius: 6px`. Replacing with `clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)` would create a true octagon in 5 minutes.
-- **McGregor weight class** — Listed as Welterweight. Natural home is Lightweight. Minor but affects filter accuracy.
-- **Sim button aria character** — `&#9654;` play triangle is before the aria-label text. The aria-label overrides it in compliant readers but `aria-hidden="true"` on the character span would be cleaner.
-- **`section-badge.gold` split rule** — Still defined at line 165 (background/color) and referenced again in the animation block. Not a bug, cascade is correct, but consolidating would remove the ambiguity.
+### Priority 1: Fix the Hero Banner One-Sided Probability Bar
+`renderHero()` in main.js (line 1147) renders only a single `.hero-prob-fill` div for f1's probability. The Predictions tab correctly shows two fills (red for f1, gold for f2). The hero is the first visual every user sees — having it show a one-sided bar while Predictions shows a correct two-sided bar is an inconsistency that undermines trust. Fix: replace the single `.hero-prob-fill` div with two sibling divs using `data-width` attributes, matching the pattern in `renderPredictions()`. `animateBars()` already handles `data-width` elements generically so no JS logic change is needed beyond the template.
+
+### Priority 2: Add Variance to the Simulator + Fix Decision Round
+The simulator calls `predictFight(f1, f2)` — a pure deterministic function. Same fighters, same result every run. Add a small random perturbation (±3-5 percentage points, clamped to 15-85%) applied to `f1WinProb` after the sigmoid calculation, using `Math.random()` per run. This makes the "Simulator" label accurate. Simultaneously fix the decision round bug: `method.round` is hardcoded to `3` for decisions (main.js line 837). Title fights in the data can be identified by `fight.tier === 'main'` + a championship bout flag — at minimum, default non-main decisions to Round 3 and main event decisions to Round 5. These two changes take the simulator from a static lookup to an interactive tool.
+
+### Priority 3: Complete UFC 327 Card Data
+UFC 327 (April 11, Prochazka vs. Ulberg) has only 2 fights listed. The PPV card in the Events tab shows a header and two fight rows — it looks broken compared to the Fight Night card with 8 fights. Add the remaining UFC 327 main card and prelim fights to `UPCOMING_EVENTS`, with corresponding fighter entries in `EXTRA_FIGHTERS`. The PPV should be the most complete card in the app. Bonus: resolve the MW championship conflict (`dricus-du-plessis` rank: "#1" vs. `khamzat-chimaev` rank: "Champion") while in the data.
+
+---
+
+*FightIQ is at the ceiling of what a single-developer static fight predictor can achieve without a live data backend. v8 should focus on making the simulator feel genuinely dynamic, completing PPV card data, and fixing the hero banner bar. The design is competitive — the remaining gaps are data and interactivity.*
