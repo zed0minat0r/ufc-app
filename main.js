@@ -9,105 +9,105 @@ const FIGHTERS = {
   "jon-jones": {
     id: "jon-jones", name: "Jon Jones", nickname: "Bones",
     record: "27-1-0", weight: "Heavyweight", rank: "Champion",
-    initials: "JJ", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-10/JONES_JON.png',
+    initials: "JJ", image: './fighters/jon-jones.png',
     stats: { slpm: 4.3, strAcc: 57, tdAvg: 1.9, subAvg: 0.4, koPct: 42, subPct: 22, decPct: 36 },
     style: "Wrestling/Striking", reach: 84.5, stance: "Orthodox"
   },
   "stipe-miocic": {
     id: "stipe-miocic", name: "Stipe Miocic", nickname: "Stone Cold",
     record: "22-4-0", weight: "Heavyweight", rank: "#1",
-    initials: "SM", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2024-11/MIOCIC_STIPE_11-16.png',
+    initials: "SM", image: './fighters/stipe-miocic.png',
     stats: { slpm: 4.5, strAcc: 52, tdAvg: 1.8, subAvg: 0.2, koPct: 59, subPct: 5, decPct: 36 },
     style: "Boxing/Wrestling", reach: 80, stance: "Orthodox"
   },
   "tom-aspinall": {
     id: "tom-aspinall", name: "Tom Aspinall", nickname: "The Future",
     record: "15-3-0", weight: "Heavyweight", rank: "Interim Champ",
-    initials: "TA", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-10/ASPINALL_TOM_BELT_10-25.png',
+    initials: "TA", image: './fighters/tom-aspinall.png',
     stats: { slpm: 5.8, strAcc: 60, tdAvg: 2.1, subAvg: 1.2, koPct: 47, subPct: 27, decPct: 26 },
     style: "Grappling/MMA", reach: 78, stance: "Orthodox"
   },
   "islam-makhachev": {
     id: "islam-makhachev", name: "Islam Makhachev", nickname: "",
     record: "26-1-0", weight: "Lightweight", rank: "Champion",
-    initials: "IM", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-01/7/MAKHACHEV_ISLAM_BELT_01-18.png',
+    initials: "IM", image: './fighters/islam-makhachev.png',
     stats: { slpm: 3.6, strAcc: 53, tdAvg: 4.4, subAvg: 1.5, koPct: 12, subPct: 42, decPct: 46 },
     style: "Sambo/Grappling", reach: 70.5, stance: "Orthodox"
   },
   "dustin-poirier": {
     id: "dustin-poirier", name: "Dustin Poirier", nickname: "The Diamond",
     record: "30-9-0", weight: "Lightweight", rank: "#2",
-    initials: "DP", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-07/POIRIER_DUSTIN_07-19.png',
+    initials: "DP", image: './fighters/dustin-poirier.png',
     stats: { slpm: 5.9, strAcc: 49, tdAvg: 1.9, subAvg: 1.1, koPct: 53, subPct: 20, decPct: 27 },
     style: "Boxing/BJJ", reach: 72, stance: "Southpaw"
   },
   "arman-tsarukyan": {
     id: "arman-tsarukyan", name: "Arman Tsarukyan", nickname: "Ahalkalakets",
     record: "22-3-0", weight: "Lightweight", rank: "#1",
-    initials: "AT", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-11/TSARUKYAN_ARMAN_11-22.png',
+    initials: "AT", image: './fighters/arman-tsarukyan.png',
     stats: { slpm: 5.1, strAcc: 48, tdAvg: 3.8, subAvg: 0.8, koPct: 27, subPct: 23, decPct: 50 },
     style: "Wrestling/Striking", reach: 70, stance: "Southpaw"
   },
   "alex-pereira": {
     id: "alex-pereira", name: "Alex Pereira", nickname: "Poatan",
     record: "11-2-0", weight: "Light Heavyweight", rank: "Champion",
-    initials: "AP", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-03/PEREIRA_ALEX_BELT_03-08.png',
+    initials: "AP", image: './fighters/alex-pereira.png',
     stats: { slpm: 5.2, strAcc: 54, tdAvg: 0.3, subAvg: 0.0, koPct: 73, subPct: 0, decPct: 27 },
     style: "Kickboxing", reach: 79, stance: "Orthodox"
   },
   "magomed-ankalaev": {
     id: "magomed-ankalaev", name: "Magomed Ankalaev", nickname: "Maga",
     record: "18-1-1", weight: "Light Heavyweight", rank: "#1",
-    initials: "MA", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-03/ANKALAEV_MAGOMED_03-08.png',
+    initials: "MA", image: './fighters/magomed-ankalaev.png',
     stats: { slpm: 4.3, strAcc: 55, tdAvg: 2.0, subAvg: 0.5, koPct: 44, subPct: 17, decPct: 39 },
     style: "Kickboxing/Wrestling", reach: 75, stance: "Orthodox"
   },
   "dricus-du-plessis": {
     id: "dricus-du-plessis", name: "Dricus Du Plessis", nickname: "Stillknocks",
     record: "22-3-0", weight: "Middleweight", rank: "#1",
-    initials: "DD", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2024-01/DU_PLESSIS_DRICUS_01-20.png',
+    initials: "DD", image: './fighters/dricus-du-plessis.png',
     stats: { slpm: 4.8, strAcc: 47, tdAvg: 1.4, subAvg: 0.8, koPct: 50, subPct: 23, decPct: 27 },
     style: "Brawler/MMA", reach: 76, stance: "Orthodox"
   },
   "sean-strickland": {
     id: "sean-strickland", name: "Sean Strickland", nickname: "Tarzan",
     record: "28-7-0", weight: "Middleweight", rank: "#3",
-    initials: "SS", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-02/STRICKLAND_SEAN_02-21.png',
+    initials: "SS", image: './fighters/sean-strickland.png',
     stats: { slpm: 6.2, strAcc: 46, tdAvg: 0.9, subAvg: 0.4, koPct: 21, subPct: 14, decPct: 65 },
     style: "Boxing/Volume", reach: 76, stance: "Orthodox"
   },
   "max-holloway": {
     id: "max-holloway", name: "Max Holloway", nickname: "Blessed",
     record: "26-7-0", weight: "Featherweight", rank: "Champion",
-    initials: "MH", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2024-04/HOLLOWAY_MAX_04-13.png',
+    initials: "MH", image: './fighters/max-holloway.png',
     stats: { slpm: 7.9, strAcc: 46, tdAvg: 0.6, subAvg: 0.3, koPct: 46, subPct: 12, decPct: 42 },
     style: "Boxing/Volume", reach: 69, stance: "Orthodox"
   },
   "ilia-topuria": {
     id: "ilia-topuria", name: "Ilia Topuria", nickname: "El Matador",
     record: "17-0-0", weight: "Lightweight", rank: "Champion",
-    initials: "IT", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-06/TOPURIA_ILIA_BELT_10-26.png',
+    initials: "IT", image: './fighters/ilia-topuria.png',
     stats: { slpm: 4.9, strAcc: 55, tdAvg: 2.3, subAvg: 1.1, koPct: 69, subPct: 25, decPct: 6 },
     style: "Grappling/Power", reach: 71, stance: "Orthodox"
   },
   "conor-mcgregor": {
     id: "conor-mcgregor", name: "Conor McGregor", nickname: "The Notorious",
     record: "22-6-0", weight: "Welterweight", rank: "Inactive",
-    initials: "CM", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2021-07/67667%252Fprofile-galery%252Fprofile-picture%252FMCGREGOR_CONOR_07-10.png',
+    initials: "CM", image: './fighters/conor-mcgregor.png',
     stats: { slpm: 5.6, strAcc: 49, tdAvg: 0.7, subAvg: 0.2, koPct: 68, subPct: 14, decPct: 18 },
     style: "Boxing/Counter", reach: 74, stance: "Southpaw"
   },
   "belal-muhammad": {
     id: "belal-muhammad", name: "Belal Muhammad", nickname: "Remember the Name",
     record: "24-3-0", weight: "Welterweight", rank: "Champion",
-    initials: "BM", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-11/MUHAMMAD_BELAL_11-22.png',
+    initials: "BM", image: './fighters/belal-muhammad.png',
     stats: { slpm: 3.7, strAcc: 50, tdAvg: 3.2, subAvg: 0.5, koPct: 13, subPct: 17, decPct: 70 },
     style: "Wrestling/Control", reach: 72, stance: "Orthodox"
   },
   "leon-edwards": {
     id: "leon-edwards", name: "Leon Edwards", nickname: "Rocky",
     record: "22-4-0", weight: "Welterweight", rank: "#1",
-    initials: "LE", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-11/EDWARDS_LEON_11-15.png',
+    initials: "LE", image: './fighters/leon-edwards.png',
     stats: { slpm: 4.3, strAcc: 51, tdAvg: 1.5, subAvg: 0.2, koPct: 36, subPct: 18, decPct: 46 },
     style: "Kickboxing/Wrestling", reach: 74, stance: "Southpaw"
   }
@@ -149,126 +149,126 @@ const EXTRA_FIGHTERS = {
   "jack-della-maddalena": {
     id: "jack-della-maddalena", name: "Jack Della Maddalena", nickname: "JDM",
     record: "17-2-0", weight: "Welterweight", rank: "#2",
-    initials: "JD", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-05/DELLA_MADDALENA_JACK_05-10.png',
+    initials: "JD", image: './fighters/jack-della-maddalena.png',
     stats: { slpm: 6.1, strAcc: 52, tdAvg: 0.8, subAvg: 0.3, koPct: 64, subPct: 18, decPct: 18 },
     style: "Boxing/Power", reach: 74, stance: "Orthodox"
   },
   "renato-moicano": {
     id: "renato-moicano", name: "Renato Moicano", nickname: "Money",
     record: "20-7-1", weight: "Lightweight", rank: "#10",
-    initials: "RM", image: "https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/MOICANO_RENATO_04-04.png",
+    initials: "RM", image: "./fighters/renato-moicano.png",
     stats: { slpm: 4.7, strAcc: 51, tdAvg: 1.6, subAvg: 1.3, koPct: 28, subPct: 44, decPct: 28 },
     style: "BJJ/MMA", reach: 72, stance: "Orthodox"
   },
   "chris-duncan": {
     id: "chris-duncan", name: "Chris Duncan", nickname: "The Highlander",
     record: "10-3-0", weight: "Lightweight", rank: "Unranked",
-    initials: "CD", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/DUNCAN_CHRIS_04-04.png',
+    initials: "CD", image: './fighters/chris-duncan.png',
     stats: { slpm: 3.9, strAcc: 46, tdAvg: 2.1, subAvg: 0.7, koPct: 30, subPct: 30, decPct: 40 },
     style: "Wrestling/MMA", reach: 74, stance: "Orthodox"
   },
   "virna-jandiroba": {
     id: "virna-jandiroba", name: "Virna Jandiroba", nickname: "Carcará",
     record: "20-3-0", weight: "Strawweight", rank: "#3",
-    initials: "VJ", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/JANDIROBA_VIRNA_04-04.png',
+    initials: "VJ", image: './fighters/virna-jandiroba.png',
     stats: { slpm: 3.8, strAcc: 49, tdAvg: 1.2, subAvg: 2.1, koPct: 15, subPct: 55, decPct: 30 },
     style: "BJJ/Grappling", reach: 65, stance: "Orthodox"
   },
   "tabatha-ricci": {
     id: "tabatha-ricci", name: "Tabatha Ricci", nickname: "",
     record: "11-2-0", weight: "Strawweight", rank: "#7",
-    initials: "TR", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/RICCI_TABATHA_04-04.png',
+    initials: "TR", image: './fighters/tabatha-ricci.png',
     stats: { slpm: 4.2, strAcc: 47, tdAvg: 1.8, subAvg: 0.9, koPct: 18, subPct: 36, decPct: 46 },
     style: "Kickboxing/BJJ", reach: 66, stance: "Orthodox"
   },
   "jiri-prochazka": {
     id: "jiri-prochazka", name: "Jiri Prochazka", nickname: "Denisa",
     record: "30-4-1", weight: "Light Heavyweight", rank: "#1",
-    initials: "JP", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-10/PROCHAZKA_JIRI_10-04.png',
+    initials: "JP", image: './fighters/jiri-prochazka.png',
     stats: { slpm: 6.2, strAcc: 49, tdAvg: 0.4, subAvg: 0.7, koPct: 74, subPct: 10, decPct: 16 },
     style: "Martial Arts/Striking", reach: 80, stance: "Orthodox"
   },
   "carlos-ulberg": {
     id: "carlos-ulberg", name: "Carlos Ulberg", nickname: "Black Jag",
     record: "12-1-0", weight: "Light Heavyweight", rank: "#3",
-    initials: "CU", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-09/ULBERG_CARLOS_09-27.png',
+    initials: "CU", image: './fighters/carlos-ulberg.png',
     stats: { slpm: 5.1, strAcc: 55, tdAvg: 0.5, subAvg: 0.3, koPct: 75, subPct: 8, decPct: 17 },
     style: "Kickboxing/Muay Thai", reach: 76, stance: "Orthodox"
   },
   "joshua-van": {
     id: "joshua-van", name: "Joshua Van", nickname: "",
     record: "11-0-0", weight: "Flyweight", rank: "Champion",
-    initials: "JV", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-12/VAN_JOSHUA_BELT.png',
+    initials: "JV", image: './fighters/joshua-van.png',
     stats: { slpm: 4.5, strAcc: 52, tdAvg: 3.1, subAvg: 1.0, koPct: 27, subPct: 27, decPct: 46 },
     style: "Wrestling/MMA", reach: 68, stance: "Orthodox"
   },
   "tatsuro-taira": {
     id: "tatsuro-taira", name: "Tatsuro Taira", nickname: "",
     record: "16-0-0", weight: "Flyweight", rank: "#1",
-    initials: "TT", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-12/TAIRA_TATSURO_12-06.png',
+    initials: "TT", image: './fighters/tatsuro-taira.png',
     stats: { slpm: 3.9, strAcc: 50, tdAvg: 4.2, subAvg: 2.3, koPct: 13, subPct: 56, decPct: 31 },
     style: "Judo/Grappling", reach: 67, stance: "Orthodox"
   },
   "kevin-holland": {
     id: "kevin-holland", name: "Kevin Holland", nickname: "Trailblazer",
     record: "26-10-0", weight: "Welterweight", rank: "#8",
-    initials: "KH", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-10/HOLLAND_KEVIN_10-18.png',
+    initials: "KH", image: './fighters/kevin-holland.png',
     stats: { slpm: 5.8, strAcc: 44, tdAvg: 1.0, subAvg: 0.9, koPct: 42, subPct: 27, decPct: 31 },
     style: "Striking/Grappling", reach: 79, stance: "Orthodox"
   },
   "randy-brown": {
     id: "randy-brown", name: "Randy Brown", nickname: "Rude Boy",
     record: "17-6-0", weight: "Welterweight", rank: "#11",
-    initials: "RB", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-11/BROWN_RANDY_11-08.png',
+    initials: "RB", image: './fighters/randy-brown.png',
     stats: { slpm: 5.3, strAcc: 45, tdAvg: 1.4, subAvg: 0.5, koPct: 47, subPct: 18, decPct: 35 },
     style: "Kickboxing/MMA", reach: 76, stance: "Southpaw"
   },
   "paulo-costa": {
     id: "paulo-costa", name: "Paulo Costa", nickname: "Borrachinha",
     record: "14-3-0", weight: "Middleweight", rank: "#5",
-    initials: "PC", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-07/COSTA_PAULO_07-19.png',
+    initials: "PC", image: './fighters/paulo-costa.png',
     stats: { slpm: 6.5, strAcc: 56, tdAvg: 1.1, subAvg: 0.3, koPct: 57, subPct: 14, decPct: 29 },
     style: "Boxing/Aggression", reach: 72, stance: "Orthodox"
   },
   "azamat-murzakanov": {
     id: "azamat-murzakanov", name: "Azamat Murzakanov", nickname: "Zam Zam",
     record: "13-1-0", weight: "Light Heavyweight", rank: "#8",
-    initials: "AM", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-10/MURZAKANOV_AZAMAT_10-25.png',
+    initials: "AM", image: './fighters/azamat-murzakanov.png',
     stats: { slpm: 4.8, strAcc: 50, tdAvg: 0.6, subAvg: 0.3, koPct: 62, subPct: 15, decPct: 23 },
     style: "Kickboxing/Power", reach: 77, stance: "Orthodox"
   },
   "curtis-blaydes": {
     id: "curtis-blaydes", name: "Curtis Blaydes", nickname: "Razor",
     record: "18-5-0", weight: "Heavyweight", rank: "#4",
-    initials: "CB", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-06/BLAYDES_CURTIS_06-21.png',
+    initials: "CB", image: './fighters/curtis-blaydes.png',
     stats: { slpm: 4.4, strAcc: 51, tdAvg: 4.6, subAvg: 0.7, koPct: 39, subPct: 17, decPct: 44 },
     style: "Wrestling/Grappling", reach: 80, stance: "Orthodox"
   },
   "khamzat-chimaev": {
     id: "khamzat-chimaev", name: "Khamzat Chimaev", nickname: "Borz",
     record: "15-0-0", weight: "Middleweight", rank: "Champion",
-    initials: "KC", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2025-08/CHIMAEV_KHAMZAT_BELTMOCK.png',
+    initials: "KC", image: './fighters/khamzat-chimaev.png',
     stats: { slpm: 5.2, strAcc: 57, tdAvg: 5.6, subAvg: 1.4, koPct: 47, subPct: 27, decPct: 26 },
     style: "Wrestling/Striking", reach: 74, stance: "Orthodox"
   },
   "alexander-volkov": {
     id: "alexander-volkov", name: "Alexander Volkov", nickname: "Drago",
     record: "38-10-0", weight: "Heavyweight", rank: "#6",
-    initials: "AV", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-01/VOLKANOVSKI_ALEXANDER_BELT_01-31.png',
+    initials: "AV", image: './fighters/alexander-volkov.png',
     stats: { slpm: 4.6, strAcc: 50, tdAvg: 0.7, subAvg: 0.3, koPct: 47, subPct: 13, decPct: 40 },
     style: "Kickboxing/Striking", reach: 80, stance: "Orthodox"
   },
   "israel-adesanya": {
     id: "israel-adesanya", name: "Israel Adesanya", nickname: "The Last Stylebender",
     record: "24-4-0", weight: "Middleweight", rank: "#2",
-    initials: "IA", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-03/ADESANYA_ISRAEL_03-28.png',
+    initials: "IA", image: './fighters/israel-adesanya.png',
     stats: { slpm: 4.4, strAcc: 50, tdAvg: 0.4, subAvg: 0.1, koPct: 46, subPct: 8, decPct: 46 },
     style: "Kickboxing/Movement", reach: 80, stance: "Orthodox"
   },
   "brendson-ribeiro": {
     id: "brendson-ribeiro", name: "Brendson Ribeiro", nickname: "",
     record: "16-3-0", weight: "Light Heavyweight", rank: "Unranked",
-    initials: "BR", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/RIBEIRO_BRENDSON_04-04.png',
+    initials: "BR", image: './fighters/brendson-ribeiro.png',
     stats: { slpm: 3.5, strAcc: 47, tdAvg: 1.2, subAvg: 1.8, koPct: 25, subPct: 50, decPct: 25 },
     style: "BJJ/Grappling", reach: 76, stance: "Orthodox"
   },
@@ -282,70 +282,70 @@ const EXTRA_FIGHTERS = {
   "ethyn-ewing": {
     id: "ethyn-ewing", name: "Ethyn Ewing", nickname: "",
     record: "8-1-0", weight: "Bantamweight", rank: "Unranked",
-    initials: "EE", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/EWING_ETHYN_04-04.png',
+    initials: "EE", image: './fighters/ethyn-ewing.png',
     stats: { slpm: 4.8, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 38, subPct: 25, decPct: 37 },
     style: "Striking/MMA", reach: 68, stance: "Orthodox"
   },
   "rafael-estevam": {
     id: "rafael-estevam", name: "Rafael Estevam", nickname: "",
     record: "10-1-0", weight: "Bantamweight", rank: "Unranked",
-    initials: "RE", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/ESTEVAM_RAFAEL_04-04.png',
+    initials: "RE", image: './fighters/rafael-estevam.png',
     stats: { slpm: 4.3, strAcc: 46, tdAvg: 2.0, subAvg: 1.2, koPct: 30, subPct: 40, decPct: 30 },
     style: "BJJ/MMA", reach: 67, stance: "Orthodox"
   },
   "lando-vannata": {
     id: "lando-vannata", name: "Lando Vannata", nickname: "Groovy",
     record: "13-7-2", weight: "Lightweight", rank: "Unranked",
-    initials: "LV", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/VANNATA_LANDO_04-04.png',
+    initials: "LV", image: './fighters/lando-vannata.png',
     stats: { slpm: 5.9, strAcc: 47, tdAvg: 0.9, subAvg: 0.8, koPct: 46, subPct: 31, decPct: 23 },
     style: "Striking/Submission", reach: 70, stance: "Orthodox"
   },
   "darrius-flowers": {
     id: "darrius-flowers", name: "Darrius Flowers", nickname: "",
     record: "9-2-0", weight: "Lightweight", rank: "Unranked",
-    initials: "DF", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/FLOWERS_DARRIUS_04-04.png',
+    initials: "DF", image: './fighters/darrius-flowers.png',
     stats: { slpm: 4.2, strAcc: 45, tdAvg: 1.4, subAvg: 0.4, koPct: 33, subPct: 22, decPct: 45 },
     style: "Striking/MMA", reach: 72, stance: "Orthodox"
   },
   "kai-kamaka-iii": {
     id: "kai-kamaka-iii", name: "Kai Kamaka III", nickname: "",
     record: "12-6-0", weight: "Featherweight", rank: "Unranked",
-    initials: "KK", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/KAMAKA_KAI_04-04.png',
+    initials: "KK", image: './fighters/kai-kamaka-iii.png',
     stats: { slpm: 4.6, strAcc: 46, tdAvg: 0.8, subAvg: 0.5, koPct: 42, subPct: 17, decPct: 41 },
     style: "Boxing/MMA", reach: 69, stance: "Orthodox"
   },
   "dakota-hope": {
     id: "dakota-hope", name: "Dakota Hope", nickname: "",
     record: "7-3-0", weight: "Featherweight", rank: "Unranked",
-    initials: "DH", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/HOPE_DAKOTA_04-04.png',
+    initials: "DH", image: './fighters/dakota-hope.png',
     stats: { slpm: 3.8, strAcc: 44, tdAvg: 1.6, subAvg: 0.3, koPct: 29, subPct: 14, decPct: 57 },
     style: "Wrestling/MMA", reach: 70, stance: "Orthodox"
   },
   "melissa-gatto": {
     id: "melissa-gatto", name: "Melissa Gatto", nickname: "",
     record: "14-3-2", weight: "Strawweight", rank: "Unranked",
-    initials: "MG", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/GATTO_MELISSA_04-04.png',
+    initials: "MG", image: './fighters/melissa-gatto.png',
     stats: { slpm: 3.9, strAcc: 46, tdAvg: 1.1, subAvg: 1.4, koPct: 21, subPct: 43, decPct: 36 },
     style: "BJJ/MMA", reach: 64, stance: "Orthodox"
   },
   "dione-barbosa": {
     id: "dione-barbosa", name: "Dione Barbosa", nickname: "",
     record: "12-5-0", weight: "Strawweight", rank: "Unranked",
-    initials: "DB", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/BARBOSA_DIONE_04-04.png',
+    initials: "DB", image: './fighters/dione-barbosa.png',
     stats: { slpm: 4.1, strAcc: 47, tdAvg: 1.3, subAvg: 0.9, koPct: 25, subPct: 33, decPct: 42 },
     style: "Striking/BJJ", reach: 65, stance: "Orthodox"
   },
   "tresean-gore": {
     id: "tresean-gore", name: "Tresean Gore", nickname: "The Lebanese Demon",
     record: "7-3-0", weight: "Middleweight", rank: "Unranked",
-    initials: "TG", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/GORE_TRESEAN_04-04.png',
+    initials: "TG", image: './fighters/tresean-gore.png',
     stats: { slpm: 4.5, strAcc: 49, tdAvg: 1.8, subAvg: 0.6, koPct: 43, subPct: 29, decPct: 28 },
     style: "Kickboxing/MMA", reach: 75, stance: "Orthodox"
   },
   "azamat-bekoev": {
     id: "azamat-bekoev", name: "Azamat Bekoev", nickname: "",
     record: "14-3-0", weight: "Middleweight", rank: "Unranked",
-    initials: "AB", image: 'https://www.ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/BEKOEV_AZAMAT_04-04.png',
+    initials: "AB", image: './fighters/azamat-bekoev.png',
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 2.5, subAvg: 0.8, koPct: 36, subPct: 28, decPct: 36 },
     style: "Wrestling/Striking", reach: 74, stance: "Orthodox"
   }
@@ -545,23 +545,54 @@ function renderEvents() {
     event.fights.forEach(fight => {
       const f1 = getFighterOrPlaceholder(fight.f1);
       const f2 = getFighterOrPlaceholder(fight.f2);
-      const badgeClass = fight.tier === 'main' ? 'main' : fight.tier === 'co-main' ? 'co-main' : fight.tier === 'main-card' ? 'co-main' : 'prelim';
-      const badgeText = fight.tier === 'main' ? 'MAIN' : fight.tier === 'co-main' ? 'CO-MN' : fight.tier === 'main-card' ? 'CARD' : 'PRELIM';
-      const rowClass = fight.tier === 'main' ? 'main-event' : '';
+      const isMain = fight.tier === 'main';
+      const isCoMain = fight.tier === 'co-main';
+      const badgeClass = isMain ? 'main' : (isCoMain ? 'co-main' : fight.tier === 'main-card' ? 'co-main' : 'prelim');
+      const badgeText = isMain ? 'MAIN EVENT' : (isCoMain ? 'CO-MAIN' : fight.tier === 'main-card' ? 'CARD' : 'PRELIM');
+      const rowClass = isMain ? 'main-event' : isCoMain ? 'co-main-event' : '';
 
-      html += `
+      if (isMain || isCoMain) {
+        const makePhoto = (f, side) => {
+          const isLocal = f.image && f.image.startsWith('./fighters/');
+          if (isLocal) return `<img class="fight-faceoff-photo" src="${f.image}" alt="${f.name}" loading="lazy" onerror="this.style.opacity='0'">`;
+          return `<div class="fight-faceoff-photo fight-faceoff-initials">${f.initials}</div>`;
+        };
+        html += `
         <div class="fight-row ${rowClass}">
-          <div class="fight-badge ${badgeClass}">${badgeText}</div>
-          <div class="fight-fighters">
-            ${getFighterImage(f1, 'sm')}
-            <div class="fight-fighter-name">${f1.name}</div>
-            <div class="fight-vs">VS</div>
-            <div class="fight-fighter-name right">${f2.name}</div>
-            ${getFighterImage(f2, 'sm')}
+          <div class="fight-faceoff">
+            <div class="fight-faceoff-fighter f1">
+              ${makePhoto(f1, 'f1')}
+              <div class="fight-faceoff-name">${f1.name}</div>
+              <div class="fight-faceoff-record">${f1.record}</div>
+            </div>
+            <div class="fight-faceoff-center">
+              <div class="fight-faceoff-badge ${badgeClass}">${badgeText}</div>
+              <div class="fight-faceoff-vs">VS</div>
+              <div class="fight-faceoff-weight">${abbreviateWeight(fight.weight)}</div>
+            </div>
+            <div class="fight-faceoff-fighter f2">
+              ${makePhoto(f2, 'f2')}
+              <div class="fight-faceoff-name">${f2.name}</div>
+              <div class="fight-faceoff-record">${f2.record}</div>
+            </div>
           </div>
-          <div class="fight-weight" title="${fight.weight}">${abbreviateWeight(fight.weight)}</div>
-        </div>
-      `;
+        </div>`;
+      } else {
+        html += `
+        <div class="fight-row">
+          <div class="fight-row-compact">
+            <div class="fight-badge ${badgeClass}">${badgeText === 'PRELIM' ? 'PRE' : 'CARD'}</div>
+            <div class="fight-fighters">
+              ${getFighterImage(f1, 'sm')}
+              <div class="fight-fighter-name">${f1.name}</div>
+              <div class="fight-vs">VS</div>
+              <div class="fight-fighter-name right">${f2.name}</div>
+              ${getFighterImage(f2, 'sm')}
+            </div>
+            <div class="fight-weight" title="${fight.weight}">${abbreviateWeight(fight.weight)}</div>
+          </div>
+        </div>`;
+      }
     });
 
     html += `</div></div>`;
