@@ -2,8 +2,6 @@
 
 // ─── STATIC DATA ───────────────────────────────────────────────────────────
 
-const PH_CDN = 'https://via.placeholder.com/120x120/1a1a2e/ffffff?text=';
-
 const FIGHTERS = {
   "jon-jones": {
     id: "jon-jones", name: "Jon Jones", nickname: "Bones",
@@ -84,7 +82,7 @@ const FIGHTERS = {
   },
   "ilia-topuria": {
     id: "ilia-topuria", name: "Ilia Topuria", nickname: "El Matador",
-    record: "17-0-0", weight: "Lightweight", rank: "Champion",
+    record: "17-0-0", weight: "Featherweight", rank: "Champion",
     initials: "IT", image: './fighters/ilia-topuria.png',
     stats: { slpm: 4.9, strAcc: 55, tdAvg: 2.3, subAvg: 1.1, koPct: 69, subPct: 25, decPct: 6 },
     style: "Grappling/Power", reach: 71, stance: "Orthodox"
@@ -274,7 +272,7 @@ const EXTRA_FIGHTERS = {
   "abdul-rakhman-yakhyaev": {
     id: "abdul-rakhman-yakhyaev", name: "Abdul-Rakhman Yakhyaev", nickname: "",
     record: "10-0-0", weight: "Light Heavyweight", rank: "Unranked",
-    initials: "AY", image: PH_CDN + 'AY',
+    initials: "AY", image: '',
     stats: { slpm: 4.1, strAcc: 50, tdAvg: 2.3, subAvg: 0.6, koPct: 40, subPct: 20, decPct: 40 },
     style: "Wrestling/Striking", reach: 77, stance: "Orthodox"
   },
@@ -486,7 +484,7 @@ function getFighterOrPlaceholder(id) {
   return {
     id, name, nickname: "", record: "0-0-0", weight: "", rank: "",
     initials,
-    image: PH_CDN + initials,
+    image: '',
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 22, decPct: 45 },
     style: "MMA", reach: 72, stance: "Orthodox"
   };

@@ -1146,18 +1146,21 @@ main {
 }
 
 .bet-card-header {
-  padding: 12px 16px 10px;
+  padding: 12px 16px;
   background: linear-gradient(90deg, #160404, #181818);
   border-bottom: 1px solid var(--border);
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .bet-card-matchup {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 1;
+  min-width: 0;
 }
 
 .bet-card-fighter-photo {
@@ -1195,6 +1198,7 @@ main {
   letter-spacing: 0.5px;
   white-space: nowrap;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .bet-value-badge.value {
@@ -1429,7 +1433,8 @@ main {
   color: var(--grey-light);
   font-size: 12px;
   font-weight: 700;
-  padding: 6px 14px;
+  padding: 7px 14px;
+  min-height: 36px;
   border-radius: 20px;
   cursor: pointer;
   font-family: var(--font);
