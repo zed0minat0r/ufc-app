@@ -656,25 +656,33 @@ function renderEvents() {
 
 function renderPredictions() {
   const container = document.getElementById('predictions-container');
+  let html = '';
+  let cardIndex = 0;
+  let hasAny = false;
 
-  // Collect all fights with known fighters
-  const fights = [];
   UPCOMING_EVENTS.forEach(event => {
-    event.fights.forEach(fight => {
-      const f1 = ALL_FIGHTERS[fight.f1];
-      const f2 = ALL_FIGHTERS[fight.f2];
-      if (f1 && f2) fights.push({ f1, f2, weight: fight.weight, tier: fight.tier });
-    });
-  });
+    const eventFights = event.fights
+      .map(fight => ({
+        f1: ALL_FIGHTERS[fight.f1], f2: ALL_FIGHTERS[fight.f2],
+        weight: fight.weight, tier: fight.tier
+      }))
+      .filter(f => f.f1 && f.f2);
 
-  if (fights.length === 0) {
-    container.innerHTML = '<div class="empty-state">No predictions available — fighter data not found for upcoming fights.</div>';
-    return;
-  }
+    if (eventFights.length === 0) return;
+    hasAny = true;
 
-  let html = '<div class="predictions-grid">';
+    const tagCls = event.type === 'ppv' ? 'ppv' : 'fight-night';
+    const tagTxt = event.type === 'ppv' ? 'PPV' : 'Fight Night';
+    html += `
+    <div class="pred-event-header">
+      <div class="pred-event-name">${event.name}</div>
+      <div class="pred-event-meta">${event.date} · ${event.location}</div>
+      <div class="event-tag ${tagCls}" style="margin-top:6px">${tagTxt}</div>
+    </div>
+    <div class="predictions-grid">`;
 
-  fights.forEach((fight, i) => {
+    eventFights.forEach((fight) => {
+      const i = cardIndex++;
     const pred = predictFight(fight.f1, fight.f2);
     const { f1, f2 } = fight;
     const higherKo = pred.koPct >= pred.subPct && pred.koPct >= pred.decPct;
@@ -735,9 +743,16 @@ function renderPredictions() {
       </div>
     </div>
     `;
+    });
+
+    html += '</div>';
   });
 
-  html += '</div>';
+  if (!hasAny) {
+    container.innerHTML = '<div class="empty-state">No predictions available — fighter data not found for upcoming fights.</div>';
+    return;
+  }
+
   container.innerHTML = html;
   setTimeout(animateBars, 50);
 }
@@ -950,7 +965,7 @@ function renderFighters() {
     const finishPct = f.stats.koPct + f.stats.subPct;
 
     html += `
-    <div class="fighter-card fade-in-up" data-weight="${f.weight}" style="animation-delay:${i * 0.04}s">
+    <div class="fighter-card fade-in-up" data-weight="${f.weight}" data-name="${f.name.toLowerCase()}" style="animation-delay:${i * 0.04}s">
       <div class="fighter-card-top">
         <div class="fighter-avatar">${getFighterImage(f, 'lg')}</div>
         <div class="fighter-info">
@@ -998,25 +1013,36 @@ function renderFighters() {
 
 function initFighterFilters() {
   const filterContainer = document.getElementById('fighter-filters');
+  const searchInput = document.getElementById('fighter-search');
   if (!filterContainer) return;
+
+  let activeFilter = 'all';
+  let searchTerm = '';
+
+  function applyFilters() {
+    const cards = document.querySelectorAll('#fighters-container .fighter-card');
+    cards.forEach(card => {
+      const weightMatch = activeFilter === 'all' || card.dataset.weight === activeFilter;
+      const nameMatch = !searchTerm || card.dataset.name.includes(searchTerm);
+      card.style.display = weightMatch && nameMatch ? '' : 'none';
+    });
+  }
 
   filterContainer.addEventListener('click', (e) => {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
-
     filterContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-    const cards = document.querySelectorAll('#fighters-container .fighter-card');
-    cards.forEach(card => {
-      if (filter === 'all' || card.dataset.weight === filter) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
-    });
+    activeFilter = btn.dataset.filter;
+    applyFilters();
   });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      searchTerm = searchInput.value.toLowerCase().trim();
+      applyFilters();
+    });
+  }
 }
 
 // ─── HERO BANNER ─────────────────────────────────────────────────────────────
