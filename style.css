@@ -334,6 +334,24 @@ main {
   border-color: rgba(214,40,40,0.4);
 }
 
+.event-card.next-event {
+  border-color: rgba(201,168,76,0.35);
+  border-left: 3px solid var(--gold);
+}
+
+.event-card.next-event:hover {
+  border-color: rgba(201,168,76,0.6);
+}
+
+.next-event-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
 .event-card-header {
   background: linear-gradient(90deg, #1a0505, #181818);
   padding: 14px 18px;
@@ -451,7 +469,7 @@ main {
   font-weight: 700;
   color: var(--white);
   flex: 1;
-  text-align: right;
+  text-align: left;
 }
 
 .fight-fighter-name.right {
@@ -468,7 +486,7 @@ main {
 .fight-weight {
   font-size: 11px;
   color: var(--grey);
-  width: 70px;
+  width: 50px;
   text-align: right;
   flex-shrink: 0;
 }
@@ -1124,6 +1142,39 @@ main {
   letter-spacing: 0.3px;
 }
 
+/* ─── FIGHTER FILTERS ─── */
+.fighter-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--grey-light);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: var(--font);
+  letter-spacing: 0.4px;
+  transition: all 0.18s;
+}
+
+.filter-btn:hover {
+  border-color: rgba(214,40,40,0.4);
+  color: var(--white);
+}
+
+.filter-btn.active {
+  background: rgba(214,40,40,0.15);
+  border-color: rgba(214,40,40,0.5);
+  color: var(--red-bright);
+}
+
 /* ─── LOADING ─── */
 .loader {
   display: flex;
@@ -1151,6 +1202,19 @@ main {
   font-size: 13px;
   color: var(--grey);
   font-weight: 600;
+}
+
+/* ─── EMPTY STATE ─── */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--grey);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  border-style: dashed;
 }
 
 /* ─── DISCLAIMER ─── */
@@ -1246,8 +1310,9 @@ main {
   }
 
   .tab-btn {
-    padding: 10px 14px;
+    padding: 12px 16px;
     font-size: 13px;
+    min-height: 44px;
   }
 
   .hero-banner {
@@ -1275,7 +1340,10 @@ main {
 
   /* Fight rows on small screens */
   .fight-weight {
-    display: none;
+    display: block;
+    font-size: 9px;
+    width: 36px;
+    color: var(--grey);
   }
 
   .fight-fighter-name {
@@ -1304,6 +1372,7 @@ main {
 .sim-run-btn:focus-visible,
 .sim-select:focus-visible,
 .hamburger:focus-visible,
+.filter-btn:focus-visible,
 nav a:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 2px;

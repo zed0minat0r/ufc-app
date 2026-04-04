@@ -449,9 +449,13 @@ function initTabs() {
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.tab;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
       document.getElementById('panel-' + target).classList.add('active');
 
       // Sync nav link active state
@@ -479,6 +483,27 @@ function initHamburger() {
   });
 }
 
+// ─── WEIGHT CLASS ABBREVIATION ───────────────────────────────────────────────
+
+function abbreviateWeight(weight) {
+  const map = {
+    'Heavyweight': 'HW',
+    'Light Heavyweight': 'LHW',
+    'Middleweight': 'MW',
+    'Welterweight': 'WW',
+    'Lightweight': 'LW',
+    'Featherweight': 'FW',
+    'Bantamweight': 'BW',
+    'Flyweight': 'FLY',
+    'Strawweight': 'SW',
+    "Women's Strawweight": 'W-SW',
+    "Women's Flyweight": 'W-FLY',
+    "Women's Bantamweight": 'W-BW',
+    "Women's Featherweight": 'W-FW',
+  };
+  return map[weight] || weight;
+}
+
 // ─── EVENTS TAB ─────────────────────────────────────────────────────────────
 
 function renderEvents() {
@@ -488,11 +513,13 @@ function renderEvents() {
   UPCOMING_EVENTS.forEach((event, i) => {
     const tagClass = event.type === 'ppv' ? 'ppv' : 'fight-night';
     const tagText = event.type === 'ppv' ? 'PPV' : 'Fight Night';
+    const isNext = i === 0;
 
     html += `
-    <div class="event-card fade-in-up" style="animation-delay:${i * 0.08}s">
+    <div class="event-card fade-in-up${isNext ? ' next-event' : ''}" style="animation-delay:${i * 0.08}s">
       <div class="event-card-header">
         <div>
+          ${isNext ? '<div class="next-event-label">NEXT UP</div>' : ''}
           <div class="event-card-title">${event.name}</div>
           <div class="event-card-date">${event.date}</div>
           <div class="event-card-location">${event.location}</div>
@@ -517,7 +544,7 @@ function renderEvents() {
             <div class="fight-vs">VS</div>
             <div class="fight-fighter-name right">${f2.name}</div>
           </div>
-          <div class="fight-weight">${fight.weight}</div>
+          <div class="fight-weight" title="${fight.weight}">${abbreviateWeight(fight.weight)}</div>
         </div>
       `;
     });
@@ -542,6 +569,11 @@ function renderPredictions() {
       if (f1 && f2) fights.push({ f1, f2, weight: fight.weight, tier: fight.tier });
     });
   });
+
+  if (fights.length === 0) {
+    container.innerHTML = '<div class="empty-state">No predictions available — fighter data not found for upcoming fights.</div>';
+    return;
+  }
 
   let html = '<div class="predictions-grid">';
 
@@ -728,6 +760,11 @@ function renderBetting() {
     });
   });
 
+  if (fights.length === 0) {
+    container.innerHTML = '<div class="empty-state">No betting data available — fighter data not found for upcoming fights.</div>';
+    return;
+  }
+
   let html = '<div class="betting-grid">';
 
   fights.forEach((fight, i) => {
@@ -798,7 +835,7 @@ function renderFighters() {
     const finishPct = f.stats.koPct + f.stats.subPct;
 
     html += `
-    <div class="fighter-card fade-in-up" style="animation-delay:${i * 0.04}s">
+    <div class="fighter-card fade-in-up" data-weight="${f.weight}" style="animation-delay:${i * 0.04}s">
       <div class="fighter-card-top">
         <div class="fighter-avatar">${getInitials(f)}</div>
         <div class="fighter-info">
@@ -840,6 +877,31 @@ function renderFighters() {
 
   html += '</div>';
   container.innerHTML = html;
+}
+
+// ─── FIGHTER FILTER ──────────────────────────────────────────────────────────
+
+function initFighterFilters() {
+  const filterContainer = document.getElementById('fighter-filters');
+  if (!filterContainer) return;
+
+  filterContainer.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+
+    filterContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+    const cards = document.querySelectorAll('#fighters-container .fighter-card');
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.weight === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
 }
 
 // ─── HERO BANNER ─────────────────────────────────────────────────────────────
@@ -894,6 +956,7 @@ document.addEventListener('DOMContentLoaded', () => {
   populateSimSelects();
   renderBetting();
   renderFighters();
+  initFighterFilters();
 
   document.getElementById('sim-run-btn').addEventListener('click', runSimulator);
 
