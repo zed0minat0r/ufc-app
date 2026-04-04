@@ -975,17 +975,34 @@ function renderHero() {
   const banner = document.getElementById('hero-banner');
   if (!banner) return;
 
+  const hasF1Img = f1.image && f1.image.startsWith('./fighters/');
+  const hasF2Img = f2.image && f2.image.startsWith('./fighters/');
+
+  const f1Photo = hasF1Img
+    ? `<img class="hero-fighter-photo" src="${f1.image}" alt="${f1.name}" loading="eager" onerror="this.style.display='none'">`
+    : `<div class="hero-fighter-photo hero-fighter-initials">${f1.initials}</div>`;
+  const f2Photo = hasF2Img
+    ? `<img class="hero-fighter-photo" src="${f2.image}" alt="${f2.name}" loading="eager" onerror="this.style.display='none'">`
+    : `<div class="hero-fighter-photo hero-fighter-initials">${f2.initials}</div>`;
+
   banner.innerHTML = `
-    <div class="hero-event-label">Next Main Event</div>
-    <div class="hero-event-name">${event.name}</div>
-    <div class="hero-event-meta">${event.date} · ${event.location}</div>
+    <div class="hero-header">
+      <div class="hero-event-label">Next Main Event</div>
+      <div class="hero-event-name">${event.name}</div>
+      <div class="hero-event-meta">${event.date} · ${event.location}</div>
+    </div>
     <div class="hero-matchup">
-      <div class="hero-fighter">
+      <div class="hero-fighter hero-fighter--left">
+        ${f1Photo}
         <div class="hero-fighter-name">${f1.name}</div>
         <div class="hero-fighter-record">${f1.record}</div>
       </div>
-      <div class="hero-vs">VS</div>
-      <div class="hero-fighter">
+      <div class="hero-center">
+        <div class="hero-vs">VS</div>
+        <div class="hero-weight">${mainEvent.weight || ''}</div>
+      </div>
+      <div class="hero-fighter hero-fighter--right">
+        ${f2Photo}
         <div class="hero-fighter-name">${f2.name}</div>
         <div class="hero-fighter-record">${f2.record}</div>
       </div>
@@ -998,6 +1015,7 @@ function renderHero() {
       <div class="hero-prob-bar">
         <div class="hero-prob-fill" data-width="${pred.f1WinProb}" style="width:0%"></div>
       </div>
+      <div class="hero-ai-label">FightIQ AI Prediction</div>
     </div>
   `;
 
