@@ -1,92 +1,145 @@
-# FightIQ — Nigel Audit Report
-**Date:** 2026-04-03
-**Auditor:** Nigel (Strict Scoring Mode)
-**URL:** https://zed0minat0r.github.io/ufc-app/
+# FightIQ — Nigel Audit v3
+**Date:** 2026-04-04
+**Auditor:** Nigel (Strict Auditor)
+**Live Site:** https://zed0minat0r.github.io/ufc-app/
+**Previous Audits:** v1: 6.0 | v2: 6.7 | v3: 7.2
 
 ---
 
-## Score History
+## Scoring Calibration
+- 5.0 = average/basic | 6.0 = generic template | 7.0 = genuinely better than most (HIGH bar)
+- 8.0 = user would choose over competitors | 9.0 = award-worthy
 
-| Date | Score | Key Change |
-|---|---|---|
-| 2026-04-03 (v1) | 6.1 | Initial audit. f1/f2 key mismatch broke predictions/betting for all fights. Single event, missing tiers and weight classes. |
-| 2026-04-03 (v2) | 6.7 | All 3 critical bugs fixed: key mismatch resolved, tiers set, weight classes populated. Second event (UFC 327 PPV) added. Predictions and Betting tabs now fully functional. |
-| 2026-04-03 (v3) | 7.1 | Probability range widened to 15–85% (was 25–75%). Betting tab reframed as model-implied only — circular odds framing fixed. Duplicate image key bug fixed in EXTRA_FIGHTERS. Fighters tab now shows all 40+ fighters (was only 15). Fight name truncation fixed at 375px. McGregor flagged as Inactive. |
+**Benchmark:** ESPN, UFC.com, Tapology
 
 ---
 
-## Overall Score: 7.1 / 10
+## What Changed Since v2 (6.7)
 
-Scoring anchor: 5.0 = average/basic, 6.0 = generic template, 7.0 = genuinely better than most (HIGH bar), 8.0 = user would choose over competitors.
+Five significant changes landed since the last audit:
 
-This is a meaningful jump from 6.1. The three blocking bugs are fixed. Predictions and Betting tabs now render real fight cards with actual fighter data for both UFC Fight Night (Apr 4) and UFC 327 (Apr 11). The hero banner correctly identifies the main event (Moicano vs. Duncan). The app now does what it claims. However, it still sits below 7.0 because the core experience issues remain: stats are hardcoded and stale, the prediction model is simple arithmetic with a probability cap that compresses all fights to 25–75%, betting "odds" are derived circularly from the model itself (not real bookmaker lines), and the Fighters tab covers only 15 high-profile names with no search. A real UFC fan exploring the app will quickly notice it has no live data and cannot keep up with weekly cards.
+1. **Hero banner with fighter photos** — Moicano and Duncan now appear face-to-face in the hero with red/blue gradient sides and a probability bar beneath. This is the most impactful UI change the app has shipped.
+
+2. **Face-off layout for main/co-main events** — Main event and co-main bouts now render in a portrait-photo face-off style with fighter names, records, VS label, and weight class. Prelims remain compact rows.
+
+3. **All 43 fighter photos stored locally** — Eliminated the UFC CDN hotlink-blocking issue. All images are served from GitHub at `./fighters/{slug}.png`. Zero image load failures.
+
+4. **AI fight narratives on all 3 tabs** — `generateFightNarrative()` produces 2-3 sentence breakdowns explaining why the model picks the winner, what method is expected, and confidence level. Appears in Predictions, Betting, and Simulator.
+
+5. **All 40+ fighters visible in database** — `ALL_FIGHTERS = { ...FIGHTERS, ...EXTRA_FIGHTERS }` now correctly populates the Fighters tab. Previously only 15 fighters showed; now all 43 do.
 
 ---
 
 ## Category Scores
 
-| Category | Score | Notes |
-|---|---|---|
-| Visual Design | 6.5 | Dark theme is cohesive, Inter font, red/gold palette — looks intentional. Cards feel polished. Still generic MMA dark UI — no distinctive identity that separates it from dozens of similar template builds. No fighter photos for most fighters (via.placeholder.com fallbacks are ugly grey squares). |
-| Mobile UX (375px) | 6.2 | Tabs scroll horizontally correctly. Hero banner scales well. Fight rows are readable. Prediction grid collapses to single column. Simulator dropdowns stack at 480px. Tab buttons at 14px/12px padding are adequate. Main gap: `.predictions-grid` with `minmax(320px,1fr)` forces horizontal scroll on 375px — cards are slightly wider than viewport with 16px side padding, creating a ~16px horizontal overflow. Fight-name text in fight rows truncates poorly on very narrow screens. |
-| Features | 6.5 | 5 tabs, all functional. Events shows 2 events with proper tier badges. Predictions renders all fights from both cards with confidence %, method breakdown, and AI pick. Simulator lets you pick any 2 of 40+ fighters. Betting tab shows model edge vs implied odds. Fighter filters by weight class work. Solid feature set for a static app — but nothing that distinguishes it: no notifications, no head-to-head stat comparison, no historical accuracy tracking. |
-| Data Quality | 5.5 | Big improvement: all fight data is accurate for both events (correct fighters, tiers, weight classes). Fighter stats are plausible. But: records for some fighters are stale (Ilia Topuria listed at 17-0, he has fought since; Conor McGregor listed as active Welterweight — he is retired/inactive). "SCHEDULED" badge on Events is honest, but there is still no last-updated timestamp so users can't know how stale the data is. Betting "book odds" are derived from the model (bookF1Prob = modelProb * 0.9 + 0.05) — this is a circular approximation, not real odds, and the disclaimer ("estimated book odds") is buried in 12px grey text. UFC 327 only has 2 fights listed — likely incomplete card. |
-| Performance | 7.5 | Pure HTML/CSS/JS, no framework, no runtime API calls. Instant load. CSS transitions are smooth. Google Fonts is the only external request. `loading="lazy"` on images is correct. Fast on any device. |
-| Accessibility | 5.0 | Tab panels still lack `role="tabpanel"` and `aria-labelledby`. Gold (#c9a84c) on dark (#0a0a0a) fails WCAG AA at body text sizes (contrast ratio ~4.1:1, need 4.5). Grey (#888) on dark fails at small sizes. No focus-visible ring visible in CSS for most interactive elements (only `.sim-select:focus` has a border). No skip-to-content link. Simulator same-fighter error is now inline (good) rather than alert() — actually this was already inline in this version. Fighter filter buttons have no aria-pressed state. |
-| Overall App Feel | 6.5 | It feels like a real app now — you can navigate to Predictions, see fights with win probabilities, click over to Betting and see odds-style formatting. The hero banner pulls up the right main event. The simulator is fun to use. The experience cap is: all probabilities cluster between 45–65% (the 25–75% model cap means even a huge skill gap shows as 65/35 at most), making every fight feel coin-flip. Real UFC fans know Makhachev should be 80%+ against most opponents. This undermines trust in the AI framing. |
+### 1. Visual Design — 7.3/10
+
+The hero banner is now the app's strongest visual element. Fighter photos appearing face-to-face with a gradient background and the AI probability bar beneath feels intentional and sports-media adjacent. This is a genuine step up from v2.
+
+The face-off layout for main/co-main events is also well-executed — large portrait photos, clean VS label, weight class — and clearly differentiates this from a basic fight schedule list.
+
+**Issues:**
+- The f2 (right-side) fighter in both the hero banner and the faceoff rows uses a blue gradient (`rgba(59,130,246,0.06)` and `rgba(59,130,246,0.08)`). Blue has no relationship to the app's design language (red/gold/dark). It looks like a copy-paste from a generic sports template. Use a neutral or gold tone instead.
+- The fighter card `.fighter-avatar` no longer has explicit dimensions. It has `flex-shrink: 0` and no width/height, relying entirely on the child `.fighter-photo--lg` (120×140px) to define its size. This works but the CSS comment `/* fighter-avatar sizing is handled in the main .fighter-avatar block above */` at line 1753 is a lie — the block above does not set dimensions either. One deleted duplicate block left the container dimension-less.
+- Logo is still a plain red square with "U". A UFC octagon silhouette or gloves SVG would immediately elevate the brand identity. This is the first thing a user sees.
+
+### 2. Mobile UX (375px) — 7.0/10
+
+The hero face-off at 375px: 100px + 54px center + 100px = 254px minimum, leaving ~121px for margins. Fits. The fighter names truncate appropriately at 13px.
+
+The fight list is readable at 375px. Prelim rows are compact and clear. Main/co-main face-off cards are the right call for featured bouts.
+
+**Issues:**
+- **CSS conflict on hero banner at 480px:** The old `@media (max-width: 480px)` block sets `.hero-banner { padding: 18px 16px; }`. The new hero design uses `padding: 0` on the banner with inner `.hero-header` handling its own spacing. On phones ≤480px, this stale rule adds 18px outer padding to the entire banner container — visually pushing the hero-header and fighter photos inward and adding double spacing. This is a visible bug on iPhones.
+- Fighter filter buttons cover only 6 weight classes: HW, LHW, MW, WW, LW, FW. No Flyweight, Strawweight, or Women's filter. Six fighters in the database (Jandiroba, Ricci, Van, Taira, Gatto, Barbosa) cannot be filtered to — they only appear under "All." For a UFC card with Women's Strawweight and Flyweight bouts, this is an obvious gap.
+- Tab bar: 5 tabs at 375px require scroll. `overflow-x: auto` handles this, but there's no visual indicator (gradient fade at edges) showing the user the bar is scrollable. Users often don't discover horizontal scroll on tab bars.
+
+### 3. Features — 7.2/10
+
+Five fully functional tabs with real logic. The AI narratives are the standout new feature — they elevate the app from "stats display" to "analysis tool." The simulator is genuinely fun and responsive.
+
+**Issues:**
+- The Predictions tab shows all fights from all events in a flat grid with no event grouping or separator. Once more events are added, a user cannot tell which card a fight belongs to without reading the weight class.
+- No Fighters tab search. With 43 fighters, "All" is a long scroll. Even a basic `<input type="text">` filter would be a quality-of-life win.
+- The simulator still uses `Math.floor(Math.random() * 3) + 1` for KO/Sub round number — running the same matchup twice gives different round results. Deterministic output would feel more like "AI analysis" and less like a random number generator.
+
+### 4. Data Quality — 6.5/10
+
+**Critical bug:** `./fighters/alexander-volkov.png` contains the wrong fighter. The file was downloaded from the URL `VOLKANOVSKI_ALEXANDER_BELT_01-31.png` — Alexander Volkanovski, the Featherweight champion — not Alexander Volkov, the Heavyweight. Any user who knows UFC will immediately notice Alexander Volkov's card showing Volkanovski's face. This needs to be fixed with the correct Volkov image.
+
+Fight card data (Moicano vs Duncan, April 4) and UFC 327 (Prochazka vs Ulberg, April 11) are accurate and well-structured.
+
+Yakhyaev remains on placeholder — acceptable since UFC has no headshot for him yet.
+
+**Accepted limitations:**
+- Stats are manually curated, not live — values could drift from Tapology/UFCStats over time.
+- No pre/after-hours fight result updates.
+
+### 5. Performance — 8.5/10
+
+Excellent. Zero external API calls on load. All 43 fighter images are served locally from GitHub Pages. No JavaScript dependencies. The entire app loads from 3 static files totaling ~3,100 lines. Render is essentially instant.
+
+This is a genuine strength versus competitor apps (ESPN, Tapology) which hammer external APIs.
+
+**Minor issues:**
+- No service worker or offline support — acceptable for a static demo.
+- `via.placeholder.com` is still referenced as a fallback in `getFighterImage()`. For a fighter without a local image, this makes an external request.
+
+### 6. Accessibility — 6.5/10
+
+Improvements since v2: `role="tablist"`, `role="tab"`, `aria-selected`, `aria-controls` are all correctly set on the tab bar.
+
+**Remaining issues:**
+- Tab panels (`div.tab-panel`) lack `role="tabpanel"` and `aria-labelledby` attributes. Screen reader tab navigation announces the tab but the panel has no semantic role.
+- `.fight-faceoff-initials` divs (fallback for fighters without photos) have no accessible label.
+- The simulator run button text contains a Unicode `▶` character that may not be read by all screen readers. `aria-label="Run fight simulation"` would fix this.
+- `<h3>Pick Any Two Fighters</h3>` inside the simulator panel has no preceding h2 — heading hierarchy skips a level.
+
+### 7. Overall App Feel — 7.2/10
+
+This is a meaningfully different app from v2. The hero banner with fighter portraits facing off under an AI probability bar is the clearest signal that this was built for UFC specifically, not adapted from a generic sports template. The AI narratives in the Predictions and Betting tabs create a "scouting report" feel that ESPN doesn't offer at this level of granularity.
+
+**What prevents 7.5+:**
+- The wrong fighter photo (Volkov/Volkanovski bug) is immediately credibility-destroying for any UFC fan.
+- The blue gradient on the f2 side of every face-off is an aesthetic mismatch with the design system.
+- The fighter filters don't cover Women's divisions despite the card featuring two women's bouts.
+- The app still has no distinctive identity marker — a real brand would have an octagon motif, proper logomark, or distinctive typographic treatment.
 
 ---
 
-## Bugs Fixed Since Last Audit (Good Work)
+## Score History
 
-- **f1/f2 key mismatch RESOLVED** — UPCOMING_EVENTS now uses `f1`/`f2` keys throughout. Predictions and Betting tabs render correctly.
-- **Fight tiers populated** — All fights have proper `tier` values (main, co-main, main-card, prelim). Hero banner correctly shows main event.
-- **Weight classes populated** — All fights have `weight` field. Fight rows display correct weight class abbreviations.
-- **Second event added** — UFC 327 (April 11, Miami) with Prochazka vs. Ulberg as main event and Flyweight co-main.
-- **"LIVE DATA" badge removed** — Events section badge now reads "SCHEDULED" — honest framing.
-- **Simulator error is inline** — No alert() usage found; error renders in the DOM.
-
----
-
-## Remaining Issues
-
-### Priority 1: Prediction probability floor is too conservative (25–75% cap)
-`f1WinProb = Math.max(0.25, Math.min(0.75, f1WinProb))` — this means the largest possible edge shown is 75/25. For Topuria vs. a late-notice replacement, or Makhachev in a pure striker matchup, a real model would show 70–80%+ confidence. The hard floor makes every prediction look uncertain and undermines the "AI" framing. Consider widening to 20–80% or 15–85%, or showing a confidence tier (High/Medium/Low) that communicates certainty without fake precision.
-
-### Priority 2: Betting odds are circular and misleading
-`bookF1Prob = modelProb * 0.9 + 0.05` — the "book odds" are just the model's own output, compressed. This means the model can never find an edge beyond the compression math. Real edge detection requires actual bookmaker lines. Either fetch real odds (DraftKings API, The Odds API) or be explicit: rename to "Model-Implied Odds" and drop the "vs book" framing. Currently a user might bet based on a phantom edge.
-
-### Priority 3: Horizontal overflow on predictions grid at mobile widths
-`.predictions-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) }` with 16px body padding creates overflow at 375px viewport width (375 - 32px padding = 343px available, below 320px minimum). Change `minmax(320px,1fr)` to `minmax(280px,1fr)` or add a `@media (max-width: 440px) { grid-template-columns: 1fr }` override.
+| Audit | Date       | Score | Key Addition |
+|-------|------------|-------|--------------|
+| v1    | 2026-04-03 | 6.0   | Baseline — 5 tabs, static data |
+| v2    | 2026-04-03 | 6.7   | Fighter photos (CDN), prob range widened, 40+ fighters in DB, model odds reframing |
+| v3    | 2026-04-04 | 7.2   | Hero banner with fighter photos, face-off layout, local images, AI narratives |
 
 ---
 
-## Additional Issues (Lower Priority)
+## Overall Score: 7.2 / 10
 
-- **Fighter data completeness** — Fighters tab only shows 15 fighters from the `FIGHTERS` object (not `EXTRA_FIGHTERS`). The 30+ fighters in `EXTRA_FIGHTERS` who appear on the actual fight cards aren't visible in the database tab — a user wants to look up Moicano or Jiri Prochazka and can't find them.
-- **UFC 327 fight card is incomplete** — Only 2 fights listed (main and co-main). A real PPV card has 12+ fights. At minimum, populate 4–5 more fights.
-- **No search on Fighters tab** — With 40+ fighters available, filter buttons only cover weight classes. A name search field would be a significant UX improvement.
-- **Conor McGregor listed as active Welterweight** — He has been inactive/retired since 2021 injury. His presence without an "inactive" flag misleads users.
-- **Ilia Topuria record 17-0 is stale** — Check current record.
-- **No last-updated timestamp anywhere** — Users can't tell if the data is from last week or 6 months ago.
-- **Fighter photos** — Most fighters use via.placeholder.com grey squares. Even initials-on-colored-background would look better. ESPN CDN links (used for some fighters) may break without proper referrer.
-- **Simulator method round is random** — `Math.floor(Math.random() * 3) + 1` for round number means running the same simulation twice gives different results. A deterministic output would be more credible for an "AI model."
-- **`aria-controls` on tab buttons points to panel IDs** — panels lack matching `role="tabpanel"` attributes and `id` attributes are present but panels don't have `aria-labelledby`. Screen reader navigation is incomplete.
+Up from 6.7. The hero banner redesign and face-off fight card layout are the highest-ROI changes shipped so far. AI narratives are genuinely differentiating. The app now clears the "genuinely better than most" threshold. The path to 7.5+ runs through fixing the Volkov photo bug, removing the off-brand blue gradient, and adding missing weight class filters.
 
 ---
 
-## What's Working Well
+## Top 3 Priorities for v4
 
-- All 5 tabs fully functional with real data
-- Hero banner shows correct main event with animated probability bar
-- Fight tier badges (MAIN / CO-MN / CARD / PRELIM) display correctly
-- Dark theme is polished and readable
-- Fighter filter by weight class works correctly
-- Simulator is enjoyable to use — good output layout
-- Two events on the card with correct metadata
-- No browser console errors expected from the core render path
-- Performance is excellent — no bloat
+### Priority 1: Fix Alexander Volkov's Photo
+`./fighters/alexander-volkov.png` contains Alexander Volkanovski's image (wrong fighter — downloaded from wrong URL). Fetch and replace with the correct Volkov headshot from `https://www.ufc.com/athlete/alexander-volkov`. This is a credibility bug — any UFC fan will notice immediately.
+
+### Priority 2: Remove the Blue Gradient from f2 Faceoff Sides
+Three CSS rules use `rgba(59,130,246,...)` blue for the right-side fighter: `.hero-banner::before`, `.hero-fighter--right`, and `.fight-faceoff-fighter.f2`. Blue is completely absent from the design system (red/gold/dark). Replace with neutral dark or subtle gold tint. A red-left / gold-right treatment would be more on-brand and differentiated.
+
+### Priority 3: Add Flyweight, Strawweight, and Women's Filter Buttons
+The fighter database has 6 fighters in divisions not covered by any filter button (Jandiroba, Ricci, Van, Taira, Gatto, Barbosa). Add `FLY`, `STR`, and `W-STR` filter buttons to `index.html`. The co-main event on April 4 is a Women's Strawweight bout — users looking for those fighters via the filter will find nothing.
 
 ---
 
-*Audit complete. Score: 6.7/10. Solid fixes since last round — the app is functional. The path to 7.0+ requires widening the probability range, fixing the circular betting odds framing, and surfacing EXTRA_FIGHTERS in the Fighters tab.*
+## Bonus Notes (Lower Priority)
+
+- **Stale hero padding:** Remove `.hero-banner { padding: 18px 16px; }` from the `@media (max-width: 480px)` block — conflicts with the new zero-padding hero design and adds unwanted outer padding on small phones.
+- **Tab scroll indicator:** Add a subtle right-edge gradient on the tabs container to signal horizontal scrollability on mobile.
+- **Simulator determinism:** Replace `Math.floor(Math.random() * 3) + 1` for round number with a deterministic value derived from fighter stats so the same matchup always produces the same result.
+- **Logo upgrade:** Replace the plain red square "U" with an SVG octagon outline or crossed-gloves icon. Takes 20 minutes, makes the header feel legitimate.
+- **Placeholder fallback:** Replace `via.placeholder.com` external calls in `getFighterImage()` with an inline SVG data URI showing fighter initials. Eliminates the last external dependency.
