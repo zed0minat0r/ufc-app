@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """
 FightIQ — UFC Event Fetcher
-Pulls upcoming UFC events from ESPN API and optionally patches main.js.
+Pulls upcoming UFC events from multiple sources for maximum accuracy.
+
+Sources (in priority order):
+  1. ESPN scoreboard API  — current/live event fights
+  2. ESPN schedule API    — next 90 days of events
+  3. UFC.com events page  — full cards including main card (HTML scrape)
 
 Usage:
   python3 fetch-events.py           # Print verified events
@@ -10,167 +15,318 @@ Usage:
 
 import json
 import os
-import sys
 import re
+import sys
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 
-# Work relative to this script's directory (works both locally and in GitHub Actions)
+# Work relative to this script's directory (works locally and in GitHub Actions)
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 MAIN_JS = os.path.join(SCRIPT_DIR, "main.js")
 
 ESPN_SCOREBOARD = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard"
 ESPN_SCHEDULE   = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/schedule"
+UFC_EVENTS_API  = "https://d29dxerjsp82yg.cloudfront.net/api/v3/event/upcoming.json"
+UFC_EVENTS_PAGE = "https://www.ufc.com/events"
 
 
-def fetch(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+def fetch_json(url):
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+        "Accept": "application/json",
+    })
     try:
         with urllib.request.urlopen(req, timeout=10) as r:
             return json.loads(r.read().decode())
     except urllib.error.HTTPError as e:
-        print(f"  HTTP {e.code} from {url}")
+        print(f"  HTTP {e.code}: {url}")
         return None
     except Exception as e:
-        print(f"  Error fetching {url}: {e}")
+        print(f"  Error: {e} — {url}")
         return None
 
+
+def fetch_html(url):
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+        "Accept": "text/html,application/xhtml+xml",
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return r.read().decode("utf-8", errors="replace")
+    except Exception as e:
+        print(f"  Error fetching HTML: {e}")
+        return None
+
+
+# ── Source 1 & 2: ESPN API ────────────────────────────────────────────────────
 
 def parse_espn_events(data):
     events = []
     if not data:
         return events
-
-    # ESPN schedule returns {"events": [...]} or {"leagues": [...]}
-    raw_events = data.get("events", [])
-
-    for ev in raw_events:
-        name = ev.get("name", "")
-        short = ev.get("shortName", name)
+    for ev in data.get("events", []):
+        # Use full name (e.g. "UFC Fight Night: Moicano vs. Duncan"), not shortName
+        name = ev.get("name") or ev.get("shortName", "")
         date_str = ev.get("date", "")
         venue = ev.get("competitions", [{}])[0].get("venue", {})
         location = venue.get("fullName", "") or venue.get("address", {}).get("city", "")
-
-        # Parse date
         try:
             dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
             friendly_date = dt.strftime("%B %-d, %Y")
-            future = dt > datetime.now(timezone.utc)
+            is_future = dt > datetime.now(timezone.utc)
         except Exception:
             friendly_date = date_str
-            future = True
-
-        # Get competitors (main event fighters)
+            is_future = True
+        # Collect all bouts — ESPN lists them prelims-first, main card last
         fights = []
         for comp in ev.get("competitions", []):
-            competitors = comp.get("competitors", [])
-            if len(competitors) >= 2:
-                f1 = competitors[0].get("athlete", {}).get("displayName", "TBA")
-                f2 = competitors[1].get("athlete", {}).get("displayName", "TBA")
+            comps = comp.get("competitors", [])
+            if len(comps) >= 2:
+                f1 = comps[0].get("athlete", {}).get("displayName", "TBA")
+                f2 = comps[1].get("athlete", {}).get("displayName", "TBA")
                 fights.append({"fighter1": f1, "fighter2": f2})
+        # Show main card first (last entries in ESPN's list) + top prelims
+        fights_display = list(reversed(fights[-5:])) + fights[:-5]
+        if is_future:
+            events.append({
+                "name": name, "date": friendly_date,
+                "location": location, "fights": fights_display[:10],
+                "source": "espn",
+            })
+    return events
 
-        events.append({
-            "name": short or name,
-            "date": friendly_date,
-            "location": location,
-            "future": future,
-            "fights": fights[:6],  # cap at 6
-        })
+
+def fetch_espn_scoreboard():
+    print("[1] ESPN scoreboard...")
+    return parse_espn_events(fetch_json(ESPN_SCOREBOARD))
+
+
+def fetch_espn_schedule():
+    now = datetime.now(timezone.utc)
+    start = now.strftime("%Y%m%d")
+    m3 = now.month + 3
+    y = now.year + (m3 - 1) // 12
+    m = ((m3 - 1) % 12) + 1
+    end = f"{y}{m:02d}01"
+    url = f"{ESPN_SCHEDULE}?dates={start}-{end}&limit=20"
+    print(f"[2] ESPN schedule ({start}→{end})...")
+    return parse_espn_events(fetch_json(url))
+
+
+# ── Source 3: UFC.com Cloudfront API ─────────────────────────────────────────
+
+def fetch_ufc_api():
+    print("[3] UFC upcoming API...")
+    data = fetch_json(UFC_EVENTS_API)
+    if not data:
+        return []
+    events = []
+    items = data if isinstance(data, list) else data.get("events", data.get("items", []))
+    for ev in items[:10]:
+        name = ev.get("FightNightName") or ev.get("name") or ev.get("EventName", "")
+        date_str = ev.get("StartTime") or ev.get("date") or ev.get("EventDate", "")
+        location = ev.get("Location") or ev.get("Venue") or ev.get("location", "")
+        fights = []
+        for bout in ev.get("FightCard", ev.get("fights", []))[:8]:
+            f1 = (bout.get("FighterA") or bout.get("fighter1") or {})
+            f2 = (bout.get("FighterB") or bout.get("fighter2") or {})
+            n1 = f1.get("Name") or f1.get("displayName") or (f1 if isinstance(f1, str) else "TBA")
+            n2 = f2.get("Name") or f2.get("displayName") or (f2 if isinstance(f2, str) else "TBA")
+            if n1 and n2 and n1 != "TBA":
+                fights.append({"fighter1": n1, "fighter2": n2})
+        try:
+            dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
+            friendly = dt.strftime("%B %-d, %Y")
+            is_future = dt > datetime.now(timezone.utc)
+        except Exception:
+            friendly = date_str
+            is_future = True
+        if is_future and name:
+            events.append({
+                "name": name, "date": friendly,
+                "location": location, "fights": fights,
+                "source": "ufc-api",
+            })
+    return events
+
+
+# ── Source 4: UFC.com HTML scrape ─────────────────────────────────────────────
+
+def fetch_ufc_html():
+    print("[4] UFC.com events page (HTML)...")
+    html = fetch_html(UFC_EVENTS_PAGE)
+    if not html:
+        return []
+
+    events = []
+
+    # UFC embeds event data as JSON in a <script> tag — look for it
+    json_match = re.search(r'window\.__INITIAL_STATE__\s*=\s*({.+?});\s*</script>', html, re.DOTALL)
+    if not json_match:
+        # Try next-data pattern
+        json_match = re.search(r'<script id="__NEXT_DATA__"[^>]*>({.+?})</script>', html, re.DOTALL)
+
+    if json_match:
+        try:
+            state = json.loads(json_match.group(1))
+            # Dig for events list — structure varies by UFC site version
+            ev_list = (
+                state.get("events", {}).get("upcoming", []) or
+                state.get("page", {}).get("events", []) or
+                []
+            )
+            for ev in ev_list[:5]:
+                name = ev.get("name", "")
+                date_str = ev.get("date") or ev.get("startTime", "")
+                location = ev.get("location", "")
+                fights = []
+                for bout in ev.get("fights", [])[:8]:
+                    f1 = bout.get("fighter1", {}).get("name", "TBA")
+                    f2 = bout.get("fighter2", {}).get("name", "TBA")
+                    fights.append({"fighter1": f1, "fighter2": f2})
+                try:
+                    dt = datetime.fromisoformat(date_str.replace("Z", "+00:00"))
+                    friendly = dt.strftime("%B %-d, %Y")
+                    is_future = dt > datetime.now(timezone.utc)
+                except Exception:
+                    friendly = date_str
+                    is_future = True
+                if is_future and name:
+                    events.append({
+                        "name": name, "date": friendly,
+                        "location": location, "fights": fights,
+                        "source": "ufc-html",
+                    })
+            if events:
+                return events
+        except Exception:
+            pass
+
+    # Fallback: parse fight names from HTML text patterns
+    # Look for "vs." patterns near UFC event name spans
+    event_blocks = re.findall(
+        r'(UFC\s+(?:Fight Night|\d{3})[^<]{0,60}?).*?'
+        r'((?:[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\s+vs\.\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\n?){1,8})',
+        html, re.DOTALL
+    )
+    for ev_name, fights_text in event_blocks[:3]:
+        fight_pairs = re.findall(
+            r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)\s+vs\.\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)',
+            fights_text
+        )
+        fights = [{"fighter1": f1, "fighter2": f2} for f1, f2 in fight_pairs[:8]]
+        if fights:
+            events.append({
+                "name": ev_name.strip(),
+                "date": "TBA", "location": "TBA",
+                "fights": fights, "source": "ufc-html-fallback",
+            })
 
     return events
 
 
-def try_schedule_endpoint():
-    """Try the ESPN schedule endpoint with a date range."""
-    now = datetime.now(timezone.utc)
-    # Build URL for next 90 days
-    start = now.strftime("%Y%m%d")
-    end_dt = datetime(now.year + (1 if now.month > 9 else 0),
-                      ((now.month + 3 - 1) % 12) + 1, 1)
-    end = end_dt.strftime("%Y%m%d")
-    url = f"{ESPN_SCHEDULE}?dates={start}-{end}&limit=10"
-    print(f"  Trying: {url}")
-    return fetch(url)
+# ── Merge & deduplicate ───────────────────────────────────────────────────────
 
+def merge_events(all_sources):
+    """
+    Merge events from multiple sources. UFC.com data takes priority for
+    fight cards (more complete). ESPN data is used for dates/locations.
+    """
+    merged = {}
+    for ev in all_sources:
+        # Normalize name as key (e.g. "UFC 327", "UFC Fight Night")
+        key = re.sub(r'\s+', ' ', ev["name"]).strip().lower()
+        key = re.sub(r'ufc fight night.*', 'ufc fight night', key)
+        if key not in merged:
+            merged[key] = ev.copy()
+        else:
+            existing = merged[key]
+            # Take more fights if new source has more
+            if len(ev["fights"]) > len(existing["fights"]):
+                existing["fights"] = ev["fights"]
+            # Take better location
+            if not existing["location"] and ev["location"]:
+                existing["location"] = ev["location"]
+            # Take better date
+            if existing["date"] == "TBA" and ev["date"] != "TBA":
+                existing["date"] = ev["date"]
+
+    return list(merged.values())
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
     patch = "--patch" in sys.argv
     print("=" * 60)
-    print("FightIQ — UFC Event Fetcher")
-    print(f"Run at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S ET')}")
+    print("FightIQ — UFC Event Fetcher (multi-source)")
+    print(f"Run at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
+    print()
 
-    events = []
+    all_events = []
 
-    # Try scoreboard first
-    print("\n[1] Fetching ESPN scoreboard...")
-    data = fetch(ESPN_SCOREBOARD)
-    if data:
-        events = parse_espn_events(data)
+    sb = fetch_espn_scoreboard()
+    if sb:
+        print(f"  → {len(sb)} event(s) from scoreboard")
+        all_events.extend(sb)
 
-    # Try schedule if scoreboard came back empty
-    if not events:
-        print("[2] Scoreboard empty — trying schedule endpoint...")
-        data = try_schedule_endpoint()
-        if data:
-            events = parse_espn_events(data)
+    sched = fetch_espn_schedule()
+    if sched:
+        print(f"  → {len(sched)} event(s) from schedule")
+        all_events.extend(sched)
 
-    if not events:
-        print("\n⚠️  No events returned from ESPN API.")
-        print("   ESPN may have rate-limited or changed their endpoint.")
-        print("   Manual verification needed at: https://ufc.com/events")
-        print("\nCurrent hardcoded events in main.js:")
-        show_current_events()
+    ufc_api = fetch_ufc_api()
+    if ufc_api:
+        print(f"  → {len(ufc_api)} event(s) from UFC API")
+        all_events.extend(ufc_api)
+
+    ufc_html = fetch_ufc_html()
+    if ufc_html:
+        print(f"  → {len(ufc_html)} event(s) from UFC.com HTML")
+        all_events.extend(ufc_html)
+
+    if not all_events:
+        print("\n⚠️  All sources failed. Check network or API changes.")
+        print("Manual reference: https://www.ufc.com/events")
         return
 
-    # Filter to future events only
-    upcoming = [e for e in events if e["future"]]
+    upcoming = merge_events(all_events)
 
-    print(f"\n✅ Found {len(upcoming)} upcoming UFC event(s):\n")
+    print(f"\n{'=' * 60}")
+    print(f"VERIFIED UPCOMING EVENTS ({len(upcoming)} total)")
+    print(f"{'=' * 60}\n")
+
     for i, ev in enumerate(upcoming, 1):
-        print(f"  {i}. {ev['name']}")
+        src = ev.get("source", "?")
+        print(f"  {i}. {ev['name']}  [{src}]")
         print(f"     Date:     {ev['date']}")
         print(f"     Location: {ev['location'] or 'TBA'}")
         if ev["fights"]:
-            print(f"     Fights:")
+            print(f"     Fights ({len(ev['fights'])}):")
             for f in ev["fights"]:
                 print(f"       • {f['fighter1']} vs. {f['fighter2']}")
+        else:
+            print(f"     Fights:   TBA")
         print()
 
     if patch:
         patch_main_js(upcoming)
 
 
-def show_current_events():
-    try:
-        with open(MAIN_JS) as f:
-            content = f.read()
-        # Find event names and dates
-        names = re.findall(r'name:\s*"([^"]+UFC[^"]*)"', content)
-        dates = re.findall(r'date:\s*"([^"]+202[0-9][^"]*)"', content)
-        for n, d in zip(names, dates):
-            print(f"  • {n} — {d}")
-    except Exception as e:
-        print(f"  Could not read main.js: {e}")
-
-
 def patch_main_js(events):
-    """
-    Replaces the UPCOMING_EVENTS array in main.js with fresh data.
-    Backs up the original first.
-    """
     try:
         with open(MAIN_JS) as f:
             content = f.read()
     except FileNotFoundError:
-        print("⚠️  main.js not found at MAIN_JS")
+        print(f"⚠️  main.js not found at {MAIN_JS}")
         return
 
-    # Build JS array
     lines = ["const UPCOMING_EVENTS = ["]
     for i, ev in enumerate(events):
-        fights_js = json.dumps(ev["fights"])
         sep = "," if i < len(events) - 1 else ""
         event_type = "ppv" if re.search(r'UFC \d{3}', ev["name"]) else "fight-night"
         lines.append(f"""  {{
@@ -179,28 +335,25 @@ def patch_main_js(events):
     type: "{event_type}",
     date: {json.dumps(ev["date"])},
     location: {json.dumps(ev["location"])},
-    fights: {fights_js}
+    fights: {json.dumps(ev["fights"])}
   }}{sep}""")
     lines.append("];")
     new_block = "\n".join(lines)
 
-    # Replace existing UPCOMING_EVENTS block
     pattern = r'const UPCOMING_EVENTS\s*=\s*\[.*?\];'
     new_content, count = re.subn(pattern, new_block, content, flags=re.DOTALL)
 
     if count == 0:
-        print("⚠️  Could not locate UPCOMING_EVENTS in main.js. No changes made.")
+        print("⚠️  Could not find UPCOMING_EVENTS in main.js.")
         return
 
-    # Write backup
     with open(MAIN_JS + ".bak", "w") as f:
         f.write(content)
-
     with open(MAIN_JS, "w") as f:
         f.write(new_content)
 
     print(f"✅ main.js patched with {len(events)} event(s).")
-    print("   Backup saved to main.js.bak")
+    print(f"   Backup: {MAIN_JS}.bak")
 
 
 if __name__ == "__main__":
