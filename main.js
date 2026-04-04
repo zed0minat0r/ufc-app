@@ -61,7 +61,7 @@ const FIGHTERS = {
   },
   "dricus-du-plessis": {
     id: "dricus-du-plessis", name: "Dricus Du Plessis", nickname: "Stillknocks",
-    record: "22-3-0", weight: "Middleweight", rank: "#1",
+    record: "22-3-0", weight: "Middleweight", rank: "Champion",
     initials: "DD", image: './fighters/dricus-du-plessis.png',
     stats: { slpm: 4.8, strAcc: 47, tdAvg: 1.4, subAvg: 0.8, koPct: 50, subPct: 23, decPct: 27 },
     style: "Brawler/MMA", reach: 76, stance: "Orthodox"
@@ -229,7 +229,7 @@ const EXTRA_FIGHTERS = {
   },
   "azamat-murzakanov": {
     id: "azamat-murzakanov", name: "Azamat Murzakanov", nickname: "Zam Zam",
-    record: "13-1-0", weight: "Middleweight", rank: "#8",
+    record: "13-1-0", weight: "Light Heavyweight", rank: "#8",
     initials: "AM", image: './fighters/azamat-murzakanov.png',
     stats: { slpm: 4.8, strAcc: 50, tdAvg: 0.6, subAvg: 0.3, koPct: 62, subPct: 15, decPct: 23 },
     style: "Kickboxing/Power", reach: 77, stance: "Orthodox"
@@ -243,7 +243,7 @@ const EXTRA_FIGHTERS = {
   },
   "khamzat-chimaev": {
     id: "khamzat-chimaev", name: "Khamzat Chimaev", nickname: "Borz",
-    record: "15-0-0", weight: "Middleweight", rank: "Champion",
+    record: "15-0-0", weight: "Middleweight", rank: "#1",
     initials: "KC", image: './fighters/khamzat-chimaev.png',
     stats: { slpm: 5.2, strAcc: 57, tdAvg: 5.6, subAvg: 1.4, koPct: 47, subPct: 27, decPct: 26 },
     style: "Wrestling/Striking", reach: 74, stance: "Orthodox"
