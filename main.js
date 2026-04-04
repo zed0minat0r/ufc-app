@@ -572,21 +572,7 @@ function renderEvents() {
     const tagText = event.type === 'ppv' ? 'PPV' : 'Fight Night';
     const isNext = i === 0;
 
-    html += `
-    <div class="event-card fade-in-up${isNext ? ' next-event' : ''}" style="animation-delay:${i * 0.08}s">
-      <div class="event-card-header">
-        <div>
-          ${isNext ? '<div class="next-event-label">NEXT UP</div>' : ''}
-          <div class="event-card-title">${event.name}</div>
-          <div class="event-card-date">${event.date}</div>
-          <div class="event-card-location">${event.location}</div>
-        </div>
-        <div class="event-tag ${tagClass}">${tagText}</div>
-      </div>
-      <div class="fight-list">
-    `;
-
-    event.fights.forEach(fight => {
+    const makeCompactRow = (fight) => {
       const f1 = getFighterOrPlaceholder(fight.f1);
       const f2 = getFighterOrPlaceholder(fight.f2);
       const isMain = fight.tier === 'main';
@@ -596,16 +582,16 @@ function renderEvents() {
       const rowClass = isMain ? 'main-event' : isCoMain ? 'co-main-event' : '';
 
       if (isMain || isCoMain) {
-        const makePhoto = (f, side) => {
+        const makePhoto = (f) => {
           const isLocal = f.image && f.image.startsWith('./fighters/');
           if (isLocal) return `<img class="fight-faceoff-photo" src="${f.image}" alt="${f.name}" loading="lazy" onerror="this.style.opacity='0'">`;
           return `<div class="fight-faceoff-photo fight-faceoff-initials">${f.initials}</div>`;
         };
-        html += `
+        return `
         <div class="fight-row ${rowClass}">
           <div class="fight-faceoff">
             <div class="fight-faceoff-fighter f1">
-              ${makePhoto(f1, 'f1')}
+              ${makePhoto(f1)}
               <div class="fight-faceoff-name">${f1.name}</div>
               <div class="fight-faceoff-record">${f1.record}</div>
             </div>
@@ -615,14 +601,14 @@ function renderEvents() {
               <div class="fight-faceoff-weight">${abbreviateWeight(fight.weight)}</div>
             </div>
             <div class="fight-faceoff-fighter f2">
-              ${makePhoto(f2, 'f2')}
+              ${makePhoto(f2)}
               <div class="fight-faceoff-name">${f2.name}</div>
               <div class="fight-faceoff-record">${f2.record}</div>
             </div>
           </div>
         </div>`;
       } else {
-        html += `
+        return `
         <div class="fight-row">
           <div class="fight-row-compact">
             <div class="fight-badge ${badgeClass}">${badgeText === 'PRELIM' ? 'PRE' : 'CARD'}</div>
@@ -637,9 +623,36 @@ function renderEvents() {
           </div>
         </div>`;
       }
-    });
+    };
 
-    html += `</div></div>`;
+    const mainFights = event.fights.filter(f => f.tier !== 'prelim');
+    const prelimFights = event.fights.filter(f => f.tier === 'prelim');
+    const eventIdx = i;
+
+    html += `
+    <div class="event-card fade-in-up${isNext ? ' next-event' : ''}" style="animation-delay:${i * 0.08}s">
+      <div class="event-card-header">
+        <div>
+          ${isNext ? '<div class="next-event-label">NEXT UP</div>' : ''}
+          <div class="event-card-title">${event.name}</div>
+          <div class="event-card-date">${event.date}</div>
+          <div class="event-card-location">${event.location}</div>
+        </div>
+        <div class="event-tag ${tagClass}">${tagText}</div>
+      </div>
+      <div class="fight-list">
+        ${mainFights.map(makeCompactRow).join('')}
+        ${prelimFights.length > 0 ? `
+        <button class="prelim-toggle-btn" data-event="${eventIdx}" aria-expanded="false" aria-controls="prelims-${eventIdx}">
+          Prelims
+          <span class="prelim-count">${prelimFights.length} fights</span>
+          <span class="prelim-chevron">&#9660;</span>
+        </button>
+        <div class="prelim-section" id="prelims-${eventIdx}">
+          ${prelimFights.map(makeCompactRow).join('')}
+        </div>` : ''}
+      </div>
+    </div>`;
   });
 
   container.innerHTML = html;
@@ -649,6 +662,19 @@ function renderEvents() {
     row.addEventListener('click', () => {
       document.querySelector('.tab-btn[data-tab="predictions"]').click();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Collapsible prelim toggles
+  container.querySelectorAll('.prelim-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetId = btn.getAttribute('aria-controls');
+      const section = document.getElementById(targetId);
+      const isOpen = section.classList.contains('open');
+      section.classList.toggle('open', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
     });
   });
 }
@@ -741,6 +767,7 @@ function renderPredictions() {
         <div class="pred-pick">
           AI Pick: <span>${pred.pick.name}</span>
           <span style="font-size:11px;color:var(--grey)">${Math.round(pred.confidence)}% conf.</span>
+          <span class="pred-pick-tier ${pred.confidence >= 25 ? 'strong' : pred.confidence >= 12 ? 'moderate' : 'lean'}">${pred.confidence >= 25 ? 'STRONG' : pred.confidence >= 12 ? 'MODERATE' : 'LEAN'}</span>
         </div>
         <div class="pred-narrative">${generateFightNarrative(f1, f2, pred)}</div>
       </div>
