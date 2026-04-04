@@ -137,8 +137,8 @@ const UPCOMING_EVENTS = [
     fights: [
       { f1: "jiri-prochazka",     f2: "carlos-ulberg",       tier: "main",      weight: "Light Heavyweight" },
       { f1: "joshua-van",         f2: "tatsuro-taira",       tier: "co-main",   weight: "Flyweight" },
-      { f1: "khamzat-chimaev",    f2: "dricus-du-plessis",   tier: "main-card", weight: "Middleweight" },
-      { f1: "belal-muhammad",     f2: "leon-edwards",        tier: "main-card", weight: "Welterweight" },
+      { f1: "khamzat-chimaev",    f2: "dricus-du-plessis",   tier: "main-card", weight: "Middleweight", title: true },
+      { f1: "belal-muhammad",     f2: "leon-edwards",        tier: "main-card", weight: "Welterweight", title: true },
       { f1: "israel-adesanya",    f2: "sean-strickland",     tier: "main-card", weight: "Middleweight" },
       { f1: "paulo-costa",        f2: "azamat-murzakanov",   tier: "prelim",    weight: "Middleweight" },
       { f1: "curtis-blaydes",     f2: "alexander-volkov",    tier: "prelim",    weight: "Heavyweight" }
@@ -234,7 +234,7 @@ const EXTRA_FIGHTERS = {
   },
   "azamat-murzakanov": {
     id: "azamat-murzakanov", name: "Azamat Murzakanov", nickname: "Zam Zam",
-    record: "13-1-0", weight: "Light Heavyweight", rank: "#8",
+    record: "13-1-0", weight: "Middleweight", rank: "#8",
     initials: "AM", image: './fighters/azamat-murzakanov.png',
     stats: { slpm: 4.8, strAcc: 50, tdAvg: 0.6, subAvg: 0.3, koPct: 62, subPct: 15, decPct: 23 },
     style: "Kickboxing/Power", reach: 77, stance: "Orthodox"
@@ -640,7 +640,7 @@ function renderEvents() {
               <div class="fight-fighter-name right">${f2.name}</div>
               ${getFighterImage(f2, 'sm')}
             </div>
-            <div class="fight-weight" title="${fight.weight}">${abbreviateWeight(fight.weight)}</div>
+            ${fight.title ? '<span class="section-badge title-fight-badge">TITLE FIGHT</span>' : `<div class="fight-weight" title="${fight.weight}">${abbreviateWeight(fight.weight)}</div>`}
           </div>
         </div>`;
       }
@@ -712,7 +712,7 @@ function renderPredictions() {
     const eventFights = event.fights
       .map(fight => ({
         f1: ALL_FIGHTERS[fight.f1], f2: ALL_FIGHTERS[fight.f2],
-        weight: fight.weight, tier: fight.tier
+        weight: fight.weight, tier: fight.tier, title: fight.title
       }))
       .filter(f => f.f1 && f.f2);
 
@@ -739,7 +739,10 @@ function renderPredictions() {
     html += `
     <div class="pred-card fade-in-up" style="animation-delay:${i * 0.07}s">
       <div class="pred-card-header">
-        <div class="pred-card-title">${fight.weight} ${fight.tier === 'main' ? '· Title Fight' : ''}</div>
+        <div class="pred-card-title" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span>${fight.weight} ${(fight.tier === 'main' || fight.title) ? '· Title Fight' : ''}</span>
+          ${fight.title ? '<span class="section-badge" style="font-size:9px;padding:2px 6px;letter-spacing:0.8px;">TITLE</span>' : ''}
+        </div>
         <div class="pred-matchup">
           <div class="pred-fighter">
             ${getFighterImage(f1, 'md')}
@@ -979,7 +982,7 @@ function renderBetting() {
     const eventFights = event.fights
       .map(fight => ({
         f1: ALL_FIGHTERS[fight.f1], f2: ALL_FIGHTERS[fight.f2],
-        weight: fight.weight, tier: fight.tier
+        weight: fight.weight, tier: fight.tier, title: fight.title
       }))
       .filter(f => f.f1 && f.f2);
 
@@ -1020,7 +1023,7 @@ function renderBetting() {
           <div class="bet-card-matchup">
             <div class="bet-card-fighter-photo">${getFighterImage(f1, 'sm')}</div>
             <div class="bet-card-names">
-              <div class="bet-card-fight">${getFightName(f1, f2)}</div>
+              <div class="bet-card-fight" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">${getFightName(f1, f2)}${fight.title ? ' <span class="section-badge" style="font-size:8px;padding:1px 5px;letter-spacing:0.8px;">TITLE</span>' : ''}</div>
               <div class="bet-card-weight">${fight.weight}</div>
             </div>
             <div class="bet-card-fighter-photo">${getFighterImage(f2, 'sm')}</div>
@@ -1075,7 +1078,7 @@ function renderFighters() {
     const finishPct = f.stats.koPct + f.stats.subPct;
 
     html += `
-    <div class="fighter-card fade-in-up" data-weight="${f.weight}" data-name="${f.name.toLowerCase()}" style="animation-delay:${i * 0.04}s">
+    <div class="fighter-card fade-in-up" data-weight="${f.weight}" data-name="${f.name.toLowerCase()}" data-fighter-id="${f.id}" style="animation-delay:${i * 0.04}s" role="button" tabindex="0" aria-label="View ${f.name} profile">
       <div class="fighter-card-top">
         <div class="fighter-avatar">${getFighterImage(f, 'lg')}</div>
         <div class="fighter-info">
@@ -1158,7 +1161,7 @@ function initFighterFilters() {
 // ─── HERO BANNER ─────────────────────────────────────────────────────────────
 
 function renderHero() {
-  const event = UPCOMING_EVENTS[0];
+  const event = UPCOMING_EVENTS.find(e => e.type === 'ppv') || UPCOMING_EVENTS[0];
   const mainEvent = event.fights.find(f => f.tier === 'main') || event.fights[0];
   const f1 = getFighterOrPlaceholder(mainEvent.f1);
   const f2 = getFighterOrPlaceholder(mainEvent.f2);
@@ -1184,7 +1187,7 @@ function renderHero() {
 
   banner.innerHTML = `
     <div class="hero-header">
-      <div class="hero-event-label">Next Main Event</div>
+      <div class="hero-event-label">${event.type === 'ppv' ? 'PPV Main Event' : 'Fight Night Main Event'}</div>
       <div class="hero-event-name">${event.name}</div>
       <div class="hero-event-meta">${event.date} · ${event.location}</div>
     </div>
@@ -1220,6 +1223,142 @@ function renderHero() {
   setTimeout(animateBars, 80);
 }
 
+// ─── FIGHTER PROFILE MODAL ────────────────────────────────────────────────────
+
+function openFighterModal(fighterId) {
+  const fighter = ALL_FIGHTERS[fighterId];
+  if (!fighter) return;
+
+  const modal = document.getElementById('fighter-modal');
+  if (!modal) return;
+
+  // Photo
+  const photoWrap = document.getElementById('modal-photo-wrap');
+  const isLocal = fighter.image && fighter.image.startsWith('./fighters/');
+  if (isLocal) {
+    const svgFallback = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='120'%3E%3Crect width='100' height='120' rx='8' fill='%231a1a2e'/%3E%3Ctext x='50' y='72' font-size='32' font-weight='900' text-anchor='middle' fill='%23d62828' font-family='Arial'%3E${encodeURIComponent(fighter.initials)}%3C/text%3E%3C/svg%3E`;
+    photoWrap.innerHTML = `<img src="${fighter.image}" alt="${fighter.name}" style="width:100%;height:100%;object-fit:cover;object-position:top center;" loading="lazy" onerror="this.onerror=null;this.src='${svgFallback}'">`;
+  } else {
+    photoWrap.innerHTML = `<div class="fighter-modal-photo-initials">${fighter.initials}</div>`;
+  }
+
+  // Identity
+  document.getElementById('modal-fighter-name').textContent = fighter.name;
+  const nicknameEl = document.getElementById('modal-nickname');
+  nicknameEl.textContent = fighter.nickname ? `"${fighter.nickname}"` : '';
+  nicknameEl.style.display = fighter.nickname ? '' : 'none';
+  document.getElementById('modal-record').textContent = fighter.record;
+  document.getElementById('modal-weight').textContent = `${fighter.weight} \u00b7 ${fighter.rank}`;
+  const metaParts = [];
+  if (fighter.stance) metaParts.push(fighter.stance);
+  if (fighter.reach) metaParts.push(`${fighter.reach}" reach`);
+  if (fighter.style) metaParts.push(fighter.style);
+  document.getElementById('modal-meta').textContent = metaParts.join(' \u00b7 ');
+
+  // Stats grid
+  const s = fighter.stats;
+  const finishPct = s.koPct + s.subPct;
+  const statsEl = document.getElementById('modal-stats');
+  statsEl.innerHTML = `
+    <div class="fighter-modal-stats-title">Fighter Statistics</div>
+    <div class="fighter-modal-stats-grid">
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val red">${s.slpm}</div>
+        <div class="fighter-modal-stat-label">SLpM</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val">${s.strAcc}%</div>
+        <div class="fighter-modal-stat-label">Str Acc</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val">${typeof s.sapm !== 'undefined' ? s.sapm : '\u2014'}</div>
+        <div class="fighter-modal-stat-label">SApM</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val">${typeof s.strDef !== 'undefined' ? s.strDef + '%' : '\u2014'}</div>
+        <div class="fighter-modal-stat-label">Str Def</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val gold">${s.tdAvg}</div>
+        <div class="fighter-modal-stat-label">TD Avg</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val">${typeof s.tdAcc !== 'undefined' ? s.tdAcc + '%' : '\u2014'}</div>
+        <div class="fighter-modal-stat-label">TD Acc</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val">${typeof s.tdDef !== 'undefined' ? s.tdDef + '%' : '\u2014'}</div>
+        <div class="fighter-modal-stat-label">TD Def</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val green">${s.subAvg}</div>
+        <div class="fighter-modal-stat-label">Sub Avg</div>
+      </div>
+    </div>
+    <div class="fighter-modal-stats-grid" style="margin-top:8px;">
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val">${s.koPct}%</div>
+        <div class="fighter-modal-stat-label">KO/TKO</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val">${s.subPct}%</div>
+        <div class="fighter-modal-stat-label">Sub</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val">${s.decPct}%</div>
+        <div class="fighter-modal-stat-label">Decision</div>
+      </div>
+      <div class="fighter-modal-stat">
+        <div class="fighter-modal-stat-val gold">${finishPct}%</div>
+        <div class="fighter-modal-stat-label">Finish %</div>
+      </div>
+    </div>
+  `;
+
+  // Sim button stores fighter id
+  const simBtn = document.getElementById('modal-sim-btn');
+  simBtn.dataset.fighterId = fighterId;
+
+  // Show modal
+  modal.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('fighter-modal-close').focus();
+}
+
+function closeFighterModal() {
+  const modal = document.getElementById('fighter-modal');
+  if (modal) {
+    modal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  }
+}
+
+function initFighterModal() {
+  const modal = document.getElementById('fighter-modal');
+  if (!modal) return;
+
+  document.getElementById('fighter-modal-close').addEventListener('click', closeFighterModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeFighterModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeFighterModal();
+  });
+
+  document.getElementById('modal-sim-btn').addEventListener('click', () => {
+    const fighterId = document.getElementById('modal-sim-btn').dataset.fighterId;
+    closeFighterModal();
+    document.querySelector('.tab-btn[data-tab="simulator"]').click();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const sel1 = document.getElementById('sim-f1');
+    if (sel1 && ALL_FIGHTERS[fighterId]) {
+      sel1.value = fighterId;
+    }
+  });
+}
+
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1232,6 +1371,19 @@ document.addEventListener('DOMContentLoaded', () => {
   renderBetting();
   renderFighters();
   initFighterFilters();
+  initFighterModal();
+
+  // Fighter card click -> open profile modal
+  document.getElementById('fighters-container').addEventListener('click', (e) => {
+    const card = e.target.closest('.fighter-card[data-fighter-id]');
+    if (card) openFighterModal(card.dataset.fighterId);
+  });
+  document.getElementById('fighters-container').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const card = e.target.closest('.fighter-card[data-fighter-id]');
+      if (card) { e.preventDefault(); openFighterModal(card.dataset.fighterId); }
+    }
+  });
 
   document.getElementById('sim-run-btn').addEventListener('click', runSimulator);
 

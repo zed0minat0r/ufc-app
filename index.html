@@ -160,6 +160,27 @@
 
 </main>
 
+<!-- ─── FIGHTER PROFILE MODAL ─── -->
+<div id="fighter-modal" class="fighter-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-fighter-name" hidden>
+  <div class="fighter-modal-card">
+    <button class="fighter-modal-close" id="fighter-modal-close" aria-label="Close fighter profile">&times;</button>
+    <div class="fighter-modal-header">
+      <div class="fighter-modal-photo-wrap" id="modal-photo-wrap"></div>
+      <div class="fighter-modal-identity">
+        <div class="fighter-modal-name" id="modal-fighter-name"></div>
+        <div class="fighter-modal-nickname" id="modal-nickname"></div>
+        <div class="fighter-modal-record" id="modal-record"></div>
+        <div class="fighter-modal-weight" id="modal-weight"></div>
+        <div class="fighter-modal-meta" id="modal-meta"></div>
+      </div>
+    </div>
+    <div class="fighter-modal-stats" id="modal-stats"></div>
+    <div class="fighter-modal-footer">
+      <button class="fighter-modal-sim-btn" id="modal-sim-btn">&#9654;&nbsp; Simulate vs...</button>
+    </div>
+  </div>
+</div>
+
 <script src="main.js"></script>
 </body>
 </html>

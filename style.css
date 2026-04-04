@@ -2152,7 +2152,8 @@ nav a:focus-visible {
 
   /* Scale down win prob numbers slightly at very small screens */
   .win-prob-hero-pct {
-    font-size: 46px;
+    font-size: 42px;
+    letter-spacing: -1px;
   }
 
   /* LEAN badge needs more contrast at small sizes */
@@ -2166,5 +2167,287 @@ nav a:focus-visible {
   .hero-prob-labels {
     font-size: 11px;
   }
+
+  /* Event card header: allow tag to wrap below on very small */
+  .event-card-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Face-off fighter names: truncate long names */
+  .fight-faceoff-name {
+    font-size: 11px;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Prediction card hero split: tighten spacing */
+  .win-prob-hero-split {
+    gap: 4px;
+  }
+
+  .win-prob-hero-name {
+    font-size: 10px;
+  }
+
+  /* Betting odds row: allow fighter name to truncate */
+  .odds-fighter {
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  /* Simulator selects: ensure full width tap targets */
+  .sim-select {
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  /* Simulator run button: ensure 44px tap target */
+  .sim-run-btn {
+    padding: 14px 20px;
+    min-height: 44px;
+  }
 }
 
+
+/* ─── FIGHTER PROFILE MODAL ─────────────────────────────────────────────── */
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.fighter-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.fighter-modal-overlay[hidden] {
+  display: none;
+}
+
+.fighter-modal-card {
+  background: var(--card);
+  border: 1px solid rgba(214,40,40,0.3);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+  position: relative;
+  animation: modalFadeIn 0.28s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04) inset;
+}
+
+.fighter-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.15s, transform 0.15s;
+  font-family: var(--font);
+}
+
+.fighter-modal-close:hover {
+  background: rgba(214,40,40,0.3);
+  transform: scale(1.1);
+}
+
+.fighter-modal-header {
+  display: flex;
+  gap: 16px;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(214,40,40,0.08) 0%, rgba(0,0,0,0) 60%);
+}
+
+.fighter-modal-photo-wrap {
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(214,40,40,0.1);
+  width: 100px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+.fighter-modal-photo-wrap img,
+.fighter-modal-photo-wrap .fighter-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 0;
+  border: none;
+}
+
+.fighter-modal-photo-initials {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--red);
+}
+
+.fighter-modal-identity {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-right: 36px;
+}
+
+.fighter-modal-name {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.fighter-modal-nickname {
+  font-size: 12px;
+  color: var(--gold);
+  font-style: italic;
+}
+
+.fighter-modal-record {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-top: 3px;
+}
+
+.fighter-modal-weight {
+  font-size: 12px;
+  color: var(--grey-light);
+}
+
+.fighter-modal-meta {
+  font-size: 11px;
+  color: var(--grey);
+  margin-top: 2px;
+}
+
+.fighter-modal-stats {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.fighter-modal-stats-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--grey);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.fighter-modal-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.fighter-modal-stat {
+  background: var(--card2);
+  border-radius: 8px;
+  padding: 10px 6px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.fighter-modal-stat-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+
+.fighter-modal-stat-val.red { color: var(--red-bright); }
+.fighter-modal-stat-val.gold { color: var(--gold); }
+.fighter-modal-stat-val.green { color: var(--green); }
+
+.fighter-modal-stat-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--grey);
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+
+.fighter-modal-footer {
+  padding: 14px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.fighter-modal-sim-btn {
+  background: linear-gradient(135deg, var(--red) 0%, #b01e1e 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font);
+  width: 100%;
+}
+
+.fighter-modal-sim-btn:hover {
+  background: linear-gradient(135deg, #e83030 0%, #c42222 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(214,40,40,0.3);
+}
+
+/* Fighter card — pointer cursor + tap hint */
+.fighter-card {
+  cursor: pointer;
+}
+
+/* title-fight badge tweak for compact rows */
+.title-fight-badge {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .fighter-modal-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .fighter-modal-name {
+    font-size: 16px;
+  }
+}
