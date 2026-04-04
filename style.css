@@ -1502,3 +1502,113 @@ nav a:focus-visible {
 .odds-row:hover {
   background: rgba(255,255,255,0.04);
 }
+
+/* ─── FIGHTER PHOTOS ─────────────────────────────────────────────────────── */
+
+.fighter-photo {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  display: block;
+  flex-shrink: 0;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* Large: fighter cards (80px) */
+.fighter-photo--lg {
+  width: 80px;
+  height: 80px;
+}
+
+/* Medium: prediction panels, sim winner (48px) */
+.fighter-photo--md {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 6px;
+}
+
+/* Small: event fight rows (32px) */
+.fighter-photo--sm {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+/* Hover glow on fighter cards */
+.fighter-card:hover .fighter-photo {
+  border-color: var(--red-bright);
+  box-shadow: 0 0 14px rgba(214,40,40,0.55);
+  transform: scale(1.06);
+}
+
+/* Prediction panel — center avatar, let text follow */
+.pred-fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Fighter avatar container: switch from gradient circle to photo-ready */
+.fighter-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: transparent;
+  display: block;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Fight row photos sit flush on edges */
+.fight-fighters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+/* Sim matchup photos display */
+.sim-matchup-photos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 16px 18px 8px;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--border);
+}
+
+.sim-matchup-fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.sim-matchup-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--grey-light);
+  text-align: center;
+}
+
+.sim-matchup-vs {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: 1px;
+}
+
+/* Sim winner row: photo + name side by side */
+.sim-result-winner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sim-result-winner .fighter-photo--md {
+  margin: 0;
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(201,168,76,0.4);
+}
