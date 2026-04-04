@@ -604,7 +604,7 @@ function renderEvents() {
           return `<div class="fight-faceoff-photo fight-faceoff-initials">${f.initials}</div>`;
         };
         return `
-        <div class="fight-row ${rowClass}">
+        <div class="fight-row ${rowClass}" role="button" tabindex="0" aria-label="View predictions for ${f1.name} vs ${f2.name}">
           <div class="fight-faceoff">
             <div class="fight-faceoff-fighter f1">
               ${makePhoto(f1)}
@@ -625,7 +625,7 @@ function renderEvents() {
         </div>`;
       } else {
         return `
-        <div class="fight-row">
+        <div class="fight-row" role="button" tabindex="0" aria-label="View predictions for ${f1.name} vs ${f2.name}">
           <div class="fight-row-compact">
             <div class="fight-badge ${badgeClass}">${badgeText === 'PRELIM' ? 'PRE' : 'CARD'}</div>
             <div class="fight-fighters">
@@ -673,11 +673,17 @@ function renderEvents() {
 
   container.innerHTML = html;
 
-  // Fight rows navigate to Predictions tab on click
+  // Fight rows navigate to Predictions tab on click or Enter/Space
   container.querySelectorAll('.fight-row').forEach(row => {
     row.addEventListener('click', () => {
       document.querySelector('.tab-btn[data-tab="predictions"]').click();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    row.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        row.click();
+      }
     });
   });
 
@@ -1162,6 +1168,7 @@ function renderHero() {
       <div class="hero-event-label">${event.type === 'ppv' ? 'PPV Main Event' : 'Fight Night Main Event'}</div>
       <div class="hero-event-name">${event.name}</div>
       <div class="hero-event-meta">${event.date} · ${event.location}</div>
+      <div class="hero-countdown" id="hero-countdown"></div>
     </div>
     <div class="hero-matchup">
       <div class="hero-fighter hero-fighter--left">
@@ -1193,6 +1200,43 @@ function renderHero() {
   `;
 
   setTimeout(animateBars, 80);
+  startHeroCountdown(event.date);
+}
+
+// ─── HERO COUNTDOWN ───────────────────────────────────────────────────────────
+
+function startHeroCountdown(dateStr) {
+  const el = document.getElementById('hero-countdown');
+  if (!el) return;
+
+  // Parse date string like "April 11, 2026"
+  const eventDate = new Date(dateStr + ' 18:00:00'); // Assume 6pm ET event start
+
+  function update() {
+    const now = new Date();
+    const diff = eventDate - now;
+
+    if (diff <= 0) {
+      el.textContent = 'FIGHT NIGHT — LIVE NOW';
+      el.className = 'hero-countdown live';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    if (days > 0) {
+      el.textContent = `${days}D ${String(hours).padStart(2,'0')}H ${String(mins).padStart(2,'0')}M`;
+    } else {
+      el.textContent = `${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+    }
+    el.className = 'hero-countdown';
+  }
+
+  update();
+  setInterval(update, 1000);
 }
 
 // ─── FIGHTER PROFILE MODAL ────────────────────────────────────────────────────
@@ -1424,13 +1468,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('sim-run-btn').addEventListener('click', runSimulator);
 
-  // Nav link tab switching
+  // Nav link tab switching (top nav + bottom nav share [data-goto-tab])
   document.querySelectorAll('[data-goto-tab]').forEach(a => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
       const tab = a.dataset.gotoTab;
       document.querySelector(`.tab-btn[data-tab="${tab}"]`).click();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Sync bottom nav active state
+      document.querySelectorAll('.bottom-nav-item').forEach(item => {
+        item.classList.toggle('active', item.dataset.gotoTab === tab);
+      });
+    });
+  });
+
+  // Sync bottom nav active state when tabs are clicked directly
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      document.querySelectorAll('.bottom-nav-item').forEach(item => {
+        item.classList.toggle('active', item.dataset.gotoTab === target);
+      });
     });
   });
 });
