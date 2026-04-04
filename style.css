@@ -831,22 +831,23 @@ main {
 }
 
 .win-prob-hero-pct {
-  font-size: 44px;
+  font-size: 56px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -2px;
+  transition: opacity 0.3s ease;
 }
 
 .win-prob-hero-pct.f1-pct { color: var(--red); }
 .win-prob-hero-pct.f2-pct { color: var(--gold); }
 
 .win-prob-hero-name {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--grey-light);
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-top: 4px;
+  margin-top: 6px;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -928,6 +929,7 @@ main {
   background: rgba(46, 204, 113, 0.18);
   color: #2ecc71;
   border: 1px solid rgba(46, 204, 113, 0.35);
+  animation: strongBadgePulse 2.4s ease infinite;
 }
 
 .pred-pick-tier.moderate {
@@ -1084,13 +1086,25 @@ main {
 }
 
 @keyframes winnerReveal {
-  from { opacity: 0; transform: scale(0.92); }
-  to   { opacity: 1; transform: scale(1); }
+  0%   { opacity: 0; transform: scale(0.88) translateY(6px); }
+  60%  { opacity: 1; transform: scale(1.03) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 @keyframes winnerPulse {
-  0%, 100% { text-shadow: none; }
-  50%       { text-shadow: 0 0 18px rgba(201,168,76,0.7); }
+  0%, 100% { text-shadow: none; filter: brightness(1); }
+  50%       { text-shadow: 0 0 24px rgba(201,168,76,0.9), 0 0 48px rgba(201,168,76,0.4); filter: brightness(1.15); }
+}
+
+@keyframes winnerFlash {
+  0%   { box-shadow: inset 0 0 0 0 rgba(201,168,76,0); }
+  30%  { box-shadow: inset 0 0 0 2px rgba(201,168,76,0.6), 0 0 32px rgba(201,168,76,0.25); }
+  100% { box-shadow: inset 0 0 0 1px rgba(201,168,76,0.18), 0 0 0 0 rgba(201,168,76,0); }
+}
+
+@keyframes strongBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+  50%       { box-shadow: 0 0 8px 2px rgba(46, 204, 113, 0.45); }
 }
 
 .sim-result-card {
@@ -1098,7 +1112,7 @@ main {
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
-  animation: winnerReveal 0.4s ease forwards;
+  animation: winnerReveal 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards, winnerFlash 1.2s ease 0.4s forwards;
 }
 
 .sim-result-header {
@@ -2133,6 +2147,12 @@ nav a:focus-visible {
   /* Make STRONG badge pop more with a subtle glow at small sizes */
   .pred-pick-tier.strong {
     box-shadow: 0 0 6px rgba(46, 204, 113, 0.3);
+    animation: strongBadgePulse 2.4s ease infinite;
+  }
+
+  /* Scale down win prob numbers slightly at very small screens */
+  .win-prob-hero-pct {
+    font-size: 46px;
   }
 
   /* LEAN badge needs more contrast at small sizes */

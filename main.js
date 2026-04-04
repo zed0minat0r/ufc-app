@@ -501,6 +501,22 @@ function animateBars() {
     document.querySelectorAll('[data-width]').forEach(el => {
       el.style.width = el.dataset.width + '%';
     });
+
+    // Count-up animation for win probability numbers
+    document.querySelectorAll('[data-countup]').forEach(el => {
+      const target = parseInt(el.dataset.countup, 10);
+      const duration = 600; // ms
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + '%';
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
   });
 }
 
@@ -742,12 +758,12 @@ function renderPredictions() {
         <div class="win-prob-hero">
           <div class="win-prob-hero-split">
             <div class="win-prob-hero-fighter f1-side">
-              <div class="win-prob-hero-pct f1-pct">${pred.f1WinProb}%</div>
+              <div class="win-prob-hero-pct f1-pct" data-countup="${pred.f1WinProb}">0%</div>
               <div class="win-prob-hero-name">${f1.name.split(' ').pop()}</div>
             </div>
             <div class="win-prob-hero-vs">VS</div>
             <div class="win-prob-hero-fighter f2-side">
-              <div class="win-prob-hero-pct f2-pct">${pred.f2WinProb}%</div>
+              <div class="win-prob-hero-pct f2-pct" data-countup="${pred.f2WinProb}">0%</div>
               <div class="win-prob-hero-name">${f2.name.split(' ').pop()}</div>
             </div>
           </div>
@@ -879,7 +895,7 @@ function runSimulator() {
         </div>
       </div>
       <div class="sim-result-header">
-        <div class="sim-result-label">Predicted Winner</div>
+        <div class="sim-result-label">&#x1F3C6; Predicted Winner</div>
         <div class="sim-result-winner">${getFighterImage(winner, 'md')}<span>${winner.name}</span></div>
         <div class="sim-result-method">via ${methodStr} · Win Probability: ${winnerProb}%</div>
       </div>
