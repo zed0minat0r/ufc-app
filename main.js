@@ -156,28 +156,28 @@ const EXTRA_FIGHTERS = {
   "renato-moicano": {
     id: "renato-moicano", name: "Renato Moicano", nickname: "Money",
     record: "20-7-1", weight: "Lightweight", rank: "#10",
-    initials: "RM", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/MOICANO_RENATO_04-04.png',
+    initials: "RM", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/MOICANO_RENATO_04-04.png", image: 'https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/MOICANO_RENATO_04-04.png',
     stats: { slpm: 4.7, strAcc: 51, tdAvg: 1.6, subAvg: 1.3, koPct: 28, subPct: 44, decPct: 28 },
     style: "BJJ/MMA", reach: 72, stance: "Orthodox"
   },
   "chris-duncan": {
     id: "chris-duncan", name: "Chris Duncan", nickname: "The Highlander",
     record: "10-3-0", weight: "Lightweight", rank: "Unranked",
-    initials: "CD", image: PH_CDN + 'CD',
+    initials: "CD", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/DUNCAN_CHRIS_04-04.png", image: PH_CDN + 'CD',
     stats: { slpm: 3.9, strAcc: 46, tdAvg: 2.1, subAvg: 0.7, koPct: 30, subPct: 30, decPct: 40 },
     style: "Wrestling/MMA", reach: 74, stance: "Orthodox"
   },
   "virna-jandiroba": {
     id: "virna-jandiroba", name: "Virna Jandiroba", nickname: "Carcará",
     record: "20-3-0", weight: "Strawweight", rank: "#3",
-    initials: "VJ", image: PH_CDN + 'VJ',
+    initials: "VJ", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/JANDIROBA_VIRNA_04-04.png", image: PH_CDN + 'VJ',
     stats: { slpm: 3.8, strAcc: 49, tdAvg: 1.2, subAvg: 2.1, koPct: 15, subPct: 55, decPct: 30 },
     style: "BJJ/Grappling", reach: 65, stance: "Orthodox"
   },
   "tabatha-ricci": {
     id: "tabatha-ricci", name: "Tabatha Ricci", nickname: "",
     record: "11-2-0", weight: "Strawweight", rank: "#7",
-    initials: "TR", image: PH_CDN + 'TR',
+    initials: "TR", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/RICCI_TABATHA_04-04.png", image: PH_CDN + 'TR',
     stats: { slpm: 4.2, strAcc: 47, tdAvg: 1.8, subAvg: 0.9, koPct: 18, subPct: 36, decPct: 46 },
     style: "Kickboxing/BJJ", reach: 66, stance: "Orthodox"
   },
@@ -268,7 +268,7 @@ const EXTRA_FIGHTERS = {
   "brendson-ribeiro": {
     id: "brendson-ribeiro", name: "Brendson Ribeiro", nickname: "",
     record: "16-3-0", weight: "Light Heavyweight", rank: "Unranked",
-    initials: "BR", image: PH_CDN + 'BR',
+    initials: "BR", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/RIBEIRO_BRENDSON_04-04.png", image: PH_CDN + 'BR',
     stats: { slpm: 3.5, strAcc: 47, tdAvg: 1.2, subAvg: 1.8, koPct: 25, subPct: 50, decPct: 25 },
     style: "BJJ/Grappling", reach: 76, stance: "Orthodox"
   },
@@ -296,7 +296,7 @@ const EXTRA_FIGHTERS = {
   "lando-vannata": {
     id: "lando-vannata", name: "Lando Vannata", nickname: "Groovy",
     record: "13-7-2", weight: "Lightweight", rank: "Unranked",
-    initials: "LV", image: PH_CDN + 'LV',
+    initials: "LV", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/VANNATA_LANDO_04-04.png", image: PH_CDN + 'LV',
     stats: { slpm: 5.9, strAcc: 47, tdAvg: 0.9, subAvg: 0.8, koPct: 46, subPct: 31, decPct: 23 },
     style: "Striking/Submission", reach: 70, stance: "Orthodox"
   },
@@ -310,7 +310,7 @@ const EXTRA_FIGHTERS = {
   "kai-kamaka-iii": {
     id: "kai-kamaka-iii", name: "Kai Kamaka III", nickname: "",
     record: "12-6-0", weight: "Featherweight", rank: "Unranked",
-    initials: "KK", image: PH_CDN + 'KK',
+    initials: "KK", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/KAMAKA_KAI_04-04.png", image: PH_CDN + 'KK',
     stats: { slpm: 4.6, strAcc: 46, tdAvg: 0.8, subAvg: 0.5, koPct: 42, subPct: 17, decPct: 41 },
     style: "Boxing/MMA", reach: 69, stance: "Orthodox"
   },
@@ -324,21 +324,21 @@ const EXTRA_FIGHTERS = {
   "melissa-gatto": {
     id: "melissa-gatto", name: "Melissa Gatto", nickname: "",
     record: "14-3-2", weight: "Strawweight", rank: "Unranked",
-    initials: "MG", image: PH_CDN + 'MG',
+    initials: "MG", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/GATTO_MELISSA_04-04.png", image: PH_CDN + 'MG',
     stats: { slpm: 3.9, strAcc: 46, tdAvg: 1.1, subAvg: 1.4, koPct: 21, subPct: 43, decPct: 36 },
     style: "BJJ/MMA", reach: 64, stance: "Orthodox"
   },
   "dione-barbosa": {
     id: "dione-barbosa", name: "Dione Barbosa", nickname: "",
     record: "12-5-0", weight: "Strawweight", rank: "Unranked",
-    initials: "DB", image: PH_CDN + 'DB',
+    initials: "DB", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/BARBOSA_DIONE_04-04.png", image: PH_CDN + 'DB',
     stats: { slpm: 4.1, strAcc: 47, tdAvg: 1.3, subAvg: 0.9, koPct: 25, subPct: 33, decPct: 42 },
     style: "Striking/BJJ", reach: 65, stance: "Orthodox"
   },
   "tresean-gore": {
     id: "tresean-gore", name: "Tresean Gore", nickname: "The Lebanese Demon",
     record: "7-3-0", weight: "Middleweight", rank: "Unranked",
-    initials: "TG", image: PH_CDN + 'TG',
+    initials: "TG", image: "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-04/GORE_TRESEAN_04-04.png", image: PH_CDN + 'TG',
     stats: { slpm: 4.5, strAcc: 49, tdAvg: 1.8, subAvg: 0.6, koPct: 43, subPct: 29, decPct: 28 },
     style: "Kickboxing/MMA", reach: 75, stance: "Orthodox"
   },
