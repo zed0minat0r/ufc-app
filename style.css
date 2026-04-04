@@ -201,7 +201,7 @@ main {
   white-space: nowrap;
   border-bottom: 2px solid transparent;
   margin-bottom: -2px;
-  transition: all 0.2s;
+  transition: color 0.2s, border-bottom-color 0.2s, transform 0.15s;
   letter-spacing: 0.5px;
 }
 
@@ -231,6 +231,7 @@ main {
   margin-bottom: 28px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 40px rgba(214,40,40,0.12), 0 1px 0 rgba(255,255,255,0.04) inset;
 }
 
 .hero-banner::before {
@@ -417,11 +418,12 @@ main {
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .event-card:hover {
   border-color: rgba(214,40,40,0.4);
+  box-shadow: 0 4px 24px rgba(214,40,40,0.08);
 }
 
 .event-card.next-event {
@@ -671,7 +673,7 @@ main {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .fight-fighter-name {
@@ -717,6 +719,7 @@ main {
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .pred-card-header {
@@ -783,10 +786,6 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.win-prob-name.right {
-  text-align: right;
 }
 
 .win-prob-bar-wrap {
@@ -1037,6 +1036,9 @@ main {
 }
 
 .sim-result-winner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 24px;
   font-weight: 900;
   color: var(--white);
@@ -1140,6 +1142,7 @@ main {
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .bet-card-header {
@@ -1681,11 +1684,6 @@ nav a:focus-visible {
   animation: fadeInUp 0.4s ease forwards;
 }
 
-.fade-in-up:nth-child(2) { animation-delay: 0.05s; }
-.fade-in-up:nth-child(3) { animation-delay: 0.1s; }
-.fade-in-up:nth-child(4) { animation-delay: 0.15s; }
-.fade-in-up:nth-child(5) { animation-delay: 0.2s; }
-
 /* ─── SPARK POLISH ─── */
 
 /* Pulsing live badge — only for ML MODEL badge */
@@ -1709,21 +1707,7 @@ nav a:focus-visible {
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-/* Event card accent line on hover */
-.event-card {
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.event-card:hover {
-  border-color: rgba(214,40,40,0.4);
-  box-shadow: 0 4px 24px rgba(214,40,40,0.08);
-}
-
 /* Prediction card lift on hover */
-.pred-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
 .pred-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 28px rgba(0,0,0,0.4);
@@ -1731,27 +1715,14 @@ nav a:focus-visible {
 }
 
 /* Bet card lift on hover */
-.bet-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
 .bet-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(0,0,0,0.35);
 }
 
-/* Tab button smooth scale */
-.tab-btn {
-  transition: color 0.2s, border-bottom-color 0.2s, transform 0.15s;
-}
-
+/* Tab button scale on press */
 .tab-btn:active {
   transform: scale(0.96);
-}
-
-/* Hero banner glow accent */
-.hero-banner {
-  box-shadow: 0 4px 40px rgba(214,40,40,0.12), 0 1px 0 rgba(255,255,255,0.04) inset;
 }
 
 /* Sim run button pulse on idle */
@@ -1838,17 +1809,6 @@ nav a:focus-visible {
   align-items: center;
 }
 
-/* Fighter avatar container: switch from gradient circle to photo-ready */
-/* fighter-avatar sizing is handled in the main .fighter-avatar block above */
-
-/* Fight row photos sit flush on edges */
-.fight-fighters {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex: 1;
-}
-
 /* Sim matchup photos display */
 .sim-matchup-photos {
   display: flex;
@@ -1881,13 +1841,6 @@ nav a:focus-visible {
   letter-spacing: 1px;
 }
 
-/* Sim winner row: photo + name side by side */
-.sim-result-winner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .sim-result-winner .fighter-photo--md {
   margin: 0;
   border-color: var(--gold);
@@ -1906,7 +1859,7 @@ nav a:focus-visible {
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 14px;
-  color: var(--text);
+  color: var(--white);
   outline: none;
   transition: border-color 0.2s;
   box-sizing: border-box;

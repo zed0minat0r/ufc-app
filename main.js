@@ -2,7 +2,6 @@
 
 // ─── STATIC DATA ───────────────────────────────────────────────────────────
 
-const ESPN_CDN = 'https://a.espncdn.com/i/headshots/mma/players/full/';
 const PH_CDN = 'https://via.placeholder.com/120x120/1a1a2e/ffffff?text=';
 
 const FIGHTERS = {
@@ -491,10 +490,6 @@ function getFighterOrPlaceholder(id) {
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 22, decPct: 45 },
     style: "MMA", reach: 72, stance: "Orthodox"
   };
-}
-
-function renderBar(pct, cls = '') {
-  return `<div class="win-prob-bar-wrap"><div class="win-prob-bar-fill ${cls}" style="width:${pct}%"></div></div>`;
 }
 
 function animateBars() {
