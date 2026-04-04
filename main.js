@@ -117,7 +117,14 @@ const UPCOMING_EVENTS = [
     type: "fight-night",
     date: "April 4, 2026",
     location: "Meta APEX",
-    fights: [{"fighter1": "Kai Kamaka III", "fighter2": "Dakota Hope"}, {"fighter1": "Melissa Gatto", "fighter2": "Dione Barbosa"}, {"fighter1": "Tresean Gore", "fighter2": "Azamat Bekoev"}, {"fighter1": "Hailey Cowan", "fighter2": "Alice Pereira"}, {"fighter1": "Lando Vannata", "fighter2": "Darrius Flowers"}, {"fighter1": "Alessandro Costa", "fighter2": "Stewart Nicoll"}]
+    fights: [
+      { f1: "lando-vannata",      f2: "darrius-flowers",  tier: "main",   weight: "Lightweight" },
+      { f1: "melissa-gatto",      f2: "dione-barbosa",    tier: "co-main", weight: "Women's Strawweight" },
+      { f1: "tresean-gore",       f2: "azamat-bekoev",    tier: "prelim", weight: "Middleweight" },
+      { f1: "hailey-cowan",       f2: "alice-pereira",    tier: "prelim", weight: "Women's Flyweight" },
+      { f1: "kai-kamaka-iii",     f2: "dakota-hope",      tier: "prelim", weight: "Featherweight" },
+      { f1: "alessandro-costa",   f2: "stewart-nicoll",   tier: "prelim", weight: "Bantamweight" }
+    ]
   }
 ];
 
@@ -739,11 +746,11 @@ function renderFighters() {
 // ─── HERO BANNER ─────────────────────────────────────────────────────────────
 
 function renderHero() {
-  const mainEvent = UPCOMING_EVENTS[0].fights[0];
+  const event = UPCOMING_EVENTS[0];
+  const mainEvent = event.fights.find(f => f.tier === 'main') || event.fights[0];
   const f1 = getFighterOrPlaceholder(mainEvent.f1);
   const f2 = getFighterOrPlaceholder(mainEvent.f2);
   const pred = predictFight(f1, f2);
-  const event = UPCOMING_EVENTS[0];
 
   const banner = document.getElementById('hero-banner');
   if (!banner) return;
