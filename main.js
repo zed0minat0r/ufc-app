@@ -879,76 +879,93 @@ function runSimulator() {
 
 function renderBetting() {
   const container = document.getElementById('betting-container');
-  const fights = [];
+  let html = '';
+  let cardIndex = 0;
+  let hasAny = false;
 
   UPCOMING_EVENTS.forEach(event => {
-    event.fights.forEach(fight => {
-      const f1 = ALL_FIGHTERS[fight.f1];
-      const f2 = ALL_FIGHTERS[fight.f2];
-      if (f1 && f2) fights.push({ f1, f2, weight: fight.weight, tier: fight.tier });
+    const eventFights = event.fights
+      .map(fight => ({
+        f1: ALL_FIGHTERS[fight.f1], f2: ALL_FIGHTERS[fight.f2],
+        weight: fight.weight, tier: fight.tier
+      }))
+      .filter(f => f.f1 && f.f2);
+
+    if (eventFights.length === 0) return;
+    hasAny = true;
+
+    const tagCls = event.type === 'ppv' ? 'ppv' : 'fight-night';
+    const tagTxt = event.type === 'ppv' ? 'PPV' : 'Fight Night';
+    html += `
+    <div class="pred-event-header">
+      <div class="pred-event-name">${event.name}</div>
+      <div class="pred-event-meta">${event.date} · ${event.location}</div>
+      <div class="event-tag ${tagCls}" style="margin-top:6px">${tagTxt}</div>
+    </div>
+    <div class="betting-grid">`;
+
+    eventFights.forEach((fight) => {
+      const i = cardIndex++;
+      const pred = predictFight(fight.f1, fight.f2);
+      const { f1, f2 } = fight;
+
+      const bookF1Prob = Math.max(0.2, Math.min(0.8, pred.f1WinProb / 100 * 0.9 + 0.05));
+      const bookF1American = probToAmerican(bookF1Prob);
+      const bookF2American = probToAmerican(1 - bookF1Prob);
+      const bookF1Implied = Math.round(bookF1Prob * 100);
+      const bookF2Implied = Math.round((1 - bookF1Prob) * 100);
+
+      const edgePct = pred.f1WinProb - bookF1Implied;
+      const hasValue = Math.abs(edgePct) > 3;
+      const valueLabel = !hasValue ? 'FAIR' : edgePct > 0 ? 'VALUE' : 'FADE';
+      const valueCls = !hasValue ? 'fair' : edgePct > 0 ? 'value' : 'fade';
+      const recFighter = edgePct > 0 ? f1 : f2;
+
+      html += `
+      <div class="bet-card fade-in-up" style="animation-delay:${i * 0.07}s">
+        <div class="bet-card-header">
+          <div class="bet-card-matchup">
+            <div class="bet-card-fighter-photo">${getFighterImage(f1, 'sm')}</div>
+            <div class="bet-card-names">
+              <div class="bet-card-fight">${getFightName(f1, f2)}</div>
+              <div class="bet-card-weight">${fight.weight}</div>
+            </div>
+            <div class="bet-card-fighter-photo">${getFighterImage(f2, 'sm')}</div>
+          </div>
+          <div class="bet-value-badge ${valueCls}">${valueLabel}</div>
+        </div>
+        <div class="bet-body">
+          <div class="odds-row">
+            <div class="odds-fighter">${f1.name}</div>
+            <div class="odds-implied">${bookF1Implied}%</div>
+            <div class="odds-american ${bookF1Prob >= 0.5 ? 'fav' : 'dog'}">${bookF1American}</div>
+          </div>
+          <div class="odds-row">
+            <div class="odds-fighter">${f2.name}</div>
+            <div class="odds-implied">${bookF2Implied}%</div>
+            <div class="odds-american ${(1 - bookF1Prob) >= 0.5 ? 'fav' : 'dog'}">${bookF2American}</div>
+          </div>
+          ${hasValue ? `
+          <div class="bet-edge ${edgePct > 0 ? 'positive' : 'negative'}">
+            <span class="edge-label">Model Edge: </span>
+            ${edgePct > 0 ? '+' : ''}${edgePct.toFixed(1)}% — ${edgePct > 0 ? `Value on ${recFighter.name.split(' ').pop()}` : `Book favors ${recFighter.name.split(' ').pop()} too heavily`}
+          </div>` : `
+          <div class="bet-edge neutral">
+            <span class="edge-label">Edge: </span>Fair line — no strong value identified
+          </div>`}
+          <div class="bet-narrative">${generateFightNarrative(f1, f2, pred)}</div>
+        </div>
+      </div>
+      `;
     });
+
+    html += '</div>';
   });
 
-  if (fights.length === 0) {
+  if (!hasAny) {
     container.innerHTML = '<div class="empty-state">No betting data available — fighter data not found for upcoming fights.</div>';
     return;
   }
-
-  let html = '<div class="betting-grid">';
-
-  fights.forEach((fight, i) => {
-    const pred = predictFight(fight.f1, fight.f2);
-    const { f1, f2 } = fight;
-
-    // Simulate book odds (slightly compressed)
-    const bookF1Prob = Math.max(0.2, Math.min(0.8, pred.f1WinProb / 100 * 0.9 + 0.05));
-    const bookF1American = probToAmerican(bookF1Prob);
-    const bookF2American = probToAmerican(1 - bookF1Prob);
-    const bookF1Implied = Math.round(bookF1Prob * 100);
-    const bookF2Implied = Math.round((1 - bookF1Prob) * 100);
-
-    // Edge calculation
-    const edgePct = pred.f1WinProb - bookF1Implied;
-    const hasValue = Math.abs(edgePct) > 3;
-    const valueLabel = !hasValue ? 'FAIR' : edgePct > 0 ? 'VALUE' : 'FADE';
-    const valueCls = !hasValue ? 'fair' : edgePct > 0 ? 'value' : 'fade';
-    const recFighter = edgePct > 0 ? f1 : f2;
-
-    html += `
-    <div class="bet-card fade-in-up" style="animation-delay:${i * 0.07}s">
-      <div class="bet-card-header">
-        <div>
-          <div class="bet-card-fight">${getFightName(f1, f2)}</div>
-          <div class="bet-card-weight">${fight.weight}</div>
-        </div>
-        <div class="bet-value-badge ${valueCls}">${valueLabel}</div>
-      </div>
-      <div class="bet-body">
-        <div class="odds-row">
-          <div class="odds-fighter">${f1.name}</div>
-          <div class="odds-implied">${bookF1Implied}%</div>
-          <div class="odds-american ${bookF1Prob >= 0.5 ? 'fav' : 'dog'}">${bookF1American}</div>
-        </div>
-        <div class="odds-row">
-          <div class="odds-fighter">${f2.name}</div>
-          <div class="odds-implied">${bookF2Implied}%</div>
-          <div class="odds-american ${(1 - bookF1Prob) >= 0.5 ? 'fav' : 'dog'}">${bookF2American}</div>
-        </div>
-        ${hasValue ? `
-        <div class="bet-edge ${edgePct > 0 ? 'positive' : 'negative'}">
-          <span class="edge-label">Model Edge: </span>
-          ${edgePct > 0 ? '+' : ''}${edgePct.toFixed(1)}% — ${edgePct > 0 ? `Value on ${recFighter.name.split(' ').pop()}` : `Book favors ${recFighter.name.split(' ').pop()} too heavily`}
-        </div>` : `
-        <div class="bet-edge neutral">
-          <span class="edge-label">Edge: </span>Fair line — no strong value identified
-        </div>`}
-        <div class="bet-narrative">${generateFightNarrative(f1, f2, pred)}</div>
-      </div>
-    </div>
-    `;
-  });
-
-  html += '</div>';
   container.innerHTML = html;
 }
 
