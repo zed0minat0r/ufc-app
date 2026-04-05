@@ -1037,6 +1037,14 @@ main {
   gap: 6px;
 }
 
+.sim-weight-filter {
+  font-size: 11px !important;
+  padding: 6px 32px 6px 10px !important;
+  color: var(--grey-light) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  letter-spacing: 0.3px;
+}
+
 .sim-select-wrap label {
   font-size: 11px;
   font-weight: 700;
@@ -1574,6 +1582,27 @@ main {
 
 .f-stat-val.gold {
   color: var(--gold);
+}
+
+/* ─── STAT HOT/COLD COLOR SCALE ─── */
+.f-stat-val.stat-hot {
+  color: var(--red-bright);
+}
+
+.f-stat-val.stat-warm {
+  color: var(--white);
+}
+
+.f-stat-val.stat-cold {
+  color: var(--grey);
+}
+
+.f-stat-val.stat-sub {
+  color: #3498db;
+}
+
+.f-stat-val.stat-sub-mid {
+  color: #7fb3d3;
 }
 
 .f-stat-label {

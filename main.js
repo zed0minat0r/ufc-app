@@ -827,23 +827,51 @@ function renderPredictions() {
 
 // ─── SIMULATOR TAB ──────────────────────────────────────────────────────────
 
+function getSimFighterOpts(weightFilter) {
+  const sortedFighters = Object.values(ALL_FIGHTERS)
+    .filter(f => !weightFilter || f.weight === weightFilter)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  return sortedFighters.map(f => `<option value="${f.id}">${f.name} (${f.record})</option>`).join('');
+}
+
 function populateSimSelects() {
   const sel1 = document.getElementById('sim-f1');
   const sel2 = document.getElementById('sim-f2');
+  const wf1 = document.getElementById('sim-wf1');
+  const wf2 = document.getElementById('sim-wf2');
 
-  const sortedFighters = Object.values(ALL_FIGHTERS).sort((a, b) => a.name.localeCompare(b.name));
+  // Build weight class options
+  const weightClasses = ['', ...new Set(
+    Object.values(ALL_FIGHTERS).map(f => f.weight).filter(Boolean).sort()
+  )];
+  const weightOpts = weightClasses.map(w =>
+    `<option value="${w}">${w || 'All Weight Classes'}</option>`
+  ).join('');
+  if (wf1) wf1.innerHTML = weightOpts;
+  if (wf2) wf2.innerHTML = weightOpts;
 
-  let opts = '';
-  sortedFighters.forEach(f => {
-    opts += `<option value="${f.id}">${f.name} (${f.record})</option>`;
-  });
-
-  sel1.innerHTML = opts;
-  sel2.innerHTML = opts;
+  sel1.innerHTML = getSimFighterOpts('');
+  sel2.innerHTML = getSimFighterOpts('');
 
   // Default different selections
   sel1.value = 'jon-jones';
   sel2.value = 'tom-aspinall';
+
+  // Wire weight filter change events
+  if (wf1) {
+    wf1.addEventListener('change', () => {
+      const prev = sel1.value;
+      sel1.innerHTML = getSimFighterOpts(wf1.value);
+      if (sel1.querySelector(`option[value="${prev}"]`)) sel1.value = prev;
+    });
+  }
+  if (wf2) {
+    wf2.addEventListener('change', () => {
+      const prev = sel2.value;
+      sel2.innerHTML = getSimFighterOpts(wf2.value);
+      if (sel2.querySelector(`option[value="${prev}"]`)) sel2.value = prev;
+    });
+  }
 }
 
 function runSimulator() {
@@ -1057,6 +1085,30 @@ function renderBetting() {
 
 // ─── FIGHTERS TAB ────────────────────────────────────────────────────────────
 
+function getStatColorClass(stat, value) {
+  if (stat === 'slpm') {
+    if (value >= 6) return 'stat-hot';
+    if (value >= 4) return 'stat-warm';
+    return 'stat-cold';
+  }
+  if (stat === 'koPct') {
+    if (value >= 60) return 'stat-hot';
+    if (value >= 35) return 'stat-warm';
+    return 'stat-cold';
+  }
+  if (stat === 'subAvg') {
+    if (value >= 1.5) return 'stat-sub';
+    if (value >= 0.8) return 'stat-sub-mid';
+    return '';
+  }
+  if (stat === 'finishPct') {
+    if (value >= 65) return 'stat-hot';
+    if (value >= 40) return 'stat-warm';
+    return '';
+  }
+  return '';
+}
+
 function renderFighters() {
   const container = document.getElementById('fighters-container');
   const fighters = Object.values(ALL_FIGHTERS).sort((a, b) => a.name.localeCompare(b.name));
@@ -1066,6 +1118,11 @@ function renderFighters() {
   fighters.forEach((f, i) => {
     const koPct = f.stats.koPct;
     const finishPct = f.stats.koPct + f.stats.subPct;
+
+    const slpmCls = getStatColorClass('slpm', f.stats.slpm);
+    const koCls = getStatColorClass('koPct', koPct);
+    const subCls = getStatColorClass('subAvg', f.stats.subAvg);
+    const finCls = getStatColorClass('finishPct', finishPct);
 
     html += `
     <div class="fighter-card fade-in-up" data-weight="${f.weight}" data-name="${f.name.toLowerCase()}" data-fighter-id="${f.id}" style="animation-delay:${i * 0.04}s" role="button" tabindex="0" aria-label="View ${f.name} profile">
@@ -1080,7 +1137,7 @@ function renderFighters() {
       </div>
       <div class="fighter-stats-grid">
         <div class="f-stat">
-          <div class="f-stat-val red">${f.stats.slpm}</div>
+          <div class="f-stat-val ${slpmCls || 'red'}">${f.stats.slpm}</div>
           <div class="f-stat-label">SLpM</div>
         </div>
         <div class="f-stat">
@@ -1088,7 +1145,7 @@ function renderFighters() {
           <div class="f-stat-label">Str Acc</div>
         </div>
         <div class="f-stat">
-          <div class="f-stat-val gold">${finishPct}%</div>
+          <div class="f-stat-val ${finCls || 'gold'}">${finishPct}%</div>
           <div class="f-stat-label">Finish %</div>
         </div>
         <div class="f-stat">
@@ -1096,11 +1153,11 @@ function renderFighters() {
           <div class="f-stat-label">TD/15m</div>
         </div>
         <div class="f-stat">
-          <div class="f-stat-val">${koPct}%</div>
+          <div class="f-stat-val ${koCls}">${koPct}%</div>
           <div class="f-stat-label">KO/TKO</div>
         </div>
         <div class="f-stat">
-          <div class="f-stat-val">${f.stats.subAvg}</div>
+          <div class="f-stat-val ${subCls}">${f.stats.subAvg}</div>
           <div class="f-stat-label">Sub/15m</div>
         </div>
       </div>
