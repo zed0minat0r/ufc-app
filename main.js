@@ -579,6 +579,18 @@ function abbreviateWeight(weight) {
 
 // ─── EVENTS TAB ─────────────────────────────────────────────────────────────
 
+function getProximityLabel(dateStr) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const eventDate = new Date(dateStr);
+  eventDate.setHours(0, 0, 0, 0);
+  const days = Math.round((eventDate - today) / 86400000);
+  if (days === 0) return '<span class="proximity-label tonight">TONIGHT</span>';
+  if (days === 1) return '<span class="proximity-label tomorrow">TOMORROW</span>';
+  if (days <= 7) return `<span class="proximity-label soon">${days} DAYS</span>`;
+  return '';
+}
+
 function renderEvents() {
   const container = document.getElementById('events-container');
   let html = '';
@@ -651,7 +663,7 @@ function renderEvents() {
         <div>
           ${isNext ? '<div class="next-event-label">NEXT UP</div>' : ''}
           <div class="event-card-title">${event.name}</div>
-          <div class="event-card-date">${event.date}</div>
+          <div class="event-card-date">${event.date}${getProximityLabel(event.date) ? ' ' + getProximityLabel(event.date) : ''}</div>
           <div class="event-card-location">${event.location}</div>
         </div>
         <div class="event-tag ${tagClass}">${tagText}</div>
@@ -1139,7 +1151,9 @@ function initFighterFilters() {
 // ─── HERO BANNER ─────────────────────────────────────────────────────────────
 
 function renderHero() {
-  const event = UPCOMING_EVENTS.find(e => e.type === 'ppv') || UPCOMING_EVENTS[0];
+  const todayStr = new Date().toDateString();
+  const tonightEvent = UPCOMING_EVENTS.find(e => new Date(e.date).toDateString() === todayStr);
+  const event = tonightEvent || UPCOMING_EVENTS.find(e => e.type === 'ppv') || UPCOMING_EVENTS[0];
   const mainEvent = event.fights.find(f => f.tier === 'main') || event.fights[0];
   const f1 = getFighterOrPlaceholder(mainEvent.f1);
   const f2 = getFighterOrPlaceholder(mainEvent.f2);
