@@ -1475,20 +1475,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const tab = a.dataset.gotoTab;
       document.querySelector(`.tab-btn[data-tab="${tab}"]`).click();
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Sync bottom nav active state
-      document.querySelectorAll('.bottom-nav-item').forEach(item => {
-        item.classList.toggle('active', item.dataset.gotoTab === tab);
-      });
-    });
-  });
-
-  // Sync bottom nav active state when tabs are clicked directly
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-      document.querySelectorAll('.bottom-nav-item').forEach(item => {
-        item.classList.toggle('active', item.dataset.gotoTab === target);
-      });
     });
   });
 });
