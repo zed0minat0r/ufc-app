@@ -11,7 +11,7 @@
   --gold: #c9a84c;
   --gold-light: #e8c96a;
   --white: #f0f0f0;
-  --grey: #888888;
+  --grey: #999999;
   --grey-light: #aaaaaa;
   --green: #2ecc71;
   --blue: #3498db;
@@ -466,6 +466,11 @@ main {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border);
+  transition: background 0.2s ease;
+}
+
+.event-card:hover .event-card-header {
+  background: linear-gradient(90deg, #220606, #1d1d1d);
 }
 
 .event-card-title {
@@ -607,6 +612,17 @@ main {
   display: block;
   background: var(--card-bg);
   flex-shrink: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fight-row:hover .fight-faceoff-fighter.f1 .fight-faceoff-photo {
+  border-color: rgba(214,40,40,0.5);
+  box-shadow: 0 0 12px rgba(214,40,40,0.25);
+}
+
+.fight-row:hover .fight-faceoff-fighter.f2 .fight-faceoff-photo {
+  border-color: rgba(201,168,76,0.5);
+  box-shadow: 0 0 12px rgba(201,168,76,0.2);
 }
 
 .fight-faceoff-initials {
@@ -1275,7 +1291,7 @@ main {
 }
 
 .sim-compare-val.sim-compare-winner {
-  color: var(--red-bright);
+  color: var(--green);
 }
 
 .sim-compare-val:last-child {
@@ -1889,13 +1905,19 @@ main {
   min-height: 44px;
   cursor: pointer;
   text-transform: uppercase;
-  transition: background 0.18s, border-color 0.18s;
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
   margin-top: 4px;
 }
 
 .prelim-toggle-btn:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.prelim-toggle-btn.open {
+  background: rgba(201,168,76,0.06);
+  border-color: rgba(201,168,76,0.25);
+  color: var(--gold-light);
 }
 
 .prelim-toggle-btn .prelim-count {
@@ -1921,11 +1943,13 @@ main {
 .prelim-section {
   overflow: hidden;
   max-height: 0;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease;
 }
 
 .prelim-section.open {
-  max-height: 1000px;
+  max-height: 1200px;
+  opacity: 1;
 }
 
 /* ─── FOCUS VISIBLE (accessibility) ─── */
@@ -2572,10 +2596,16 @@ nav a:focus-visible {
     text-align: center;
   }
 
-  /* Pred event header: center */
+  /* Pred event header: center and remove disconnected left border */
   .pred-event-header {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    border-left: none;
+    border-top: 3px solid var(--gold);
+    border-radius: 6px;
+    background: linear-gradient(180deg, rgba(201,168,76,0.05) 0%, transparent 60%);
   }
 
   .pred-event-header .event-tag {
@@ -2612,5 +2642,12 @@ nav a:focus-visible {
 .fight-row:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: -2px;
+}
+
+/* Fight row press feedback */
+.fight-row:active {
+  background: rgba(214, 40, 40, 0.07);
+  transform: scale(0.99);
+  transition: transform 0.1s ease, background 0.1s ease;
 }
 

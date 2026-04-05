@@ -1239,7 +1239,7 @@ function renderHero() {
       <div class="hero-event-label">${event.type === 'ppv' ? 'PPV Main Event' : 'Fight Night Main Event'}</div>
       <div class="hero-event-name">${event.name}</div>
       <div class="hero-event-meta">${event.date} · ${event.location}</div>
-      <div class="hero-countdown" id="hero-countdown"></div>
+      <div class="hero-countdown" id="hero-countdown" aria-label="Countdown to event"></div>
     </div>
     <div class="hero-matchup">
       <div class="hero-fighter hero-fighter--left">
