@@ -112,31 +112,171 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-fn-apr4",
-    name: "UFC Fight Night: Moicano vs. Duncan",
-    type: "fight-night",
-    date: "April 4, 2026",
-    location: "Meta APEX, Las Vegas, NV",
-    fights: [
-      { f1: "renato-moicano",     f2: "chris-duncan",           tier: "main",    weight: "Lightweight" },
-      { f1: "virna-jandiroba",    f2: "tabatha-ricci",          tier: "co-main", weight: "Women's Strawweight" },
-      { f1: "brendson-ribeiro",   f2: "abdul-rakhman-yakhyaev", tier: "main-card", weight: "Light Heavyweight" },
-      { f1: "ethyn-ewing",        f2: "rafael-estevam",         tier: "main-card", weight: "Bantamweight" },
-      { f1: "lando-vannata",      f2: "darrius-flowers",        tier: "prelim",  weight: "Lightweight" },
-      { f1: "kai-kamaka-iii",     f2: "dakota-hope",            tier: "prelim",  weight: "Featherweight" },
-      { f1: "melissa-gatto",      f2: "dione-barbosa",          tier: "prelim",  weight: "Women's Strawweight" },
-      { f1: "tresean-gore",       f2: "azamat-bekoev",          tier: "prelim",  weight: "Middleweight" }
-    ]
-  },
-  {
     id: "ufc-327",
     name: "UFC 327: Prochazka vs. Ulberg",
     type: "ppv",
     date: "April 11, 2026",
-    location: "Kaseya Center, Miami, FL",
+    location: "Miami, Florida, USA",
     fights: [
-      { f1: "jiri-prochazka",     f2: "carlos-ulberg",       tier: "main",      weight: "Light Heavyweight" },
-      { f1: "joshua-van",         f2: "tatsuro-taira",       tier: "co-main",   weight: "Flyweight" },
+      { f1: "jiri-prochazka", f2: "carlos-ulberg", tier: "main", weight: "Light Heavyweight" },
+      { f1: "azamat-murzakanov", f2: "paulo-costa", tier: "co-main", weight: "Light Heavyweight" },
+      { f1: "curtis-blaydes", f2: "josh-hokit", tier: "main-card", weight: "Heavyweight" },
+      { f1: "dominick-reyes", f2: "johnny-walker", tier: "main-card", weight: "Light Heavyweight" },
+      { f1: "cub-swanson", f2: "nate-landwehr", tier: "main-card", weight: "Featherweight" },
+      { f1: "patricio-pitbull", f2: "aaron-pico", tier: "main-card", weight: "Featherweight" },
+      { f1: "kevin-holland", f2: "randy-brown", tier: "main-card", weight: "Welterweight" },
+      { f1: "mateusz-gamrot", f2: "esteban-ribovics", tier: "main-card", weight: "Lightweight" },
+      { f1: "tatiana-suarez", f2: "loopy-godinez", tier: "prelim", weight: "Women's Strawweight" },
+      { f1: "chris-padilla", f2: "marquel-mederos", tier: "prelim", weight: "Lightweight" },
+      { f1: "kelvin-gastelum", f2: "vicente-luque", tier: "prelim", weight: "Middleweight" },
+      { f1: "charles-radtke", f2: "francisco-prado", tier: "prelim", weight: "Welterweight" }
+    ]
+  },
+  {
+    id: "ufc-fight-night-burns-vs-malot-apr18",
+    name: "UFC Fight Night: Burns vs. Malott",
+    type: "fight-night",
+    date: "April 18, 2026",
+    location: "Winnipeg, Manitoba, Canada",
+    fights: [
+      { f1: "gilbert-burns", f2: "mike-malott", tier: "main", weight: "Welterweight" },
+      { f1: "kyler-phillips", f2: "charles-jourdain", tier: "co-main", weight: "Bantamweight" },
+      { f1: "mandel-nallo", f2: "jai-herbert", tier: "main-card", weight: "Lightweight" },
+      { f1: "jasmine-jasudavicius", f2: "karine-silva", tier: "main-card", weight: "Women's Flyweight" },
+      { f1: "thiago-moises", f2: "gauge-young", tier: "main-card", weight: "Lightweight" },
+      { f1: "dennis-buzukja", f2: "marcio-barbosa", tier: "main-card", weight: "Featherweight" },
+      { f1: "julien-leblanc", f2: "robert-valentin", tier: "main-card", weight: "Middleweight" },
+      { f1: "tanner-boser", f2: "gokhan-saricam", tier: "main-card", weight: "Heavyweight" },
+      { f1: "melissa-croden", f2: "daria-zhelezniakova", tier: "main-card", weight: "Women's Bantamweight" },
+      { f1: "mitch-raposo", f2: "allan-nascimento", tier: "prelim", weight: "Flyweight" },
+      { f1: "jj-aldrich", f2: "jamey-lyn-horth", tier: "prelim", weight: "Women's Flyweight" },
+      { f1: "john-castaneda", f2: "mark-vologdin", tier: "prelim", weight: "Bantamweight" },
+      { f1: "jamie-siraj", f2: "john-yannis", tier: "prelim", weight: "Bantamweight" }
+    ]
+  },
+  {
+    id: "ufc-fight-night-sterling-vs-za-apr25",
+    name: "UFC Fight Night: Sterling vs. Zalal",
+    type: "fight-night",
+    date: "April 25, 2026",
+    location: "Las Vegas, Nevada, USA",
+    fights: [
+      { f1: "aljamain-sterling", f2: "youssef-zalal", tier: "main", weight: "Featherweight" },
+      { f1: "davey-grant", f2: "juan-adrian-martinetti", tier: "co-main", weight: "Bantamweight" },
+      { f1: "norma-dumont", f2: "joselyne-edwards", tier: "main-card", weight: "Women's Bantamweight" },
+      { f1: "montel-jackson", f2: "raoni-barcelos", tier: "main-card", weight: "Bantamweight" },
+      { f1: "talita-alencar", f2: "julia-polastri", tier: "main-card", weight: "Women's Strawweight" },
+      { f1: "rodolfo-vieira", f2: "eric-mcconico", tier: "main-card", weight: "Middleweight" },
+      { f1: "jafel-filho", f2: "lucas-rocha", tier: "main-card", weight: "Flyweight" },
+      { f1: "mayra-bueno-silva", f2: "michelle-montague", tier: "prelim", weight: "Women's Bantamweight" },
+      { f1: "jackson-mcvey", f2: "sedriques-dumas", tier: "prelim", weight: "Middleweight" },
+      { f1: "rafa-garcia", f2: "alexander-hernandez", tier: "prelim", weight: "Lightweight" },
+      { f1: "marcus-buchecha", f2: "ryan-spann", tier: "prelim", weight: "Heavyweight" }
+    ]
+  },
+  {
+    id: "ufc-fight-night-della-maddalen-may02",
+    name: "UFC Fight Night: Della Maddalena vs. Prates",
+    type: "fight-night",
+    date: "May 2, 2026",
+    location: "Perth, Western Australia, Australia",
+    fights: [
+      { f1: "jack-della-maddalena", f2: "carlos-prates", tier: "main", weight: "Welterweight" },
+      { f1: "beneil-dariush", f2: "quillan-salkilld", tier: "co-main", weight: "Lightweight" },
+      { f1: "tai-tuivasa", f2: "sean-sharaf", tier: "main-card", weight: "Heavyweight" },
+      { f1: "junior-tafa", f2: "kevin-christian", tier: "main-card", weight: "Light Heavyweight" },
+      { f1: "cam-rowston", f2: "robert-bryczek", tier: "main-card", weight: "Middleweight" },
+      { f1: "jacob-malkoun", f2: "gerald-meerschaert", tier: "main-card", weight: "Middleweight" },
+      { f1: "steve-erceg", f2: "tim-elliott", tier: "main-card", weight: "Flyweight" },
+      { f1: "dom-mar-fan", f2: "kody-steele", tier: "main-card", weight: "Lightweight" },
+      { f1: "shamil-gaziev", f2: "brando-pericic", tier: "prelim", weight: "Heavyweight" },
+      { f1: "jonathan-micallef", f2: "themba-gorimbo", tier: "prelim", weight: "Welterweight" },
+      { f1: "colby-thicknesse", f2: "vince-morales", tier: "prelim", weight: "Bantamweight" },
+      { f1: "benjamin-johnston", f2: "wes-schultz", tier: "prelim", weight: "Middleweight" }
+    ]
+  },
+  {
+    id: "ufc-328",
+    name: "UFC 328: Chimaev vs. Strickland",
+    type: "ppv",
+    date: "May 9, 2026",
+    location: "Newark, New Jersey, USA",
+    fights: [
+      { f1: "khamzat-chimaev", f2: "sean-strickland", tier: "main", weight: "Middleweight" },
+      { f1: "joshua-van", f2: "tatsuro-taira", tier: "co-main", weight: "Flyweight" },
+      { f1: "alexander-volkov", f2: "waldo-cortes-acosta", tier: "main-card", weight: "Heavyweight" },
+      { f1: "sean-brady", f2: "joaquin-buckley", tier: "main-card", weight: "Welterweight" },
+      { f1: "king-green", f2: "jeremy-stephens", tier: "main-card", weight: "Lightweight" },
+      { f1: "jan-blachowicz", f2: "bogdan-guskov", tier: "main-card", weight: "Light Heavyweight" },
+      { f1: "ateba-gautier", f2: "ozzy-diaz", tier: "main-card", weight: "Middleweight" },
+      { f1: "roman-kopylov", f2: "marco-tulio", tier: "prelim", weight: "Middleweight" },
+      { f1: "clayton-carpenter", f2: "jose-ochoa", tier: "prelim", weight: "Flyweight" },
+      { f1: "baisangur-susurkaev", f2: "djorden-santos", tier: "prelim", weight: "Middleweight" },
+      { f1: "joel-alvarez", f2: "yaroslav-amosov", tier: "prelim", weight: "Welterweight" }
+    ]
+  },
+  {
+    id: "ufc-fight-night-allen-vs-costa-may16",
+    name: "UFC Fight Night: Allen vs. Costa",
+    type: "fight-night",
+    date: "May 16, 2026",
+    location: "Las Vegas, Nevada, USA",
+    fights: [
+      { f1: "arnold-allen", f2: "melquizael-costa", tier: "main", weight: "Featherweight" },
+      { f1: "shauna-bannon", f2: "nicolle-caliari", tier: "co-main", weight: "Women's Strawweight" },
+      { f1: "ketlen-vieira", f2: "jacqueline-cavalcanti", tier: "main-card", weight: "Women's Bantamweight" },
+      { f1: "daniel-barez", f2: "luis-gurule", tier: "main-card", weight: "Flyweight" },
+      { f1: "timmy-cuamba", f2: "benardo-sopaj", tier: "main-card", weight: "Bantamweight" },
+      { f1: "tuco-tokkos", f2: "ivan-erslan", tier: "prelim", weight: "Light Heavyweight" },
+      { f1: "modestas-bukauskas", f2: "rodolfo-bellato", tier: "prelim", weight: "Light Heavyweight" },
+      { f1: "alice-ardelean", f2: "polyana-viana", tier: "prelim", weight: "Women's Strawweight" }
+    ]
+  },
+  {
+    id: "ufc-fight-night-song-vs-figuei-may30",
+    name: "UFC Fight Night: Song vs. Figueiredo",
+    type: "fight-night",
+    date: "May 30, 2026",
+    location: "Macau, China",
+    fights: [
+      { f1: "song-yadong", f2: "deiveson-figueiredo", tier: "main", weight: "Bantamweight" },
+      { f1: "sergei-pavlovich", f2: "tallison-teixeira", tier: "co-main", weight: "Heavyweight" },
+      { f1: "zhang-mingyang", f2: "alonzo-menifield", tier: "main-card", weight: "Light Heavyweight" },
+      { f1: "alex-perez", f2: "sumudaerji", tier: "main-card", weight: "Flyweight" },
+      { f1: "loma-lookboonmee", f2: "jaqueline-amorim", tier: "main-card", weight: "Women's Strawweight" },
+      { f1: "yi-sak-lee", f2: "luis-felipe-dias", tier: "prelim", weight: "Middleweight" },
+      { f1: "rei-tsuruya", f2: "jesus-aguilar", tier: "prelim", weight: "Flyweight" },
+      { f1: "aoriqileng", f2: "cody-haddon", tier: "prelim", weight: "Bantamweight" },
+      { f1: "kai-asakura", f2: "cameron-smotherman", tier: "prelim", weight: "Bantamweight" }
+    ]
+  },
+  {
+    id: "ufc-fight-night-muhammad-vs-bo-jun06",
+    name: "UFC Fight Night: Muhammad vs. Bonfim",
+    type: "fight-night",
+    date: "June 6, 2026",
+    location: "Las Vegas, Nevada, USA",
+    fights: [
+      { f1: "belal-muhammad", f2: "gabriel-bonfim", tier: "main", weight: "Welterweight" },
+      { f1: "iwo-baraniewski", f2: "billy-elekana", tier: "co-main", weight: "Light Heavyweight" },
+      { f1: "imanol-rodriguez", f2: "matt-schnell", tier: "main-card", weight: "Flyweight" },
+      { f1: "bruno-silva", f2: "edgar-chairez", tier: "main-card", weight: "Flyweight" },
+      { f1: "jeisla-chaves", f2: "yuneisy-duben", tier: "main-card", weight: "Women's Flyweight" }
+    ]
+  },
+  {
+    id: "ufc-freedom-250-jun14",
+    name: "UFC Freedom 250",
+    type: "fight-night",
+    date: "June 14, 2026",
+    location: "Washington, DC, USA",
+    fights: [
+      { f1: "ilia-topuria", f2: "justin-gaethje", tier: "main", weight: "Lightweight" },
+      { f1: "alex-pereira", f2: "ciryl-gane", tier: "co-main", weight: "Heavyweight" },
+      { f1: "sean-omalley", f2: "aiemann-zahabi", tier: "main-card", weight: "Bantamweight" },
+      { f1: "mauricio-ruffy", f2: "michael-chandler", tier: "main-card", weight: "Lightweight" },
+      { f1: "bo-nickal", f2: "kyle-daukaus", tier: "main-card", weight: "Middleweight" },
+      { f1: "diego-lopes", f2: "steve-garcia", tier: "prelim", weight: "Featherweight" }
     ]
   }
 ];
@@ -345,6 +485,1113 @@ const EXTRA_FIGHTERS = {
     initials: "AB", image: './fighters/azamat-bekoev.png',
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 2.5, subAvg: 0.8, koPct: 36, subPct: 28, decPct: 36 },
     style: "Wrestling/Striking", reach: 74, stance: "Orthodox"
+  }
+,
+  "josh-hokit": {
+    id: "josh-hokit", name: "Josh Hokit", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "JH", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "dominick-reyes": {
+    id: "dominick-reyes", name: "Dominick Reyes", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "DR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "johnny-walker": {
+    id: "johnny-walker", name: "Johnny Walker", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "JW", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "cub-swanson": {
+    id: "cub-swanson", name: "Cub Swanson", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "CS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "nate-landwehr": {
+    id: "nate-landwehr", name: "Nate Landwehr", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "NL", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "patricio-pitbull": {
+    id: "patricio-pitbull", name: "Patricio Pitbull", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "PP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "aaron-pico": {
+    id: "aaron-pico", name: "Aaron Pico", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "AP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "mateusz-gamrot": {
+    id: "mateusz-gamrot", name: "Mateusz Gamrot", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "esteban-ribovics": {
+    id: "esteban-ribovics", name: "Esteban Ribovics", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "ER", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "tatiana-suarez": {
+    id: "tatiana-suarez", name: "Tatiana Suarez", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "TS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "loopy-godinez": {
+    id: "loopy-godinez", name: "Loopy Godinez", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "LG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "chris-padilla": {
+    id: "chris-padilla", name: "Chris Padilla", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "CP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "marquel-mederos": {
+    id: "marquel-mederos", name: "MarQuel Mederos", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "kelvin-gastelum": {
+    id: "kelvin-gastelum", name: "Kelvin Gastelum", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "KG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "vicente-luque": {
+    id: "vicente-luque", name: "Vicente Luque", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "VL", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "charles-radtke": {
+    id: "charles-radtke", name: "Charles Radtke", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "CR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "francisco-prado": {
+    id: "francisco-prado", name: "Francisco Prado", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "FP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "gilbert-burns": {
+    id: "gilbert-burns", name: "Gilbert Burns", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "GB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "mike-malott": {
+    id: "mike-malott", name: "Mike Malott", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "MM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "kyler-phillips": {
+    id: "kyler-phillips", name: "Kyler Phillips", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "KP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "charles-jourdain": {
+    id: "charles-jourdain", name: "Charles Jourdain", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "CJ", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "mandel-nallo": {
+    id: "mandel-nallo", name: "Mandel Nallo", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MN", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jai-herbert": {
+    id: "jai-herbert", name: "Jai Herbert", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "JH", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jasmine-jasudavicius": {
+    id: "jasmine-jasudavicius", name: "Jasmine Jasudavicius", nickname: "",
+    record: "0-0-0", weight: "Women's Flyweight", rank: "Unranked",
+    initials: "JJ", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "karine-silva": {
+    id: "karine-silva", name: "Karine Silva", nickname: "",
+    record: "0-0-0", weight: "Women's Flyweight", rank: "Unranked",
+    initials: "KS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "thiago-moises": {
+    id: "thiago-moises", name: "Thiago Moises", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "TM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "gauge-young": {
+    id: "gauge-young", name: "Gauge Young", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "GY", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "dennis-buzukja": {
+    id: "dennis-buzukja", name: "Dennis Buzukja", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "DB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "marcio-barbosa": {
+    id: "marcio-barbosa", name: "Marcio Barbosa", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "MB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "julien-leblanc": {
+    id: "julien-leblanc", name: "Julien Leblanc", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "JL", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "robert-valentin": {
+    id: "robert-valentin", name: "Robert Valentin", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "RV", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "tanner-boser": {
+    id: "tanner-boser", name: "Tanner Boser", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "TB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "gokhan-saricam": {
+    id: "gokhan-saricam", name: "Gokhan Saricam", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "GS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "melissa-croden": {
+    id: "melissa-croden", name: "Melissa Croden", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "MC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "daria-zhelezniakova": {
+    id: "daria-zhelezniakova", name: "Daria Zhelezniakova", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "DZ", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "mitch-raposo": {
+    id: "mitch-raposo", name: "Mitch Raposo", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "MR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "allan-nascimento": {
+    id: "allan-nascimento", name: "Allan Nascimento", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "AN", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jj-aldrich": {
+    id: "jj-aldrich", name: "JJ Aldrich", nickname: "",
+    record: "0-0-0", weight: "Women's Flyweight", rank: "Unranked",
+    initials: "JA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jamey-lyn-horth": {
+    id: "jamey-lyn-horth", name: "Jamey-Lyn Horth", nickname: "",
+    record: "0-0-0", weight: "Women's Flyweight", rank: "Unranked",
+    initials: "JH", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "john-castaneda": {
+    id: "john-castaneda", name: "John Castaneda", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "JC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "mark-vologdin": {
+    id: "mark-vologdin", name: "Mark Vologdin", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "MV", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jamie-siraj": {
+    id: "jamie-siraj", name: "Jamie Siraj", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "JS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "john-yannis": {
+    id: "john-yannis", name: "John Yannis", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "JY", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "aljamain-sterling": {
+    id: "aljamain-sterling", name: "Aljamain Sterling", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "AS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "youssef-zalal": {
+    id: "youssef-zalal", name: "Youssef Zalal", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "YZ", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "davey-grant": {
+    id: "davey-grant", name: "Davey Grant", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "DG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "juan-adrian-martinetti": {
+    id: "juan-adrian-martinetti", name: "Juan Adrian Martinetti", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "JM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "norma-dumont": {
+    id: "norma-dumont", name: "Norma Dumont", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "ND", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "joselyne-edwards": {
+    id: "joselyne-edwards", name: "Joselyne Edwards", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "JE", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "montel-jackson": {
+    id: "montel-jackson", name: "Montel Jackson", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "MJ", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "raoni-barcelos": {
+    id: "raoni-barcelos", name: "Raoni Barcelos", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "RB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "talita-alencar": {
+    id: "talita-alencar", name: "Talita Alencar", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "TA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "julia-polastri": {
+    id: "julia-polastri", name: "Julia Polastri", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "JP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "rodolfo-vieira": {
+    id: "rodolfo-vieira", name: "Rodolfo Vieira", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "RV", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "eric-mcconico": {
+    id: "eric-mcconico", name: "Eric McConico", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "EM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jafel-filho": {
+    id: "jafel-filho", name: "Jafel Filho", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "JF", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "lucas-rocha": {
+    id: "lucas-rocha", name: "Lucas Rocha", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "LR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "mayra-bueno-silva": {
+    id: "mayra-bueno-silva", name: "Mayra Bueno Silva", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "MS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "michelle-montague": {
+    id: "michelle-montague", name: "Michelle Montague", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "MM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jackson-mcvey": {
+    id: "jackson-mcvey", name: "Jackson McVey", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "JM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "sedriques-dumas": {
+    id: "sedriques-dumas", name: "Sedriques Dumas", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "SD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "rafa-garcia": {
+    id: "rafa-garcia", name: "Rafa Garcia", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "RG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "alexander-hernandez": {
+    id: "alexander-hernandez", name: "Alexander Hernandez", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "AH", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "marcus-buchecha": {
+    id: "marcus-buchecha", name: "Marcus Buchecha", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "MB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ryan-spann": {
+    id: "ryan-spann", name: "Ryan Spann", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "RS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "carlos-prates": {
+    id: "carlos-prates", name: "Carlos Prates", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "CP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "beneil-dariush": {
+    id: "beneil-dariush", name: "Beneil Dariush", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "BD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "quillan-salkilld": {
+    id: "quillan-salkilld", name: "Quillan Salkilld", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "QS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "tai-tuivasa": {
+    id: "tai-tuivasa", name: "Tai Tuivasa", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "TT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "sean-sharaf": {
+    id: "sean-sharaf", name: "Sean Sharaf", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "SS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "junior-tafa": {
+    id: "junior-tafa", name: "Junior Tafa", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "JT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "kevin-christian": {
+    id: "kevin-christian", name: "Kevin Christian", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "KC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "cam-rowston": {
+    id: "cam-rowston", name: "Cam Rowston", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "CR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "robert-bryczek": {
+    id: "robert-bryczek", name: "Robert Bryczek", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "RB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jacob-malkoun": {
+    id: "jacob-malkoun", name: "Jacob Malkoun", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "JM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "gerald-meerschaert": {
+    id: "gerald-meerschaert", name: "Gerald Meerschaert", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "GM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "steve-erceg": {
+    id: "steve-erceg", name: "Steve Erceg", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "SE", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "tim-elliott": {
+    id: "tim-elliott", name: "Tim Elliott", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "TE", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "dom-mar-fan": {
+    id: "dom-mar-fan", name: "Dom Mar Fan", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "DF", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "kody-steele": {
+    id: "kody-steele", name: "Kody Steele", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "KS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "shamil-gaziev": {
+    id: "shamil-gaziev", name: "Shamil Gaziev", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "SG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "brando-pericic": {
+    id: "brando-pericic", name: "Brando Pericic", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "BP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jonathan-micallef": {
+    id: "jonathan-micallef", name: "Jonathan Micallef", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "JM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "themba-gorimbo": {
+    id: "themba-gorimbo", name: "Themba Gorimbo", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "TG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "colby-thicknesse": {
+    id: "colby-thicknesse", name: "Colby Thicknesse", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "CT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "vince-morales": {
+    id: "vince-morales", name: "Vince Morales", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "VM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "benjamin-johnston": {
+    id: "benjamin-johnston", name: "Benjamin Johnston", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "BJ", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "wes-schultz": {
+    id: "wes-schultz", name: "Wes Schultz", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "WS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "waldo-cortes-acosta": {
+    id: "waldo-cortes-acosta", name: "Waldo Cortes Acosta", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "WA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "sean-brady": {
+    id: "sean-brady", name: "Sean Brady", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "SB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "joaquin-buckley": {
+    id: "joaquin-buckley", name: "Joaquin Buckley", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "JB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "king-green": {
+    id: "king-green", name: "King Green", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "KG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jeremy-stephens": {
+    id: "jeremy-stephens", name: "Jeremy Stephens", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "JS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jan-blachowicz": {
+    id: "jan-blachowicz", name: "Jan Blachowicz", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "JB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "bogdan-guskov": {
+    id: "bogdan-guskov", name: "Bogdan Guskov", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "BG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ateba-gautier": {
+    id: "ateba-gautier", name: "Ateba Gautier", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "AG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ozzy-diaz": {
+    id: "ozzy-diaz", name: "Ozzy Diaz", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "OD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "roman-kopylov": {
+    id: "roman-kopylov", name: "Roman Kopylov", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "RK", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "marco-tulio": {
+    id: "marco-tulio", name: "Marco Tulio", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "MT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "clayton-carpenter": {
+    id: "clayton-carpenter", name: "Clayton Carpenter", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "CC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jose-ochoa": {
+    id: "jose-ochoa", name: "Jose Ochoa", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "JO", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "baisangur-susurkaev": {
+    id: "baisangur-susurkaev", name: "Baisangur Susurkaev", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "BS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "djorden-santos": {
+    id: "djorden-santos", name: "Djorden Santos", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "DS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "joel-alvarez": {
+    id: "joel-alvarez", name: "Joel Alvarez", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "JA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "yaroslav-amosov": {
+    id: "yaroslav-amosov", name: "Yaroslav Amosov", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "YA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "arnold-allen": {
+    id: "arnold-allen", name: "Arnold Allen", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "AA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "melquizael-costa": {
+    id: "melquizael-costa", name: "Melquizael Costa", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "MC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "shauna-bannon": {
+    id: "shauna-bannon", name: "Shauna Bannon", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "SB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "nicolle-caliari": {
+    id: "nicolle-caliari", name: "Nicolle Caliari", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "NC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ketlen-vieira": {
+    id: "ketlen-vieira", name: "Ketlen Vieira", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "KV", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jacqueline-cavalcanti": {
+    id: "jacqueline-cavalcanti", name: "Jacqueline Cavalcanti", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "JC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "daniel-barez": {
+    id: "daniel-barez", name: "Daniel Barez", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "DB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "luis-gurule": {
+    id: "luis-gurule", name: "Luis Gurule", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "LG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "timmy-cuamba": {
+    id: "timmy-cuamba", name: "Timmy Cuamba", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "TC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "benardo-sopaj": {
+    id: "benardo-sopaj", name: "Benardo Sopaj", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "BS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "tuco-tokkos": {
+    id: "tuco-tokkos", name: "Tuco Tokkos", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "TT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ivan-erslan": {
+    id: "ivan-erslan", name: "Ivan Erslan", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "IE", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "modestas-bukauskas": {
+    id: "modestas-bukauskas", name: "Modestas Bukauskas", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "MB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "rodolfo-bellato": {
+    id: "rodolfo-bellato", name: "Rodolfo Bellato", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "RB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "alice-ardelean": {
+    id: "alice-ardelean", name: "Alice Ardelean", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "AA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "polyana-viana": {
+    id: "polyana-viana", name: "Polyana Viana", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "PV", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "song-yadong": {
+    id: "song-yadong", name: "Song Yadong", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "SY", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "deiveson-figueiredo": {
+    id: "deiveson-figueiredo", name: "Deiveson Figueiredo", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "DF", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "sergei-pavlovich": {
+    id: "sergei-pavlovich", name: "Sergei Pavlovich", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "SP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "tallison-teixeira": {
+    id: "tallison-teixeira", name: "Tallison Teixeira", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "TT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "zhang-mingyang": {
+    id: "zhang-mingyang", name: "Zhang Mingyang", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "ZM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "alonzo-menifield": {
+    id: "alonzo-menifield", name: "Alonzo Menifield", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "AM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "alex-perez": {
+    id: "alex-perez", name: "Alex Perez", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "AP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "sumudaerji": {
+    id: "sumudaerji", name: "Sumudaerji", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "SU", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "loma-lookboonmee": {
+    id: "loma-lookboonmee", name: "Loma Lookboonmee", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "LL", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jaqueline-amorim": {
+    id: "jaqueline-amorim", name: "Jaqueline Amorim", nickname: "",
+    record: "0-0-0", weight: "Women's Strawweight", rank: "Unranked",
+    initials: "JA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "yi-sak-lee": {
+    id: "yi-sak-lee", name: "Yi Sak Lee", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "YL", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "luis-felipe-dias": {
+    id: "luis-felipe-dias", name: "Luis Felipe Dias", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "LD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "rei-tsuruya": {
+    id: "rei-tsuruya", name: "Rei Tsuruya", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "RT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jesus-aguilar": {
+    id: "jesus-aguilar", name: "Jesus Aguilar", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "JA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "aoriqileng": {
+    id: "aoriqileng", name: "Aoriqileng", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "AO", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "cody-haddon": {
+    id: "cody-haddon", name: "Cody Haddon", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "CH", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "kai-asakura": {
+    id: "kai-asakura", name: "Kai Asakura", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "KA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "cameron-smotherman": {
+    id: "cameron-smotherman", name: "Cameron Smotherman", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "CS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "gabriel-bonfim": {
+    id: "gabriel-bonfim", name: "Gabriel Bonfim", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "GB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "iwo-baraniewski": {
+    id: "iwo-baraniewski", name: "Iwo Baraniewski", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "IB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "billy-elekana": {
+    id: "billy-elekana", name: "Billy Elekana", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "BE", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "imanol-rodriguez": {
+    id: "imanol-rodriguez", name: "Imanol Rodriguez", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "IR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "matt-schnell": {
+    id: "matt-schnell", name: "Matt Schnell", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "MS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "bruno-silva": {
+    id: "bruno-silva", name: "Bruno Silva", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "BS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "edgar-chairez": {
+    id: "edgar-chairez", name: "Edgar Chairez", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "EC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jeisla-chaves": {
+    id: "jeisla-chaves", name: "Jeisla Chaves", nickname: "",
+    record: "0-0-0", weight: "Women's Flyweight", rank: "Unranked",
+    initials: "JC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "yuneisy-duben": {
+    id: "yuneisy-duben", name: "Yuneisy Duben", nickname: "",
+    record: "0-0-0", weight: "Women's Flyweight", rank: "Unranked",
+    initials: "YD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "justin-gaethje": {
+    id: "justin-gaethje", name: "Justin Gaethje", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "JG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ciryl-gane": {
+    id: "ciryl-gane", name: "Ciryl Gane", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "CG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "sean-omalley": {
+    id: "sean-omalley", name: "Sean O'Malley", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "SO", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "aiemann-zahabi": {
+    id: "aiemann-zahabi", name: "Aiemann Zahabi", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "AZ", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "mauricio-ruffy": {
+    id: "mauricio-ruffy", name: "Mauricio Ruffy", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "michael-chandler": {
+    id: "michael-chandler", name: "Michael Chandler", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "bo-nickal": {
+    id: "bo-nickal", name: "Bo Nickal", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "BN", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "kyle-daukaus": {
+    id: "kyle-daukaus", name: "Kyle Daukaus", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "KD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "diego-lopes": {
+    id: "diego-lopes", name: "Diego Lopes", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "DL", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "steve-garcia": {
+    id: "steve-garcia", name: "Steve Garcia", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "SG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
   }
 };
 

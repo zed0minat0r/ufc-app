@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# SUPERSEDED: This script has been replaced by scripts/update_data.py
+# which provides full UFCStats scraping, fighter stat updates, odds integration,
+# and proper EXTRA_FIGHTERS patching. Use that script instead.
 """
 FightIQ — UFC Event Fetcher
 Pulls upcoming UFC events from multiple sources for maximum accuracy.
