@@ -112,28 +112,6 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-fight-night-burns-vs-malot-apr18",
-    name: "UFC Fight Night: Burns vs. Malott",
-    type: "fight-night",
-    date: "April 18, 2026",
-    location: "Winnipeg, Manitoba, Canada",
-    fights: [
-      { f1: "gilbert-burns", f2: "mike-malott", tier: "main", weight: "Welterweight" },
-      { f1: "kyler-phillips", f2: "charles-jourdain", tier: "co-main", weight: "Bantamweight" },
-      { f1: "mandel-nallo", f2: "jai-herbert", tier: "main-card", weight: "Lightweight" },
-      { f1: "jasmine-jasudavicius", f2: "karine-silva", tier: "main-card", weight: "Women's Flyweight" },
-      { f1: "thiago-moises", f2: "gauge-young", tier: "main-card", weight: "Lightweight" },
-      { f1: "dennis-buzukja", f2: "marcio-barbosa", tier: "main-card", weight: "Featherweight" },
-      { f1: "julien-leblanc", f2: "robert-valentin", tier: "main-card", weight: "Middleweight" },
-      { f1: "tanner-boser", f2: "gokhan-saricam", tier: "main-card", weight: "Heavyweight" },
-      { f1: "melissa-croden", f2: "daria-zhelezniakova", tier: "main-card", weight: "Women's Bantamweight" },
-      { f1: "mitch-raposo", f2: "allan-nascimento", tier: "prelim", weight: "Flyweight" },
-      { f1: "jj-aldrich", f2: "jamey-lyn-horth", tier: "prelim", weight: "Women's Flyweight" },
-      { f1: "john-castaneda", f2: "mark-vologdin", tier: "prelim", weight: "Bantamweight" },
-      { f1: "jamie-siraj", f2: "john-yannis", tier: "prelim", weight: "Bantamweight" }
-    ]
-  },
-  {
     id: "ufc-fight-night-sterling-vs-za-apr25",
     name: "UFC Fight Night: Sterling vs. Zalal",
     type: "fight-night",
@@ -143,13 +121,15 @@ const UPCOMING_EVENTS = [
       { f1: "aljamain-sterling", f2: "youssef-zalal", tier: "main", weight: "Featherweight" },
       { f1: "norma-dumont", f2: "joselyne-edwards", tier: "co-main", weight: "Women's Bantamweight" },
       { f1: "rafa-garcia", f2: "alexander-hernandez", tier: "main-card", weight: "Lightweight" },
-      { f1: "davey-grant", f2: "juan-adrian-martinetti", tier: "main-card", weight: "Bantamweight" },
+      { f1: "davey-grant", f2: "adrian-luna-martinetti", tier: "main-card", weight: "Bantamweight" },
       { f1: "montel-jackson", f2: "raoni-barcelos", tier: "main-card", weight: "Bantamweight" },
       { f1: "marcus-buchecha", f2: "ryan-spann", tier: "main-card", weight: "Heavyweight" },
       { f1: "rodolfo-vieira", f2: "eric-mcconico", tier: "main-card", weight: "Middleweight" },
-      { f1: "jackson-mcvey", f2: "sedriques-dumas", tier: "prelim", weight: "Middleweight" },
-      { f1: "mayra-bueno-silva", f2: "michelle-montague", tier: "prelim", weight: "Women's Bantamweight" },
-      { f1: "jafel-filho", f2: "lucas-rocha", tier: "prelim", weight: "Flyweight" },
+      { f1: "jackson-mcvey", f2: "sedriques-dumas", tier: "main-card", weight: "Middleweight" },
+      { f1: "mayra-bueno-silva", f2: "michelle-montague", tier: "main-card", weight: "Women's Bantamweight" },
+      { f1: "jafel-filho", f2: "cody-durden", tier: "prelim", weight: "Flyweight" },
+      { f1: "francis-marshall", f2: "lucas-brennan", tier: "prelim", weight: "Lightweight" },
+      { f1: "max-griffin", f2: "victor-valenzuela", tier: "prelim", weight: "Welterweight" },
       { f1: "talita-alencar", f2: "julia-polastri", tier: "prelim", weight: "Women's Strawweight" }
     ]
   },
@@ -188,10 +168,11 @@ const UPCOMING_EVENTS = [
       { f1: "king-green", f2: "jeremy-stephens", tier: "main-card", weight: "Lightweight" },
       { f1: "jan-blachowicz", f2: "bogdan-guskov", tier: "main-card", weight: "Light Heavyweight" },
       { f1: "ateba-gautier", f2: "ozzy-diaz", tier: "main-card", weight: "Middleweight" },
-      { f1: "joel-alvarez", f2: "yaroslav-amosov", tier: "prelim", weight: "Welterweight" },
+      { f1: "joel-alvarez", f2: "yaroslav-amosov", tier: "main-card", weight: "Welterweight" },
       { f1: "roman-kopylov", f2: "marco-tulio", tier: "prelim", weight: "Middleweight" },
       { f1: "baisangur-susurkaev", f2: "djorden-santos", tier: "prelim", weight: "Middleweight" },
-      { f1: "clayton-carpenter", f2: "jose-ochoa", tier: "prelim", weight: "Flyweight" }
+      { f1: "clayton-carpenter", f2: "jose-ochoa", tier: "prelim", weight: "Flyweight" },
+      { f1: "grant-dawson", f2: "mateusz-rebecki", tier: "prelim", weight: "Lightweight" }
     ]
   },
   {
@@ -206,9 +187,14 @@ const UPCOMING_EVENTS = [
       { f1: "ketlen-vieira", f2: "jacqueline-cavalcanti", tier: "main-card", weight: "Women's Bantamweight" },
       { f1: "daniel-barez", f2: "luis-gurule", tier: "main-card", weight: "Flyweight" },
       { f1: "timmy-cuamba", f2: "benardo-sopaj", tier: "main-card", weight: "Bantamweight" },
-      { f1: "tuco-tokkos", f2: "ivan-erslan", tier: "prelim", weight: "Light Heavyweight" },
-      { f1: "modestas-bukauskas", f2: "rodolfo-bellato", tier: "prelim", weight: "Light Heavyweight" },
-      { f1: "alice-ardelean", f2: "polyana-viana", tier: "prelim", weight: "Women's Strawweight" }
+      { f1: "tuco-tokkos", f2: "ivan-erslan", tier: "main-card", weight: "Light Heavyweight" },
+      { f1: "modestas-bukauskas", f2: "rodolfo-bellato", tier: "main-card", weight: "Light Heavyweight" },
+      { f1: "alice-ardelean", f2: "polyana-viana", tier: "main-card", weight: "Women's Strawweight" },
+      { f1: "dooho-choi", f2: "daniel-santos", tier: "main-card", weight: "Featherweight" },
+      { f1: "malcolm-wellmaker", f2: "juan-diaz", tier: "prelim", weight: "Bantamweight" },
+      { f1: "jeremiah-wells", f2: "nicolas-dalby", tier: "prelim", weight: "Welterweight" },
+      { f1: "trey-ogden", f2: "tommy-gantt", tier: "prelim", weight: "Lightweight" },
+      { f1: "cody-brundage", f2: "andre-petroski", tier: "prelim", weight: "Middleweight" }
     ]
   },
   {
@@ -257,7 +243,38 @@ const UPCOMING_EVENTS = [
       { f1: "sean-omalley", f2: "aiemann-zahabi", tier: "main-card", weight: "Bantamweight" },
       { f1: "mauricio-ruffy", f2: "michael-chandler", tier: "main-card", weight: "Lightweight" },
       { f1: "bo-nickal", f2: "kyle-daukaus", tier: "main-card", weight: "Middleweight" },
-      { f1: "diego-lopes", f2: "steve-garcia", tier: "prelim", weight: "Featherweight" }
+      { f1: "diego-lopes", f2: "steve-garcia", tier: "prelim", weight: "Featherweight" },
+      { f1: "josh-hokit", f2: "derrick-lewis", tier: "prelim", weight: "Heavyweight" }
+    ]
+  },
+  {
+    id: "ufc-fight-night-jun20",
+    name: "UFC Fight Night",
+    type: "fight-night",
+    date: "June 20, 2026",
+    location: "Las Vegas, Nevada, USA",
+    fights: [
+      { f1: "allan-nascimento", f2: "mitch-raposo", tier: "main", weight: "Flyweight" }
+    ]
+  },
+  {
+    id: "ufc-329",
+    name: "UFC 329",
+    type: "ppv",
+    date: "July 11, 2026",
+    location: "Las Vegas, Nevada, USA",
+    fights: [
+
+    ]
+  },
+  {
+    id: "ufc-330",
+    name: "UFC 330",
+    type: "ppv",
+    date: "August 15, 2026",
+    location: "Philadelphia, Pennsylvania, USA",
+    fights: [
+
     ]
   }
 ];
@@ -1600,6 +1617,140 @@ const EXTRA_FIGHTERS = {
     id: "jake-matthews", name: "Jake Matthews", nickname: "",
     record: "0-0-0", weight: "Welterweight", rank: "Unranked",
     initials: "JM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  }
+,
+  "adrian-luna-martinetti": {
+    id: "adrian-luna-martinetti", name: "Adrian Luna Martinetti", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "AM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "cody-durden": {
+    id: "cody-durden", name: "Cody Durden", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "CD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "francis-marshall": {
+    id: "francis-marshall", name: "Francis Marshall", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "FM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "lucas-brennan": {
+    id: "lucas-brennan", name: "Lucas Brennan", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "LB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "max-griffin": {
+    id: "max-griffin", name: "Max Griffin", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "MG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "victor-valenzuela": {
+    id: "victor-valenzuela", name: "Victor Valenzuela", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "VV", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "grant-dawson": {
+    id: "grant-dawson", name: "Grant Dawson", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "GD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "mateusz-rebecki": {
+    id: "mateusz-rebecki", name: "Mateusz Rebecki", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "dooho-choi": {
+    id: "dooho-choi", name: "Dooho Choi", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "DC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "daniel-santos": {
+    id: "daniel-santos", name: "Daniel Santos", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "DS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "malcolm-wellmaker": {
+    id: "malcolm-wellmaker", name: "Malcolm Wellmaker", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "MW", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "juan-diaz": {
+    id: "juan-diaz", name: "Juan Diaz", nickname: "",
+    record: "0-0-0", weight: "Bantamweight", rank: "Unranked",
+    initials: "JD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jeremiah-wells": {
+    id: "jeremiah-wells", name: "Jeremiah Wells", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "JW", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "nicolas-dalby": {
+    id: "nicolas-dalby", name: "Nicolas Dalby", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "ND", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "trey-ogden": {
+    id: "trey-ogden", name: "Trey Ogden", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "TO", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "tommy-gantt": {
+    id: "tommy-gantt", name: "Tommy Gantt", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "TG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "cody-brundage": {
+    id: "cody-brundage", name: "Cody Brundage", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "CB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "andre-petroski": {
+    id: "andre-petroski", name: "Andre Petroski", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "AP", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "derrick-lewis": {
+    id: "derrick-lewis", name: "Derrick Lewis", nickname: "",
+    record: "0-0-0", weight: "Heavyweight", rank: "Unranked",
+    initials: "DL", image: "",
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
     style: "MMA", reach: 72, stance: "Orthodox"
   }
