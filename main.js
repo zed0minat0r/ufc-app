@@ -112,27 +112,6 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-fight-night-della-maddalen-may02",
-    name: "UFC Fight Night: Della Maddalena vs. Prates",
-    type: "fight-night",
-    date: "May 2, 2026",
-    location: "Perth, Western Australia, Australia",
-    fights: [
-      { f1: "jack-della-maddalena", f2: "carlos-prates", tier: "main", weight: "Welterweight" },
-      { f1: "beneil-dariush", f2: "quillan-salkilld", tier: "co-main", weight: "Lightweight" },
-      { f1: "tim-elliott", f2: "steve-erceg", tier: "main-card", weight: "Flyweight" },
-      { f1: "shamil-gaziev", f2: "brando-pericic", tier: "main-card", weight: "Heavyweight" },
-      { f1: "tai-tuivasa", f2: "louie-sutherland", tier: "main-card", weight: "Heavyweight" },
-      { f1: "cam-rowston", f2: "robert-bryczek", tier: "main-card", weight: "Middleweight" },
-      { f1: "junior-tafa", f2: "kevin-christian", tier: "main-card", weight: "Light Heavyweight" },
-      { f1: "jacob-malkoun", f2: "gerald-meerschaert", tier: "main-card", weight: "Middleweight" },
-      { f1: "colby-thicknesse", f2: "vince-morales", tier: "prelim", weight: "Bantamweight" },
-      { f1: "ben-johnston", f2: "wes-schultz", tier: "prelim", weight: "Middleweight" },
-      { f1: "jonathan-micallef", f2: "themba-gorimbo", tier: "prelim", weight: "Welterweight" },
-      { f1: "dom-mar-fan", f2: "kody-steele", tier: "prelim", weight: "Lightweight" }
-    ]
-  },
-  {
     id: "ufc-328",
     name: "UFC 328: Chimaev vs. Strickland",
     type: "ppv",
@@ -147,6 +126,7 @@ const UPCOMING_EVENTS = [
       { f1: "ateba-gautier", f2: "ozzy-diaz", tier: "main-card", weight: "Middleweight" },
       { f1: "joel-alvarez", f2: "yaroslav-amosov", tier: "main-card", weight: "Welterweight" },
       { f1: "grant-dawson", f2: "mateusz-rebecki", tier: "main-card", weight: "Lightweight" },
+      { f1: "jim-miller", f2: "jared-gordon", tier: "main-card", weight: "Lightweight" },
       { f1: "roman-kopylov", f2: "marco-tulio", tier: "prelim", weight: "Middleweight" },
       { f1: "pat-sabatini", f2: "william-gomis", tier: "prelim", weight: "Featherweight" },
       { f1: "baisangur-susurkaev", f2: "djorden-santos", tier: "prelim", weight: "Middleweight" },
@@ -189,10 +169,11 @@ const UPCOMING_EVENTS = [
       { f1: "alex-perez", f2: "sumudaerji", tier: "main-card", weight: "Flyweight" },
       { f1: "muslim-salikhov", f2: "jake-matthews", tier: "main-card", weight: "Welterweight" },
       { f1: "yi-sak-lee", f2: "luis-felipe-dias", tier: "main-card", weight: "Middleweight" },
-      { f1: "aoriqileng", f2: "cody-haddon", tier: "prelim", weight: "Bantamweight" },
+      { f1: "aoriqileng", f2: "cody-haddon", tier: "main-card", weight: "Bantamweight" },
       { f1: "rei-tsuruya", f2: "jesus-aguilar", tier: "prelim", weight: "Flyweight" },
       { f1: "angela-hill", f2: "xiong-jingnan", tier: "prelim", weight: "Women's Strawweight" },
-      { f1: "loma-lookboonmee", f2: "jaqueline-amorim", tier: "prelim", weight: "Women's Strawweight" }
+      { f1: "loma-lookboonmee", f2: "jaqueline-amorim", tier: "prelim", weight: "Women's Strawweight" },
+      { f1: "zhu-kangjie", f2: "ramon-taveras", tier: "prelim", weight: "Featherweight" }
     ]
   },
   {
@@ -233,13 +214,18 @@ const UPCOMING_EVENTS = [
     ]
   },
   {
-    id: "ufc-fight-night-jun20",
-    name: "UFC Fight Night",
+    id: "ufc-fight-night-kape-vs-horigu-jun20",
+    name: "UFC Fight Night: Kape vs. Horiguchi",
     type: "fight-night",
     date: "June 20, 2026",
     location: "Las Vegas, Nevada, USA",
     fights: [
-      { f1: "allan-nascimento", f2: "mitch-raposo", tier: "main", weight: "Flyweight" }
+      { f1: "manel-kape", f2: "kyoji-horiguchi", tier: "main", weight: "Flyweight" },
+      { f1: "allan-nascimento", f2: "mitch-raposo", tier: "co-main", weight: "Flyweight" },
+      { f1: "ion-cutelaba", f2: "navajo-stirling", tier: "main-card", weight: "Light Heavyweight" },
+      { f1: "andre-lima", f2: "kevin-borjas", tier: "main-card", weight: "Flyweight" },
+      { f1: "hyder-amil", f2: "christian-rodriguez", tier: "main-card", weight: "Featherweight" },
+      { f1: "bia-mesquita", f2: "melissa-mullins", tier: "prelim", weight: "Women's Bantamweight" }
     ]
   },
   {
@@ -1863,6 +1849,105 @@ const EXTRA_FIGHTERS = {
     id: "chelsea-chandler", name: "Chelsea Chandler", nickname: "",
     record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
     initials: "CC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  }
+,
+  "jim-miller": {
+    id: "jim-miller", name: "Jim Miller", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "JM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jared-gordon": {
+    id: "jared-gordon", name: "Jared Gordon", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "JG", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "zhu-kangjie": {
+    id: "zhu-kangjie", name: "Zhu Kangjie", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "ZK", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ramon-taveras": {
+    id: "ramon-taveras", name: "Ramon Taveras", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "RT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "manel-kape": {
+    id: "manel-kape", name: "Manel Kape", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "MK", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "kyoji-horiguchi": {
+    id: "kyoji-horiguchi", name: "Kyoji Horiguchi", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "KH", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ion-cutelaba": {
+    id: "ion-cutelaba", name: "Ion Cutelaba", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "IC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "navajo-stirling": {
+    id: "navajo-stirling", name: "Navajo Stirling", nickname: "",
+    record: "0-0-0", weight: "Light Heavyweight", rank: "Unranked",
+    initials: "NS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "andre-lima": {
+    id: "andre-lima", name: "Andre Lima", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "AL", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "kevin-borjas": {
+    id: "kevin-borjas", name: "Kevin Borjas", nickname: "",
+    record: "0-0-0", weight: "Flyweight", rank: "Unranked",
+    initials: "KB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "hyder-amil": {
+    id: "hyder-amil", name: "Hyder Amil", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "HA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "christian-rodriguez": {
+    id: "christian-rodriguez", name: "Christian Rodriguez", nickname: "",
+    record: "0-0-0", weight: "Featherweight", rank: "Unranked",
+    initials: "CR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "bia-mesquita": {
+    id: "bia-mesquita", name: "Bia Mesquita", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "BM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "melissa-mullins": {
+    id: "melissa-mullins", name: "Melissa Mullins", nickname: "",
+    record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
+    initials: "MM", image: "",
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
     style: "MMA", reach: 72, stance: "Orthodox"
   }
