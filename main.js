@@ -112,28 +112,6 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-328",
-    name: "UFC 328: Chimaev vs. Strickland",
-    type: "ppv",
-    date: "May 9, 2026",
-    location: "Newark, New Jersey, USA",
-    fights: [
-      { f1: "khamzat-chimaev", f2: "sean-strickland", tier: "main", weight: "Middleweight" },
-      { f1: "joshua-van", f2: "tatsuro-taira", tier: "co-main", weight: "Flyweight" },
-      { f1: "alexander-volkov", f2: "waldo-cortes-acosta", tier: "main-card", weight: "Heavyweight" },
-      { f1: "sean-brady", f2: "joaquin-buckley", tier: "main-card", weight: "Welterweight" },
-      { f1: "king-green", f2: "jeremy-stephens", tier: "main-card", weight: "Lightweight" },
-      { f1: "ateba-gautier", f2: "ozzy-diaz", tier: "main-card", weight: "Middleweight" },
-      { f1: "joel-alvarez", f2: "yaroslav-amosov", tier: "main-card", weight: "Welterweight" },
-      { f1: "grant-dawson", f2: "mateusz-rebecki", tier: "main-card", weight: "Lightweight" },
-      { f1: "jim-miller", f2: "jared-gordon", tier: "main-card", weight: "Lightweight" },
-      { f1: "roman-kopylov", f2: "marco-tulio", tier: "prelim", weight: "Middleweight" },
-      { f1: "pat-sabatini", f2: "william-gomis", tier: "prelim", weight: "Featherweight" },
-      { f1: "baisangur-susurkaev", f2: "djorden-santos", tier: "prelim", weight: "Middleweight" },
-      { f1: "clayton-carpenter", f2: "jose-ochoa", tier: "prelim", weight: "Flyweight" }
-    ]
-  },
-  {
     id: "ufc-fight-night-allen-vs-costa-may16",
     name: "UFC Fight Night: Allen vs. Costa",
     type: "fight-night",
@@ -145,9 +123,8 @@ const UPCOMING_EVENTS = [
       { f1: "malcolm-wellmaker", f2: "juan-diaz", tier: "main-card", weight: "Bantamweight" },
       { f1: "modestas-bukauskas", f2: "rodolfo-bellato", tier: "main-card", weight: "Light Heavyweight" },
       { f1: "timmy-cuamba", f2: "benardo-sopaj", tier: "main-card", weight: "Bantamweight" },
-      { f1: "jeremiah-wells", f2: "nicolas-dalby", tier: "main-card", weight: "Welterweight" },
+      { f1: "nikolay-veretennikov", f2: "khaos-williams", tier: "main-card", weight: "Welterweight" },
       { f1: "tuco-tokkos", f2: "ivan-erslan", tier: "main-card", weight: "Light Heavyweight" },
-      { f1: "trey-ogden", f2: "tommy-gantt", tier: "main-card", weight: "Lightweight" },
       { f1: "ketlen-vieira", f2: "jacqueline-cavalcanti", tier: "main-card", weight: "Women's Bantamweight" },
       { f1: "cody-brundage", f2: "andre-petroski", tier: "prelim", weight: "Middleweight" },
       { f1: "alice-ardelean", f2: "polyana-viana", tier: "prelim", weight: "Women's Strawweight" },
@@ -170,10 +147,11 @@ const UPCOMING_EVENTS = [
       { f1: "muslim-salikhov", f2: "jake-matthews", tier: "main-card", weight: "Welterweight" },
       { f1: "yi-sak-lee", f2: "luis-felipe-dias", tier: "main-card", weight: "Middleweight" },
       { f1: "aoriqileng", f2: "cody-haddon", tier: "main-card", weight: "Bantamweight" },
-      { f1: "rei-tsuruya", f2: "jesus-aguilar", tier: "prelim", weight: "Flyweight" },
+      { f1: "rei-tsuruya", f2: "jesus-aguilar", tier: "main-card", weight: "Flyweight" },
       { f1: "angela-hill", f2: "xiong-jingnan", tier: "prelim", weight: "Women's Strawweight" },
       { f1: "loma-lookboonmee", f2: "jaqueline-amorim", tier: "prelim", weight: "Women's Strawweight" },
-      { f1: "zhu-kangjie", f2: "ramon-taveras", tier: "prelim", weight: "Featherweight" }
+      { f1: "zhu-kangjie", f2: "ramon-taveras", tier: "prelim", weight: "Featherweight" },
+      { f1: "ding-meng", f2: "jose-henrique", tier: "prelim", weight: "Welterweight" }
     ]
   },
   {
@@ -207,10 +185,10 @@ const UPCOMING_EVENTS = [
       { f1: "ilia-topuria", f2: "justin-gaethje", tier: "main", weight: "Lightweight" },
       { f1: "alex-pereira", f2: "ciryl-gane", tier: "co-main", weight: "Heavyweight" },
       { f1: "sean-omalley", f2: "aiemann-zahabi", tier: "main-card", weight: "Bantamweight" },
+      { f1: "josh-hokit", f2: "derrick-lewis", tier: "main-card", weight: "Heavyweight" },
       { f1: "mauricio-ruffy", f2: "michael-chandler", tier: "main-card", weight: "Lightweight" },
-      { f1: "bo-nickal", f2: "kyle-daukaus", tier: "main-card", weight: "Middleweight" },
-      { f1: "diego-lopes", f2: "steve-garcia", tier: "prelim", weight: "Featherweight" },
-      { f1: "josh-hokit", f2: "derrick-lewis", tier: "prelim", weight: "Heavyweight" }
+      { f1: "bo-nickal", f2: "kyle-daukaus", tier: "prelim", weight: "Middleweight" },
+      { f1: "diego-lopes", f2: "steve-garcia", tier: "prelim", weight: "Featherweight" }
     ]
   },
   {
@@ -226,6 +204,17 @@ const UPCOMING_EVENTS = [
       { f1: "andre-lima", f2: "kevin-borjas", tier: "main-card", weight: "Flyweight" },
       { f1: "hyder-amil", f2: "christian-rodriguez", tier: "main-card", weight: "Featherweight" },
       { f1: "bia-mesquita", f2: "melissa-mullins", tier: "prelim", weight: "Women's Bantamweight" }
+    ]
+  },
+  {
+    id: "ufc-fight-night-fiziev-vs-torr-jun27",
+    name: "UFC Fight Night: Fiziev vs. Torres",
+    type: "fight-night",
+    date: "June 27, 2026",
+    location: "Baku, Azerbaijan",
+    fights: [
+      { f1: "rafael-fiziev", f2: "manuel-torres", tier: "main", weight: "Lightweight" },
+      { f1: "shara-magomedov", f2: "michel-pereira", tier: "co-main", weight: "Middleweight" }
     ]
   },
   {
@@ -1948,6 +1937,63 @@ const EXTRA_FIGHTERS = {
     id: "melissa-mullins", name: "Melissa Mullins", nickname: "",
     record: "0-0-0", weight: "Women's Bantamweight", rank: "Unranked",
     initials: "MM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  }
+,
+  "nikolay-veretennikov": {
+    id: "nikolay-veretennikov", name: "Nikolay Veretennikov", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "NV", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "khaos-williams": {
+    id: "khaos-williams", name: "Khaos Williams", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "KW", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ding-meng": {
+    id: "ding-meng", name: "Ding Meng", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "DM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jose-henrique": {
+    id: "jose-henrique", name: "Jose Henrique", nickname: "",
+    record: "0-0-0", weight: "Welterweight", rank: "Unranked",
+    initials: "JH", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "rafael-fiziev": {
+    id: "rafael-fiziev", name: "Rafael Fiziev", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "RF", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "manuel-torres": {
+    id: "manuel-torres", name: "Manuel Torres", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "shara-magomedov": {
+    id: "shara-magomedov", name: "Shara Magomedov", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "SM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "michel-pereira": {
+    id: "michel-pereira", name: "Michel Pereira", nickname: "",
+    record: "0-0-0", weight: "Middleweight", rank: "Unranked",
+    initials: "MP", image: "",
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
     style: "MMA", reach: 72, stance: "Orthodox"
   }
