@@ -112,138 +112,24 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-fight-night-song-vs-figuei-may30",
-    name: "UFC Fight Night: Song vs. Figueiredo",
-    type: "fight-night",
-    date: "May 30, 2026",
-    location: "Macau, China",
-    fights: [
-      { f1: "song-yadong", f2: "deiveson-figueiredo", tier: "main", weight: "Bantamweight" },
-      { f1: "zhang-mingyang", f2: "alonzo-menifield", tier: "co-main", weight: "Light Heavyweight" },
-      { f1: "sergei-pavlovich", f2: "tallison-teixeira", tier: "main-card", weight: "Heavyweight" },
-      { f1: "kai-asakura", f2: "cameron-smotherman", tier: "main-card", weight: "Bantamweight" },
-      { f1: "muslim-salikhov", f2: "jake-matthews", tier: "main-card", weight: "Welterweight" },
-      { f1: "alex-perez", f2: "sumudaerji", tier: "main-card", weight: "Flyweight" },
-      { f1: "yi-sak-lee", f2: "luis-felipe-dias", tier: "main-card", weight: "Middleweight" },
-      { f1: "ding-meng", f2: "jose-henrique", tier: "main-card", weight: "Welterweight" },
-      { f1: "aoriqileng", f2: "cody-haddon", tier: "main-card", weight: "Bantamweight" },
-      { f1: "rei-tsuruya", f2: "jesus-aguilar", tier: "prelim", weight: "Flyweight" },
-      { f1: "angela-hill", f2: "xiong-jingnan", tier: "prelim", weight: "Women's Strawweight" },
-      { f1: "zhu-kangjie", f2: "ramon-taveras", tier: "prelim", weight: "Featherweight" },
-      { f1: "loma-lookboonmee", f2: "jaqueline-amorim", tier: "prelim", weight: "Women's Strawweight" }
-    ]
-  },
-  {
     id: "ufc-fight-night-muhammad-vs-bo-jun06",
     name: "UFC Fight Night: Muhammad vs. Bonfim",
     type: "fight-night",
     date: "June 6, 2026",
-    location: "Las Vegas, Nevada, USA",
+    location: "Meta APEX, Las Vegas, NV",
     fights: [
-      { f1: "belal-muhammad", f2: "gabriel-bonfim", tier: "main", weight: "Welterweight" },
-      { f1: "iwo-baraniewski", f2: "billy-elekana", tier: "co-main", weight: "Light Heavyweight" },
-      { f1: "imanol-rodriguez", f2: "matt-schnell", tier: "main-card", weight: "Flyweight" },
-      { f1: "bruno-silva", f2: "edgar-chairez", tier: "main-card", weight: "Flyweight" },
-      { f1: "jeisla-chaves", f2: "yuneisy-duben", tier: "main-card", weight: "Women's Flyweight" },
-      { f1: "brendan-allen", f2: "edmen-shahbazyan", tier: "main-card", weight: "Middleweight" },
-      { f1: "bryce-mitchell", f2: "victor-henry", tier: "main-card", weight: "Bantamweight" },
-      { f1: "marcus-mcghee", f2: "jakub-wiklacz", tier: "main-card", weight: "Bantamweight" },
-      { f1: "jordan-leavitt", f2: "joanderson-brito", tier: "prelim", weight: "Featherweight" },
-      { f1: "fares-ziam", f2: "tom-nolan", tier: "prelim", weight: "Lightweight" },
-      { f1: "ketlen-souza", f2: "ariane-carnelossi", tier: "prelim", weight: "Women's Strawweight" },
-      { f1: "priscila-cachoeira", f2: "chelsea-chandler", tier: "prelim", weight: "Women's Bantamweight" }
-    ]
-  },
-  {
-    id: "ufc-freedom-250-jun14",
-    name: "UFC Freedom 250",
-    type: "fight-night",
-    date: "June 14, 2026",
-    location: "Washington, DC, USA",
-    fights: [
-      { f1: "ilia-topuria", f2: "justin-gaethje", tier: "main", weight: "Lightweight" },
-      { f1: "alex-pereira", f2: "ciryl-gane", tier: "co-main", weight: "Heavyweight" },
-      { f1: "sean-omalley", f2: "aiemann-zahabi", tier: "main-card", weight: "Bantamweight" },
-      { f1: "josh-hokit", f2: "derrick-lewis", tier: "main-card", weight: "Heavyweight" },
-      { f1: "mauricio-ruffy", f2: "michael-chandler", tier: "main-card", weight: "Lightweight" },
-      { f1: "bo-nickal", f2: "kyle-daukaus", tier: "prelim", weight: "Middleweight" },
-      { f1: "diego-lopes", f2: "steve-garcia", tier: "prelim", weight: "Featherweight" }
-    ]
-  },
-  {
-    id: "ufc-fight-night-kape-vs-horigu-jun20",
-    name: "UFC Fight Night: Kape vs. Horiguchi",
-    type: "fight-night",
-    date: "June 20, 2026",
-    location: "Las Vegas, Nevada, USA",
-    fights: [
-      { f1: "manel-kape", f2: "kyoji-horiguchi", tier: "main", weight: "Flyweight" },
-      { f1: "allan-nascimento", f2: "mitch-raposo", tier: "co-main", weight: "Flyweight" },
-      { f1: "ion-cutelaba", f2: "navajo-stirling", tier: "main-card", weight: "Light Heavyweight" },
-      { f1: "andre-lima", f2: "kevin-borjas", tier: "main-card", weight: "Flyweight" },
-      { f1: "hyder-amil", f2: "christian-rodriguez", tier: "main-card", weight: "Featherweight" },
-      { f1: "bia-mesquita", f2: "melissa-mullins", tier: "prelim", weight: "Women's Bantamweight" }
-    ]
-  },
-  {
-    id: "ufc-fight-night-fiziev-vs-torr-jun27",
-    name: "UFC Fight Night: Fiziev vs. Torres",
-    type: "fight-night",
-    date: "June 27, 2026",
-    location: "Baku, Azerbaijan",
-    fights: [
-      { f1: "rafael-fiziev", f2: "manuel-torres", tier: "main", weight: "Lightweight" },
-      { f1: "shara-magomedov", f2: "michel-pereira", tier: "co-main", weight: "Middleweight" },
-      { f1: "ismail-naurdiev", f2: "marvin-vettori", tier: "main-card", weight: "Middleweight" },
-      { f1: "ikram-aliskerov", f2: "brunno-ferreira", tier: "main-card", weight: "Middleweight" },
-      { f1: "nursulton-ruziboev", f2: "andrey-pulyaev", tier: "main-card", weight: "Middleweight" },
-      { f1: "nazim-sadykhov", f2: "matheus-camilo", tier: "main-card", weight: "Lightweight" },
-      { f1: "daniil-donchenko", f2: "andreas-gustafsson", tier: "main-card", weight: "Welterweight" },
-      { f1: "bekzat-almakhan", f2: "jean-matsumoto", tier: "main-card", weight: "Bantamweight" },
-      { f1: "abus-magomedov", f2: "michal-oleksiejczuk", tier: "prelim", weight: "Middleweight" },
-      { f1: "abdul-rakhman-yakhyaev", f2: "julius-walker", tier: "prelim", weight: "Light Heavyweight" },
-      { f1: "asu-almabayev", f2: "charles-johnson", tier: "prelim", weight: "Flyweight" },
-      { f1: "farman-hasanov", f2: "eric-nolan", tier: "prelim", weight: "Welterweight" }
-    ]
-  },
-  {
-    id: "ufc-329",
-    name: "UFC 329: McGregor vs. Holloway 2",
-    type: "ppv",
-    date: "July 11, 2026",
-    location: "Las Vegas, Nevada, USA",
-    fights: [
-      { f1: "conor-mcgregor", f2: "max-holloway", tier: "main", weight: "Welterweight" },
-      { f1: "benoit-saint-denis", f2: "paddy-pimblett", tier: "co-main", weight: "Lightweight" },
-      { f1: "cory-sandhagen", f2: "mario-bautista", tier: "main-card", weight: "Bantamweight" },
-      { f1: "brandon-royval", f2: "loneer-kavanagh", tier: "main-card", weight: "Flyweight" },
-      { f1: "gable-steveson", f2: "elisha-ellison", tier: "main-card", weight: "Heavyweight" },
-      { f1: "robert-whittaker", f2: "nikita-krylov", tier: "main-card", weight: "Light Heavyweight" },
-      { f1: "luke-riley", f2: "kai-kamaka-iii", tier: "main-card", weight: "Featherweight" },
-      { f1: "damian-pinas", f2: "cesar-almeida", tier: "prelim", weight: "Middleweight" },
-      { f1: "cody-garbrandt", f2: "adrian-yanez", tier: "prelim", weight: "Bantamweight" },
-      { f1: "tracy-cortez", f2: "wang-cong", tier: "prelim", weight: "Women's Flyweight" },
-      { f1: "ode-osbourne", f2: "cody-durden", tier: "prelim", weight: "Flyweight" }
-    ]
-  },
-  {
-    id: "ufc-fight-night-jul18",
-    name: "UFC Fight Night",
-    type: "fight-night",
-    date: "July 18, 2026",
-    location: "Oklahoma City, Oklahoma, USA",
-    fights: [
-      { f1: "brad-tavares", f2: "marc-andre-barriault", tier: "main", weight: "Middleweight" }
-    ]
-  },
-  {
-    id: "ufc-330",
-    name: "UFC 330",
-    type: "ppv",
-    date: "August 15, 2026",
-    location: "Philadelphia, Pennsylvania, USA",
-    fights: [
-
+      { f1: "belal-muhammad", f2: "gabriel-bonfim", tier: "main", weight: "Lightweight" },
+      { f1: "brendan-allen", f2: "edmen-shahbazyan", tier: "co-main", weight: "Lightweight" },
+      { f1: "far-s-ziam", f2: "tom-nolan", tier: "main-card", weight: "Lightweight" },
+      { f1: "bryce-mitchell", f2: "santiago-luna", tier: "main-card", weight: "Lightweight" },
+      { f1: "junior-tafa", f2: "iwo-baraniewski", tier: "main-card", weight: "Lightweight" },
+      { f1: "matt-schnell", f2: "alessandro-costa", tier: "main-card", weight: "Lightweight" },
+      { f1: "marcus-mcghee", f2: "john-yannis", tier: "main-card", weight: "Lightweight" },
+      { f1: "bruno-silva", f2: "dgar-ch-irez", tier: "main-card", weight: "Lightweight" },
+      { f1: "priscila-cachoeira", f2: "chelsea-chandler", tier: "prelim", weight: "Lightweight" },
+      { f1: "joanderson-brito", f2: "jordan-leavitt", tier: "prelim", weight: "Lightweight" },
+      { f1: "yuneisy-duben", f2: "jeisla-chaves", tier: "prelim", weight: "Lightweight" },
+      { f1: "ariane-carnelossi", f2: "ketlen-souza", tier: "prelim", weight: "Lightweight" }
     ]
   }
 ];
@@ -2277,6 +2163,35 @@ const EXTRA_FIGHTERS = {
     id: "marc-andre-barriault", name: "Marc-Andre Barriault", nickname: "",
     record: "0-0-0", weight: "Middleweight", rank: "Unranked",
     initials: "MB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  }
+,
+  "far-s-ziam": {
+    id: "far-s-ziam", name: "Far\u00e9s Ziam", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "FZ", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "santiago-luna": {
+    id: "santiago-luna", name: "Santiago Luna", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "SL", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "alessandro-costa": {
+    id: "alessandro-costa", name: "Alessandro Costa", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "AC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "dgar-ch-irez": {
+    id: "dgar-ch-irez", name: "\u00c9dgar Ch\u00e1irez", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "ÉC", image: "",
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
     style: "MMA", reach: 72, stance: "Orthodox"
   }
