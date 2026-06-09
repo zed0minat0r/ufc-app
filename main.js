@@ -112,24 +112,19 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-fight-night-muhammad-vs-bo-jun06",
-    name: "UFC Fight Night: Muhammad vs. Bonfim",
+    id: "ufc-freedom-250-topuria-vs-gae-jun15",
+    name: "UFC Freedom 250: Topuria vs. Gaethje",
     type: "fight-night",
-    date: "June 6, 2026",
-    location: "Meta APEX, Las Vegas, NV",
+    date: "June 15, 2026",
+    location: "South Lawn of the White House, Washington, DC",
     fights: [
-      { f1: "belal-muhammad", f2: "gabriel-bonfim", tier: "main", weight: "Lightweight" },
-      { f1: "brendan-allen", f2: "edmen-shahbazyan", tier: "co-main", weight: "Lightweight" },
-      { f1: "far-s-ziam", f2: "tom-nolan", tier: "main-card", weight: "Lightweight" },
-      { f1: "bryce-mitchell", f2: "santiago-luna", tier: "main-card", weight: "Lightweight" },
-      { f1: "junior-tafa", f2: "iwo-baraniewski", tier: "main-card", weight: "Lightweight" },
-      { f1: "matt-schnell", f2: "alessandro-costa", tier: "main-card", weight: "Lightweight" },
-      { f1: "marcus-mcghee", f2: "john-yannis", tier: "main-card", weight: "Lightweight" },
-      { f1: "bruno-silva", f2: "dgar-ch-irez", tier: "main-card", weight: "Lightweight" },
-      { f1: "priscila-cachoeira", f2: "chelsea-chandler", tier: "prelim", weight: "Lightweight" },
-      { f1: "joanderson-brito", f2: "jordan-leavitt", tier: "prelim", weight: "Lightweight" },
-      { f1: "yuneisy-duben", f2: "jeisla-chaves", tier: "prelim", weight: "Lightweight" },
-      { f1: "ariane-carnelossi", f2: "ketlen-souza", tier: "prelim", weight: "Lightweight" }
+      { f1: "justin-gaethje", f2: "ilia-topuria", tier: "main", weight: "Lightweight" },
+      { f1: "ciryl-gane", f2: "alex-pereira", tier: "co-main", weight: "Lightweight" },
+      { f1: "aiemann-zahabi", f2: "sean-omalley", tier: "main-card", weight: "Lightweight" },
+      { f1: "derrick-lewis", f2: "josh-hokit", tier: "main-card", weight: "Lightweight" },
+      { f1: "michael-chandler", f2: "mauricio-ruffy", tier: "main-card", weight: "Lightweight" },
+      { f1: "kyle-daukaus", f2: "bo-nickal", tier: "prelim", weight: "Lightweight" },
+      { f1: "steve-garcia", f2: "diego-lopes", tier: "prelim", weight: "Lightweight" }
     ]
   }
 ];
