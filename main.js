@@ -112,19 +112,24 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-freedom-250-topuria-vs-gae-jun15",
-    name: "UFC Freedom 250: Topuria vs. Gaethje",
+    id: "ufc-fight-night-kape-vs-horigu-jun20",
+    name: "UFC Fight Night: Kape vs. Horiguchi",
     type: "fight-night",
-    date: "June 15, 2026",
-    location: "South Lawn of the White House, Washington, DC",
+    date: "June 20, 2026",
+    location: "Meta APEX, Las Vegas, NV",
     fights: [
-      { f1: "justin-gaethje", f2: "ilia-topuria", tier: "main", weight: "Lightweight" },
-      { f1: "ciryl-gane", f2: "alex-pereira", tier: "co-main", weight: "Lightweight" },
-      { f1: "aiemann-zahabi", f2: "sean-omalley", tier: "main-card", weight: "Lightweight" },
-      { f1: "derrick-lewis", f2: "josh-hokit", tier: "main-card", weight: "Lightweight" },
-      { f1: "michael-chandler", f2: "mauricio-ruffy", tier: "main-card", weight: "Lightweight" },
-      { f1: "kyle-daukaus", f2: "bo-nickal", tier: "prelim", weight: "Lightweight" },
-      { f1: "steve-garcia", f2: "diego-lopes", tier: "prelim", weight: "Lightweight" }
+      { f1: "kyoji-horiguchi", f2: "manel-kape", tier: "main", weight: "Lightweight" },
+      { f1: "ion-cutelaba", f2: "navajo-stirling", tier: "co-main", weight: "Lightweight" },
+      { f1: "andre-fili", f2: "vinicius-oliveira", tier: "main-card", weight: "Lightweight" },
+      { f1: "christian-rodriguez", f2: "hyder-amil", tier: "main-card", weight: "Lightweight" },
+      { f1: "kevin-borjas", f2: "andre-lima", tier: "main-card", weight: "Lightweight" },
+      { f1: "melsik-baghdasaryan", f2: "murtazali-magomedov", tier: "main-card", weight: "Lightweight" },
+      { f1: "melissa-mullins", f2: "bia-mesquita", tier: "main-card", weight: "Lightweight" },
+      { f1: "allan-nascimento", f2: "mitch-raposo", tier: "main-card", weight: "Lightweight" },
+      { f1: "gaston-bola-os", f2: "michael-aswell", tier: "prelim", weight: "Lightweight" },
+      { f1: "karol-rosa", f2: "luana-santos", tier: "prelim", weight: "Lightweight" },
+      { f1: "leon-shahbazyan", f2: "levan-chokheli", tier: "prelim", weight: "Lightweight" },
+      { f1: "otari-tanzilovi", f2: "shane-collins", tier: "prelim", weight: "Lightweight" }
     ]
   }
 ];
@@ -2187,6 +2192,91 @@ const EXTRA_FIGHTERS = {
     id: "dgar-ch-irez", name: "\u00c9dgar Ch\u00e1irez", nickname: "",
     record: "0-0-0", weight: "Lightweight", rank: "Unranked",
     initials: "ÉC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  }
+,
+  "andre-fili": {
+    id: "andre-fili", name: "Andre Fili", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "AF", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "vinicius-oliveira": {
+    id: "vinicius-oliveira", name: "Vinicius Oliveira", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "VO", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "melsik-baghdasaryan": {
+    id: "melsik-baghdasaryan", name: "Melsik Baghdasaryan", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "murtazali-magomedov": {
+    id: "murtazali-magomedov", name: "Murtazali Magomedov", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "gaston-bola-os": {
+    id: "gaston-bola-os", name: "Gaston Bola\u00f1os", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "GB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "michael-aswell": {
+    id: "michael-aswell", name: "Michael Aswell", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "karol-rosa": {
+    id: "karol-rosa", name: "Karol Rosa", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "KR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "luana-santos": {
+    id: "luana-santos", name: "Luana Santos", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "LS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "leon-shahbazyan": {
+    id: "leon-shahbazyan", name: "Leon Shahbazyan", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "LS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "levan-chokheli": {
+    id: "levan-chokheli", name: "Levan Chokheli", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "LC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "otari-tanzilovi": {
+    id: "otari-tanzilovi", name: "Otari Tanzilovi", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "OT", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "shane-collins": {
+    id: "shane-collins", name: "Shane Collins", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "SC", image: "",
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
     style: "MMA", reach: 72, stance: "Orthodox"
   }
