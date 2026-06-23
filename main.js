@@ -112,24 +112,25 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-fight-night-kape-vs-horigu-jun20",
-    name: "UFC Fight Night: Kape vs. Horiguchi",
+    id: "ufc-fight-night-fiziev-vs-torr-jun27",
+    name: "UFC Fight Night: Fiziev vs. Torres",
     type: "fight-night",
-    date: "June 20, 2026",
-    location: "Meta APEX, Las Vegas, NV",
+    date: "June 27, 2026",
+    location: "National Gymnastics Arena, Baku",
     fights: [
-      { f1: "kyoji-horiguchi", f2: "manel-kape", tier: "main", weight: "Lightweight" },
-      { f1: "ion-cutelaba", f2: "navajo-stirling", tier: "co-main", weight: "Lightweight" },
-      { f1: "andre-fili", f2: "vinicius-oliveira", tier: "main-card", weight: "Lightweight" },
-      { f1: "christian-rodriguez", f2: "hyder-amil", tier: "main-card", weight: "Lightweight" },
-      { f1: "kevin-borjas", f2: "andre-lima", tier: "main-card", weight: "Lightweight" },
-      { f1: "melsik-baghdasaryan", f2: "murtazali-magomedov", tier: "main-card", weight: "Lightweight" },
-      { f1: "melissa-mullins", f2: "bia-mesquita", tier: "main-card", weight: "Lightweight" },
-      { f1: "allan-nascimento", f2: "mitch-raposo", tier: "main-card", weight: "Lightweight" },
-      { f1: "gaston-bola-os", f2: "michael-aswell", tier: "prelim", weight: "Lightweight" },
-      { f1: "karol-rosa", f2: "luana-santos", tier: "prelim", weight: "Lightweight" },
-      { f1: "leon-shahbazyan", f2: "levan-chokheli", tier: "prelim", weight: "Lightweight" },
-      { f1: "otari-tanzilovi", f2: "shane-collins", tier: "prelim", weight: "Lightweight" }
+      { f1: "rafael-fiziev", f2: "manuel-torres", tier: "main", weight: "Lightweight" },
+      { f1: "michel-pereira", f2: "shara-magomedov", tier: "co-main", weight: "Lightweight" },
+      { f1: "nazim-sadykhov", f2: "matheus-camilo", tier: "main-card", weight: "Lightweight" },
+      { f1: "asu-almabayev", f2: "charles-johnson", tier: "main-card", weight: "Lightweight" },
+      { f1: "ikram-aliskerov", f2: "brunno-ferreira", tier: "main-card", weight: "Lightweight" },
+      { f1: "abus-magomedov", f2: "michal-oleksiejczuk", tier: "main-card", weight: "Lightweight" },
+      { f1: "eric-nolan", f2: "farman-hasanov", tier: "main-card", weight: "Lightweight" },
+      { f1: "julius-walker", f2: "abdul-rakhman-yakhyaev", tier: "main-card", weight: "Lightweight" },
+      { f1: "nursulton-ruziboev", f2: "andrey-pulyaev", tier: "main-card", weight: "Lightweight" },
+      { f1: "javier-reyes", f2: "kaan-ofli", tier: "prelim", weight: "Lightweight" },
+      { f1: "theodor-berggren", f2: "daniil-donchenko", tier: "prelim", weight: "Lightweight" },
+      { f1: "jean-matsumoto", f2: "bekzat-almakhan", tier: "prelim", weight: "Lightweight" },
+      { f1: "tahir-abdullayev", f2: "jefferson-nascimento", tier: "prelim", weight: "Lightweight" }
     ]
   }
 ];
@@ -2277,6 +2278,42 @@ const EXTRA_FIGHTERS = {
     id: "shane-collins", name: "Shane Collins", nickname: "",
     record: "0-0-0", weight: "Lightweight", rank: "Unranked",
     initials: "SC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  }
+,
+  "javier-reyes": {
+    id: "javier-reyes", name: "Javier Reyes", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "JR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "kaan-ofli": {
+    id: "kaan-ofli", name: "Kaan Ofli", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "KO", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "theodor-berggren": {
+    id: "theodor-berggren", name: "Theodor Berggren", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "TB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "tahir-abdullayev": {
+    id: "tahir-abdullayev", name: "Tahir Abdullayev", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "TA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "jefferson-nascimento": {
+    id: "jefferson-nascimento", name: "Jefferson Nascimento", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "JN", image: "",
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
     style: "MMA", reach: 72, stance: "Orthodox"
   }
