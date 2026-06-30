@@ -112,25 +112,26 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-fight-night-fiziev-vs-torr-jun27",
-    name: "UFC Fight Night: Fiziev vs. Torres",
-    type: "fight-night",
-    date: "June 27, 2026",
-    location: "National Gymnastics Arena, Baku",
+    id: "ufc-329",
+    name: "UFC 329: McGregor vs. Holloway 2",
+    type: "ppv",
+    date: "July 11, 2026",
+    location: "T-Mobile Arena, Las Vegas, NV",
     fights: [
-      { f1: "rafael-fiziev", f2: "manuel-torres", tier: "main", weight: "Lightweight" },
-      { f1: "michel-pereira", f2: "shara-magomedov", tier: "co-main", weight: "Lightweight" },
-      { f1: "nazim-sadykhov", f2: "matheus-camilo", tier: "main-card", weight: "Lightweight" },
-      { f1: "asu-almabayev", f2: "charles-johnson", tier: "main-card", weight: "Lightweight" },
-      { f1: "ikram-aliskerov", f2: "brunno-ferreira", tier: "main-card", weight: "Lightweight" },
-      { f1: "abus-magomedov", f2: "michal-oleksiejczuk", tier: "main-card", weight: "Lightweight" },
-      { f1: "eric-nolan", f2: "farman-hasanov", tier: "main-card", weight: "Lightweight" },
-      { f1: "julius-walker", f2: "abdul-rakhman-yakhyaev", tier: "main-card", weight: "Lightweight" },
-      { f1: "nursulton-ruziboev", f2: "andrey-pulyaev", tier: "main-card", weight: "Lightweight" },
-      { f1: "javier-reyes", f2: "kaan-ofli", tier: "prelim", weight: "Lightweight" },
-      { f1: "theodor-berggren", f2: "daniil-donchenko", tier: "prelim", weight: "Lightweight" },
-      { f1: "jean-matsumoto", f2: "bekzat-almakhan", tier: "prelim", weight: "Lightweight" },
-      { f1: "tahir-abdullayev", f2: "jefferson-nascimento", tier: "prelim", weight: "Lightweight" }
+      { f1: "max-holloway", f2: "conor-mcgregor", tier: "main", weight: "Lightweight" },
+      { f1: "paddy-pimblett", f2: "beno-t-saint-denis", tier: "co-main", weight: "Lightweight" },
+      { f1: "cory-sandhagen", f2: "mario-bautista", tier: "main-card", weight: "Lightweight" },
+      { f1: "brandon-royval", f2: "loneer-kavanagh", tier: "main-card", weight: "Lightweight" },
+      { f1: "king-green", f2: "terrance-mckinney", tier: "main-card", weight: "Lightweight" },
+      { f1: "robert-whittaker", f2: "nikita-krylov", tier: "main-card", weight: "Lightweight" },
+      { f1: "gable-steveson", f2: "elisha-ellison", tier: "main-card", weight: "Lightweight" },
+      { f1: "cody-garbrandt", f2: "adrian-yanez", tier: "main-card", weight: "Lightweight" },
+      { f1: "kai-kamaka-iii", f2: "luke-riley", tier: "main-card", weight: "Lightweight" },
+      { f1: "wang-cong", f2: "tracy-cortez", tier: "main-card", weight: "Lightweight" },
+      { f1: "cesar-almeida", f2: "damian-pinas", tier: "prelim", weight: "Lightweight" },
+      { f1: "ethyn-ewing", f2: "farid-basharat", tier: "prelim", weight: "Lightweight" },
+      { f1: "zachary-reese", f2: "ryan-gandra", tier: "prelim", weight: "Lightweight" },
+      { f1: "ode-osbourne", f2: "cody-durden", tier: "prelim", weight: "Lightweight" }
     ]
   }
 ];
@@ -2314,6 +2315,42 @@ const EXTRA_FIGHTERS = {
     id: "jefferson-nascimento", name: "Jefferson Nascimento", nickname: "",
     record: "0-0-0", weight: "Lightweight", rank: "Unranked",
     initials: "JN", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  }
+,
+  "beno-t-saint-denis": {
+    id: "beno-t-saint-denis", name: "Beno\u00eet Saint Denis", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "BD", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "terrance-mckinney": {
+    id: "terrance-mckinney", name: "Terrance McKinney", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "TM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "farid-basharat": {
+    id: "farid-basharat", name: "Farid Basharat", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "FB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "zachary-reese": {
+    id: "zachary-reese", name: "Zachary Reese", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "ZR", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ryan-gandra": {
+    id: "ryan-gandra", name: "Ryan Gandra", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "RG", image: "",
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
     style: "MMA", reach: 72, stance: "Orthodox"
   }
