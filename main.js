@@ -131,7 +131,7 @@ const UPCOMING_EVENTS = [
       { f1: "cesar-almeida", f2: "damian-pinas", tier: "prelim", weight: "Lightweight" },
       { f1: "ethyn-ewing", f2: "farid-basharat", tier: "prelim", weight: "Lightweight" },
       { f1: "zachary-reese", f2: "ryan-gandra", tier: "prelim", weight: "Lightweight" },
-      { f1: "ode-osbourne", f2: "cody-durden", tier: "prelim", weight: "Lightweight" }
+      { f1: "cody-durden", f2: "alessandro-costa", tier: "prelim", weight: "Lightweight" }
     ]
   }
 ];
