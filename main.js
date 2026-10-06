@@ -112,23 +112,17 @@ const FIGHTERS = {
 
 const UPCOMING_EVENTS = [
   {
-    id: "ufc-fight-night-gamrot-vs-salk-aug08",
-    name: "UFC Fight Night: Gamrot vs Salkilld",
+    id: "dana-whites-contender-series-s-oct06",
+    name: "Dana White's Contender Series: Season 10, Week 9",
     type: "fight-night",
-    date: "August 8, 2026",
+    date: "October 6, 2026",
     location: "Meta APEX, Las Vegas, NV",
     fights: [
-      { f1: "mateusz-gamrot", f2: "quillan-salkilld", tier: "main", weight: "Lightweight" },
-      { f1: "diego-ferreira", f2: "billy-quarantillo", tier: "co-main", weight: "Lightweight" },
-      { f1: "darren-elkins", f2: "yadier-del-valle", tier: "main-card", weight: "Lightweight" },
-      { f1: "amanda-lemos", f2: "alexia-thainara", tier: "main-card", weight: "Lightweight" },
-      { f1: "billy-ray-goff", f2: "ty-miller", tier: "main-card", weight: "Lightweight" },
-      { f1: "steven-asplund", f2: "guilherme-pat", tier: "main-card", weight: "Lightweight" },
-      { f1: "bruno-lopes", f2: "diyar-nurgozhay", tier: "main-card", weight: "Lightweight" },
-      { f1: "henrique-da-silva-lopes", f2: "louie-sutherland", tier: "prelim", weight: "Lightweight" },
-      { f1: "manoel-sousa", f2: "richie-miranda", tier: "prelim", weight: "Lightweight" },
-      { f1: "miles-johns", f2: "jessie-rosas", tier: "prelim", weight: "Lightweight" },
-      { f1: "juliana-miller", f2: "ravena-oliveira", tier: "prelim", weight: "Lightweight" }
+      { f1: "preston-lagrange", f2: "nell-ariano", tier: "main", weight: "Lightweight" },
+      { f1: "salhahuddin-everett", f2: "ozzy-martin", tier: "co-main", weight: "Lightweight" },
+      { f1: "roque-concei-o", f2: "alexander-chavez", tier: "main-card", weight: "Lightweight" },
+      { f1: "mateus-soares", f2: "ryuho-miyaguchi", tier: "main-card", weight: "Lightweight" },
+      { f1: "alivia-bierley", f2: "summer-onley", tier: "main-card", weight: "Lightweight" }
     ]
   }
 ];
@@ -2771,6 +2765,77 @@ const EXTRA_FIGHTERS = {
     id: "ravena-oliveira", name: "Ravena Oliveira", nickname: "",
     record: "0-0-0", weight: "Lightweight", rank: "Unranked",
     initials: "RO", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  }
+,
+  "preston-lagrange": {
+    id: "preston-lagrange", name: "Preston LaGrange", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "PL", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "nell-ariano": {
+    id: "nell-ariano", name: "Nell Ariano", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "NA", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "salhahuddin-everett": {
+    id: "salhahuddin-everett", name: "Salhahuddin Everett", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "SE", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ozzy-martin": {
+    id: "ozzy-martin", name: "Ozzy Martin", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "OM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "roque-concei-o": {
+    id: "roque-concei-o", name: "Roque Concei\u00e7\u00e3o", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "RC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "alexander-chavez": {
+    id: "alexander-chavez", name: "Alexander Chavez", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "AC", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "mateus-soares": {
+    id: "mateus-soares", name: "Mateus Soares", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "MS", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "ryuho-miyaguchi": {
+    id: "ryuho-miyaguchi", name: "Ryuho Miyaguchi", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "RM", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "alivia-bierley": {
+    id: "alivia-bierley", name: "Alivia Bierley", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "AB", image: "",
+    stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
+    style: "MMA", reach: 72, stance: "Orthodox"
+  },
+  "summer-onley": {
+    id: "summer-onley", name: "Summer Onley", nickname: "",
+    record: "0-0-0", weight: "Lightweight", rank: "Unranked",
+    initials: "SO", image: "",
     stats: { slpm: 4.0, strAcc: 48, tdAvg: 1.5, subAvg: 0.5, koPct: 33, subPct: 33, decPct: 34 },
     style: "MMA", reach: 72, stance: "Orthodox"
   }
